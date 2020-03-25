@@ -1,0 +1,3 @@
+[submodule "tdd_creator"]
+	path = tdd_creator
+	url = https://github.com/AFAlexandrov/tdd_creator.git
