@@ -125,6 +125,8 @@ void MX_FREERTOS_Init(void) {
   * @retval None
   */
 #include "usart.h"
+#include "../../../software/inc/parser/parser.h"
+
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void const * argument)
 {
@@ -142,7 +144,7 @@ void StartDefaultTask(void const * argument)
 		if((input_command [num_cell-1] == 0) || num_cell == 100) { // num_cell == 100 need? we have max size command 20, 21 cell = '\0'
 //			HAL_UART_Transmit(&huart1, input_command, strlen(input_command), 100); //push input command str to uart
 
-			//parse command
+//			parse(input_command); // need add init
 
 			num_cell = 0;
 		}

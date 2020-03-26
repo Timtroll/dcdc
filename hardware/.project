@@ -30,4 +30,11 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>software</name>
+			<type>2</type>
+			<location>H:/Projects/dcdc/software</location>
+		</link>
+	</linkedResources>
 </projectDescription>

@@ -38,3 +38,7 @@
 "Middlewares/Third_Party/FreeRTOS/Source/timers.o"
 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.o"
 "Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o"
+"software/src/find/find.o"
+"software/src/find/find_internal.o"
+"software/src/parser/parser.o"
+"software/src/parser/parser_internal.o"

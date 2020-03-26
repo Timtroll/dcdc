@@ -6,7 +6,7 @@
  * directory for more details.
  */
 
-#include "find_internal.h"
+#include "../../inc/find/find_internal.h"
 
 dbase_record_t * find_cmd (const char * message) {
 	static char msg [PARSER_PATTERN_MAX_LEN_DEFAULT] = {0};

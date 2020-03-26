@@ -5,7 +5,7 @@
  * General Public License v3. See the file LICENSE in the top level
  * directory for more details.
  */
-#include "find_internal.h"
+#include "../../inc/find/find_internal.h"
 
 #include <string.h>
 #include <stdint.h>	

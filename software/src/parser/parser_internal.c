@@ -6,7 +6,7 @@
  * directory for more details.
  */
 
-#include "parser_internal.h"
+#include "../../inc/parser/parser_internal.h"
 
 static void stub_action (void) {
 

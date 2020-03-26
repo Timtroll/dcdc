@@ -11,7 +11,7 @@
 
 #include "stddef.h"
 #include "parser.h"
-#include "../inc/find/find.h"
+#include "../find/find.h"
 
 
 #define NEWLINE "\r"
