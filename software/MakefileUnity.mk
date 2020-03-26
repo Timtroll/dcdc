@@ -26,6 +26,7 @@ TEST_SRC_DIRS = \
 	$(PROJECT_TEST_DIR) \
 	$(PROJECT_TEST_DIR)/find \
 	$(PROJECT_TEST_DIR)/parser \
+	$(PROJECT_TEST_DIR)/smart_ups_dbase/ \
 	$(UNITY_HOME)/unity \
 	$(UNITY_HOME)/src \
 	$(UNITY_HOME)/extras/memory/src/ \
