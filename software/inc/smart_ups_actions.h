@@ -10,21 +10,21 @@
 //создать струкутуру с данными, которые будут браться в гет для тест
 char * get_test = "123456789";
 
-struct parser_memory
-{
-	char * parameter;
-	char * response;
+struct parser_memory {
+	char
+		* parameter,
+		* response;
 	action_t action;
-}memory;
+} memory;
 
-void save_data_from_set(void){
+void save_data_from_set (void) {
 	memory.parameter = parser_parameter();
 	memory.response = parser_response();
 	memory.action = parser_action();
 }
 
-void save_data_from_get(char * para){
-	memory.parameter = para;
+void save_data_from_get (char * parameter) {
+	memory.parameter = parameter;
 	memory.response = parser_response();
 	memory.action = parser_action();
 }
