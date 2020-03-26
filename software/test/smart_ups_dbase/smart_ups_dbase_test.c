@@ -23,7 +23,6 @@ TEST_TEAR_DOWN (charger)
 	parser_delete();
 }
 
-// #include "action.h"
 TEST (charger, right_extract_of_set_command) {
 	dbase_record_t * set_result =
 		dbase_table_find(parser_command_dbase(),
@@ -59,11 +58,4 @@ TEST (charger, right_work_with_structure) {
 
 	TEST_ASSERT_EQUAL_STRING(" 534", memory.parameter);
 	TEST_ASSERT_EQUAL_STRING("", memory.response);
-}
-
-TEST (charger, right_getting) {
-	parse("get voltage_cut_off");
-	parser_action()();
-
-	TEST_ASSERT_EQUAL_STRING("123456789", memory.parameter);
 }

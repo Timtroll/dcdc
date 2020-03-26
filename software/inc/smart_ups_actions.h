@@ -16,14 +16,45 @@
 #include "parser/parser.h"
 
 //создать струкутуру с данными, которые будут браться в гет для тест
-char * get_test = "123456789";
 
-struct parser_memory {
+typedef struct {
 	char
 		* parameter,
 		* response;
 	action_t action;
-} memory;
+} parser_memory;
+
+void save_to_queue(parser_memory struct_to_save){
+	//here will be code, when adress of queue is known
+}
+
+parser_memory memory;
+
+//list of functions, defined in some header or files included to this
+void set_for_voltage_cut_off (void) {
+	//some_voltage_pointer = parser_parameter();
+}
+
+void set_for_charge_current (void) {
+	//some_current_pointer = parser_parameter();
+}
+
+void set_for_battery_type (void) {
+	//some_type_pointer = parser_parameter();
+}
+
+char * get_for_voltage_cut_off (void) {
+	//return some_voltage_pointer
+}
+
+char * get_for_charge_current (void) {
+	//return some_current_pointer
+}
+
+char * get_for_battery_type (void) {
+	//return some_type_pointer
+}
+//
 
 void save_data_from_set (void) {
 	memory.parameter = parser_parameter();
@@ -36,4 +67,5 @@ void save_data_from_get (char * parameter) {
 	memory.response = parser_response();
 	memory.action = parser_action();
 }
+
 #endif //_ACTION_H

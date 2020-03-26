@@ -19,14 +19,17 @@
 //at all points is given NO_RESPONSE, because the responce is unknown
 void set_vol_cut_off (void) {
 	save_data_from_set();
+	set_for_voltage_cut_off();
 }
 
 void set_charge_current (void) {
 	save_data_from_set();
+	set_for_charge_current();
 }
 
 void set_battery_type (void) {
 	save_data_from_set();
+	set_for_battery_type();
 }
 
 #define VOLTAGE 0
@@ -59,15 +62,15 @@ START_CMD_GROUP (set_parameter, SET_PARAMETER_NUM) {
 	
 
 void get_vol_cut_off (void) {
-	save_data_from_get(get_test);
+	save_data_from_get(get_for_voltage_cut_off());
 }
 
 void get_charge_current (void) {
-	save_data_from_get(get_test);
+	save_data_from_get(get_for_charge_current());
 }
 
 void get_battery_type (void) {
-	save_data_from_get(get_test);
+	save_data_from_get(get_for_battery_type());
 }
 
 #define GET_PARAMETER_NUM 3

@@ -32,9 +32,17 @@ static inline bool extraction_possible (char * message, uint16_t from_here, uint
 		pos_in_message &&
 		cmd_in_message &&
 		sym_not_delimeter &&
-		cmd_len < EXTRACT_MSG_MAX_SIZE;
+		(cmd_len < EXTRACT_MSG_MAX_SIZE);
 }
-
+//old version of "extraction possible"
+// static inline bool extraction_possible (char * message, uint16_t from_here, uint16_t cmd_len) {
+// 	register int msg_len = strlen(message);
+// 	return from_here < msg_len &&
+// 		cmd_len <= msg_len &&
+// 		cmd_len < EXTRACT_MSG_MAX_SIZE &&
+// 		is_delimeter(message[from_here + cmd_len])
+// 	;
+// }
 char * extract_pattern (char * message, uint16_t from_here, uint16_t cmd_len) {
 	static char pattern [EXTRACT_MSG_MAX_SIZE] = {0};
 	*pattern = '\0';

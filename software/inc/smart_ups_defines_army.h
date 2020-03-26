@@ -22,6 +22,9 @@
 
 #define CMD_SET                      "set"
 	#define SET_PARAMETER            "set_parameter"
+	#define VOLTAGE_CUT_OFF_SET_RESPONSE 	""
+	#define CHARGE_CURRNENT_SET_RESPONSE 	""
+	#define BATTERY_TYPE_SET_RESPONSE 		""
 
 #define CMD_GET                       "get"
 		#define SET_PARAMETER         "set_parameter"
