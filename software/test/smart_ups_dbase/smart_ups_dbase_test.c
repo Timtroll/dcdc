@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2019-2020 Daniil D. Ryabinin (ryabiko1953@gmail.com)
+ *
+ * This file is subject to the terms and conditions of the GNU Lesser
+ * General Public License v3. See the file LICENSE in the top level
+ * directory for more details.
+ */
+
 #include "unity_fixture.h"
 #include "../../inc/smart_ups_data_base.h"
 #include "../../inc/find/find_internal.h"
