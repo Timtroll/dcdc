@@ -61,9 +61,10 @@ void MX_FREERTOS_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 #define MAX_SIZE_COMMAND 20
-static uint8_t uart_input_command_buff[MAX_SIZE_COMMAND+1] = {0};
+static uint8_t uart_input_command_buff [MAX_SIZE_COMMAND+1] = {0};
 extern osMessageQId command_queueHandle;
-void HAL_UART_IDLE_Callback(UART_HandleTypeDef *huart){
+
+void HAL_UART_IDLE_Callback (UART_HandleTypeDef *huart) {
 	__HAL_UART_CLEAR_IDLEFLAG(huart);
 	HAL_UART_AbortReceive(huart);
 
@@ -72,7 +73,7 @@ void HAL_UART_IDLE_Callback(UART_HandleTypeDef *huart){
 
 	memset(uart_input_command_buff, 0, MAX_SIZE_COMMAND);
 
-	HAL_UART_Receive_DMA(huart, command_queueHandle, MAX_SIZE_COMMAND);
+	HAL_UART_Receive_DMA(huart, uart_input_command_buff, MAX_SIZE_COMMAND);
 }
 /* USER CODE END 0 */
 
@@ -109,7 +110,7 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
    __HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE);
-   HAL_UART_Receive_IT(&huart1, command_queueHandle, MAX_SIZE_COMMAND);
+   HAL_UART_Receive_IT(&huart1, uart_input_command_buff, MAX_SIZE_COMMAND);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
