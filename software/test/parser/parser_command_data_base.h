@@ -13,6 +13,11 @@
 #include "response_defines_army.h"
 #include "stddef.h"
 
+#define cmd_dbase_STARTED_FROM(cmd_NUM) ( \
+	(command_dbase_t)&test_commands[cmd_NUM] \
+)
+#define PARSER_CREATE(dbase) parser_create(dbase, MAX_CMD_LEN)
+
 static inline void set_some_parameter_ParamName (void) {
 
 }

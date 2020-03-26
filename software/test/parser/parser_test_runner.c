@@ -36,6 +36,7 @@ TEST_GROUP_RUNNER (parser) {
     RUN_TEST_CASE (parser,
     	parse_install_stub_ACTION_if_cmd_NOT_found);
 }
+<<<<<<< HEAD
 
 TEST_GROUP_RUNNER (find_cmd) {
 	RUN_TEST_CASE (find_cmd,
@@ -72,3 +73,5 @@ TEST_GROUP_RUNNER (find_cmd) {
 	RUN_TEST_CASE (find_cmd,
 		set_parameter_if_message_continue_without_subcommand);
 }
+=======
+>>>>>>> dedfa4b7176d26cb88949dfbdd1735cd4b607e16

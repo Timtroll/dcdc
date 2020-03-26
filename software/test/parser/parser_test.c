@@ -15,7 +15,6 @@
 #include "find_internal.h"
 
 #include "../inc/parser/parser_internal.h"
-// #include "../src/parser/parser_internal.c"
 
 #define _TEST_MESSAGE_ "find me please"
 
@@ -85,11 +84,6 @@ TEST (parser, _parser_return_stub_action_if_cmd_dbase_empty) {
 [v] parse_install_stub_ACTION_if_cmd_found_with_empty_action
 */
 
-#define cmd_dbase_STARTED_FROM(cmd_NUM) ( \
-	(command_dbase_t)&test_commands[cmd_NUM] \
-)
-#define PARSER_CREATE(dbase) parser_create(dbase, MAX_CMD_LEN)
-
 TEST (parser, parse_install_correct_RESPONSE_if_cmd_found) {
 	PARSER_CREATE(cmd_dbase_STARTED_FROM(test_cmd_HELP));
 	parse(CMD_HELP);
@@ -133,6 +127,7 @@ TEST (parser, parse_install_stub_ACTION_if_cmd_NOT_found) {
 
 	TEST_ASSERT_EQUAL_PTR(parser_stub_action(), parser_action());
 }
+<<<<<<< HEAD
 
 TEST_GROUP (find_cmd);
 
@@ -288,3 +283,5 @@ TEST (find_cmd, set_parameter_if_message_continue_without_subcommand) {
 			"set another_param 0x12");
 		TEST_ASSERT_EQUAL_STRING(" 0x12", result->parameter);
 }
+=======
+>>>>>>> dedfa4b7176d26cb88949dfbdd1735cd4b607e16
