@@ -5,8 +5,8 @@ TEST_GROUP_RUNNER (find_cmd) {
 		extract_pattern_return_empty_string_if_len_owerflows);
 	RUN_TEST_CASE (find_cmd,
 		extract_pattern_return_null_if_cmd_len_bigger_than_msg_len);
-	RUN_TEST_CASE (find_cmd,
-		extract_pattern_return_empty_string_if_extracting_BEFORE_msg);
+	// RUN_TEST_CASE (find_cmd,
+	// 	extract_pattern_return_empty_string_if_extracting_BEFORE_msg);
 	RUN_TEST_CASE (find_cmd,
 		extract_pattern_return_empty_string_if_extracting_AFTER_msg);
 
