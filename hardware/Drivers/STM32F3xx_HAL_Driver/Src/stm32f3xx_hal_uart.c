@@ -2274,21 +2274,8 @@ void HAL_UART_IRQHandler(UART_HandleTypeDef *huart)
     UART_EndTransmit_IT(huart);
     return;
   }
-	if(RESET != __HAL_UART_GET_FLAG(huart, UART_FLAG_IDLE))
-	{
-		HAL_UART_IDLE_Callback(huart);
-	}
-
 }
-__weak void HAL_UART_IDLE_Callback(UART_HandleTypeDef *huart)
-{
-  /* Prevent unused argument(s) compilation warning */
-  UNUSED(huart);
 
-  /* NOTE : This function should not be modified, when the callback is needed,
-            the HAL_UART_TxCpltCallback can be implemented in the user file.
-   */
-}
 /**
   * @brief Tx Transfer completed callback.
   * @param huart UART handle.
