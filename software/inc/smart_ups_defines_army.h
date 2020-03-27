@@ -14,7 +14,6 @@
 #define NEWLINE "\r"
 #define NO_RESPONSE ""
 
-
 #define RESP_INVALID_PARAMETER  "invalid (must be 0 - 255)"NEWLINE
 #define VOLTAGE_CUT_OFF         "voltage_cut_off"
 #define CHARGE_CURRNENT         "charge_current"
@@ -22,11 +21,16 @@
 
 #define CMD_SET                      "set"
 	#define SET_PARAMETER            "set_parameter"
-	#define VOLTAGE_CUT_OFF_SET_RESPONSE 	""
-	#define CHARGE_CURRNENT_SET_RESPONSE 	""
-	#define BATTERY_TYPE_SET_RESPONSE 		""
+	#define VOLTAGE_CUT_OFF_SET_RESPONSE "voltage_cut_off is set"
+	#define CHARGE_CURRENT_SET_RESPONSE "charge_current is set"
+	#define BATTERY_TYPE_SET_RESPONSE	"battery_type is set"
 
 #define CMD_GET                       "get"
 		#define SET_PARAMETER         "set_parameter"
+		#define VOLTAGE_CUT_OFF_GET_RESPONSE "voltage_cut_off was got"
+		#define CHARGE_CURRENT_GET_RESPONSE "charge_current was got"
+		#define BATTERY_TYPE_GET_RESPONSE	"battery_type was got"
+
+
 
 #endif//_RESPONSE_DEFINES_ARMY_SMART_CHARGER_H_

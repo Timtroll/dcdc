@@ -43,7 +43,7 @@ TEST (charger, right_extract_of_get_command) {
 	);
 
 	TEST_ASSERT_EQUAL_STRING("voltage_cut_off", get_result->command);
-	TEST_ASSERT_EQUAL_STRING("", get_result->response);
+	TEST_ASSERT_EQUAL_STRING(VOLTAGE_CUT_OFF_GET_RESPONSE, get_result->response);
 }
 
 TEST (charger, right_work_with_structure) {
@@ -51,11 +51,11 @@ TEST (charger, right_work_with_structure) {
 	parser_action()();
 
 	TEST_ASSERT_EQUAL_STRING(" 120", memory.parameter);
-	TEST_ASSERT_EQUAL_STRING("", memory.response);
+	TEST_ASSERT_EQUAL_STRING(VOLTAGE_CUT_OFF_SET_RESPONSE, memory.response);
 
 	parse("set charge_current 534");
 	parser_action()();
 
 	TEST_ASSERT_EQUAL_STRING(" 534", memory.parameter);
-	TEST_ASSERT_EQUAL_STRING("", memory.response);
+	TEST_ASSERT_EQUAL_STRING(CHARGE_CURRENT_SET_RESPONSE, memory.response);
 }

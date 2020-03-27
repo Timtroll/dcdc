@@ -11,6 +11,7 @@
 
 #include "stddef.h"
 #include "stdio.h"
+#include "string.h"
 
 #include "parser/d_base.h"
 #include "parser/parser.h"

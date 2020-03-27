@@ -40,18 +40,18 @@ void set_battery_type (void) {
 START_CMD_GROUP (set_parameter, SET_PARAMETER_NUM) {
 	[VOLTAGE] = {
 		.command = VOLTAGE_CUT_OFF,
-		.response = NO_RESPONSE,
+		.response = VOLTAGE_CUT_OFF_SET_RESPONSE,
 		.action = set_vol_cut_off
 		
 	},
 	[CURRENT] = {
 		.command = CHARGE_CURRNENT,
-		.response =  NO_RESPONSE,
+		.response =  CHARGE_CURRENT_SET_RESPONSE,
 		.action = set_charge_current
 	},
 	[TYPE] = {
 		.command = BATTERY_TYPE,
-		.response =  NO_RESPONSE,
+		.response =  BATTERY_TYPE_SET_RESPONSE,
 		.action = set_battery_type
 	}
 
@@ -77,17 +77,17 @@ void get_battery_type (void) {
 START_CMD_GROUP (get_parameter, GET_PARAMETER_NUM) {
 	[VOLTAGE] = {
 		.command = VOLTAGE_CUT_OFF,
-		.response = NO_RESPONSE,
+		.response = VOLTAGE_CUT_OFF_GET_RESPONSE,
 		.action = get_vol_cut_off
 	},
 	[CURRENT] = {
 		.command = CHARGE_CURRNENT,
-		.response =  NO_RESPONSE,
+		.response =  CHARGE_CURRENT_GET_RESPONSE,
 		.action = get_charge_current
 	},
 	[TYPE] = {
 		.command = BATTERY_TYPE,
-		.response =  NO_RESPONSE,
+		.response =  BATTERY_TYPE_GET_RESPONSE,
 		.action = get_battery_type
 	}
 
