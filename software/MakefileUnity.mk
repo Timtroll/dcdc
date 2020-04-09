@@ -19,11 +19,17 @@ UNITY_WARNINGFLAGS = -Wswitch-default
 #UNITY_WARNINGFLAGS += -Wshadow
 SRC_DIRS = \
 	$(PROJECT_HOME_DIR)/src/ \
+	$(PROJECT_HOME_DIR)/src/system_info \
+	$(PROJECT_HOME_DIR)/src/measurements \
+	$(PROJECT_HOME_DIR)/src/system_config \
 	$(PROJECT_HOME_DIR)/src/find \
 	$(PROJECT_HOME_DIR)/src/parser \
 
 TEST_SRC_DIRS = \
 	$(PROJECT_TEST_DIR) \
+	$(PROJECT_TEST_DIR)/system_info \
+	$(PROJECT_TEST_DIR)/measurements \
+	$(PROJECT_TEST_DIR)/system_config \
 	$(PROJECT_TEST_DIR)/find \
 	$(PROJECT_TEST_DIR)/parser \
 	$(PROJECT_TEST_DIR)/smart_ups_dbase/ \
@@ -40,6 +46,9 @@ INCLUDE_DIRS = \
 	$(UNITY_HOME)/extras/fixture/src \
 	$(UNITY_HOME)/extras/fixture/test \
 	$(PROJECT_HOME_DIR)/inc/ \
+	$(PROJECT_HOME_DIR)/inc/system_info \
+	$(PROJECT_HOME_DIR)/inc/measurements \
+	$(PROJECT_HOME_DIR)/inc/system_config \
 	$(PROJECT_HOME_DIR)/inc/find \
 	$(PROJECT_HOME_DIR)/inc/parser \
 
