@@ -9,14 +9,15 @@
 #ifndef _SMART_CHARGER_DATA_BASE_H_
 #define _SMART_CHARGER_DATA_BASE_H_
 
-// #include "../../inc/parser/parser.h"
 #include "smart_ups_defines_army.h"
 #include "stddef.h"
-#include "smart_ups_actions.h"
+
+#include "system_info/system_info_internal.h"
+#include "system_config/system_config_internal.h"
+#include "measurements/measurements_internal.h"
 
 #include <string.h>
 
-//at all points is given NO_RESPONSE, because the responce is unknown
 void set_vol_cut_off (void) {
 	save_data_from_set();
 	set_for_voltage_cut_off();
