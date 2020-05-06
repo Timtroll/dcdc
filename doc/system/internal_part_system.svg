@@ -22,7 +22,7 @@
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"><metadata
    id="metadata110"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><sodipodi:namedview
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><sodipodi:namedview
    pagecolor="#ffffff"
    bordercolor="#666666"
    borderopacity="1"
@@ -37,9 +37,9 @@
    showgrid="false"
    showguides="true"
    inkscape:guide-bbox="true"
-   inkscape:zoom="0.70710678"
-   inkscape:cx="585.97044"
-   inkscape:cy="479.32492"
+   inkscape:zoom="4"
+   inkscape:cx="124.23012"
+   inkscape:cy="251.78151"
    inkscape:window-x="0"
    inkscape:window-y="0"
    inkscape:window-maximized="1"
@@ -77,7 +77,43 @@
      position="16912.816,15172.891"
      orientation="1,0"
      id="guide408"
-     inkscape:locked="false" /></sodipodi:namedview>
+     inkscape:locked="false" /><sodipodi:guide
+     position="16703.829,12782.748"
+     orientation="0,1"
+     id="guide220"
+     inkscape:locked="false"
+     inkscape:label=""
+     inkscape:color="rgb(0,0,255)" /><sodipodi:guide
+     position="16699,10839"
+     orientation="0,1"
+     id="guide222"
+     inkscape:locked="false" /><sodipodi:guide
+     position="4139.5121,10868"
+     orientation="1,0"
+     id="guide241"
+     inkscape:locked="false"
+     inkscape:label=""
+     inkscape:color="rgb(0,0,255)" /><sodipodi:guide
+     position="1917,10868"
+     orientation="1,0"
+     id="guide243"
+     inkscape:locked="false" /><sodipodi:guide
+     position="4800.9704,8559.3064"
+     orientation="1,0"
+     id="guide245"
+     inkscape:locked="false"
+     inkscape:label=""
+     inkscape:color="rgb(0,0,255)" /><sodipodi:guide
+     position="5219.0002,4719.4919"
+     orientation="0,1"
+     id="guide247"
+     inkscape:locked="false" /><sodipodi:guide
+     position="5219.0003,5380.9371"
+     orientation="0,1"
+     id="guide249"
+     inkscape:locked="false"
+     inkscape:label=""
+     inkscape:color="rgb(0,0,255)" /></sodipodi:namedview>
  <defs
    class="ClipPathGroup"
    id="defs8">
@@ -372,6 +408,7 @@
      style="stroke-width:746.70709229;font-size:564.44444584px;" /></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:564.44444584px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229;"
@@ -383,6 +420,7 @@
      x="3523.5491"
      y="2871.4597"
      style="stroke-width:746.70709229;font-size:564.44444584px;" /></text>
+
 
 
 <text
@@ -398,6 +436,7 @@
      style="stroke-width:746.70709229;font-size:564.44444584px;fill:#000000;fill-opacity:0;">DS</tspan></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:564.44445801px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -409,6 +448,7 @@
      x="4593.1978"
      y="2025.5005"
      style="stroke-width:746.70709229" /></text>
+
 
 
 <text
@@ -424,6 +464,7 @@
      style="stroke-width:746.70709229">ACTION</tspan></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:564.44445801px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -435,6 +476,7 @@
      x="8745.9521"
      y="2223.6228"
      style="stroke-width:746.70709229">SYSTEM_INFO</tspan></text>
+
 
 
 <text
@@ -450,6 +492,7 @@
      style="stroke-width:746.70709229">MENU</tspan></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:564.44445801px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -461,6 +504,7 @@
      x="24539.004"
      y="2220.1914"
      style="stroke-width:746.70709229">SCREEN</tspan></text>
+
 
 
 <text
@@ -476,6 +520,7 @@
      style="stroke-width:746.70709229">DISPLAY</tspan></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:564.44445801px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -487,6 +532,7 @@
      x="5222.4028"
      y="12122.646"
      style="stroke-width:746.70709229">MEASUREMENT</tspan></text>
+
 
 
 <path
@@ -521,6 +567,7 @@
      id="tspan3913" /></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -547,6 +594,7 @@
      y="3927.6819"
      style="font-size:282.222229px;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:746.70709229"
      id="tspan3923" /></text>
+
 
 
 <path
@@ -606,6 +654,7 @@
      id="tspan3963" /></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -617,6 +666,7 @@
      x="10941.978"
      y="6523.9634"
      style="stroke-width:746.70709229" /></text>
+
 
 
 <text
@@ -647,6 +697,7 @@
      id="tspan3971" /></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -663,6 +714,7 @@
      y="13647.788"
      style="stroke-width:746.70709229"
      id="tspan3983">       </tspan></text>
+
 
 
 <path
@@ -685,6 +737,7 @@
      y="14676.835"
      style="stroke-width:746.70709229"
      id="tspan4009" /></text>
+
 
 
 <flowRoot
@@ -710,6 +763,7 @@
      style="stroke-width:746.70709229">+sys_info_set_type_battery()</tspan></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -721,6 +775,7 @@
      x="8618.0576"
      y="5036.0664"
      style="stroke-width:746.70709229">+sys_info_set_charging_type()</tspan></text>
+
 
 
 <text
@@ -736,6 +791,7 @@
      style="stroke-width:746.70709229">+sys_info_get_voltage_cutoff()</tspan></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -747,6 +803,7 @@
      x="8618.0576"
      y="6215.1421"
      style="stroke-width:746.70709229">+sys_info_get_type_battery()</tspan></text>
+
 
 
 <text
@@ -762,6 +819,7 @@
      style="stroke-width:746.70709229">+sys_info_get_charging_type()</tspan></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -773,6 +831,7 @@
      x="8614.6465"
      y="7629.5034"
      style="stroke-width:746.70709229">+etc.</tspan></text>
+
 
 
 <text
@@ -788,6 +847,7 @@
      style="stroke-width:746.70709229">+group_meas</tspan></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -799,6 +859,7 @@
      x="2013.009"
      y="5013.2563"
      style="stroke-width:746.70709229">+group_display</tspan></text>
+
 
 
 <text
@@ -814,6 +875,7 @@
      style="stroke-width:746.70709229">+group_menu</tspan></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -825,6 +887,7 @@
      x="9769.5137"
      y="3158.2349"
      style="stroke-width:746.70709229">voltage_cutoff,</tspan></text>
+
 
 
 <text
@@ -840,6 +903,7 @@
      style="stroke-width:746.70709229">type_bat,</tspan></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -851,6 +915,7 @@
      x="9795.2402"
      y="3744.1697"
      style="stroke-width:746.70709229">etc.}</tspan></text>
+
 
 
 <text
@@ -866,6 +931,7 @@
      style="stroke-width:746.70709229">gen, input1, main, etc.}</tspan></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -877,6 +943,7 @@
      x="5959.1626"
      y="13614.393"
      style="stroke-width:746.70709229">charger, consuption,etc}</tspan></text>
+
 
 
 <text
@@ -892,6 +959,7 @@
      style="stroke-width:746.70709229">+meas_voltage_input1()</tspan></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -903,6 +971,7 @@
      x="5314.0903"
      y="14921.882"
      style="stroke-width:746.70709229">+meas_voltage_input2()</tspan></text>
+
 
 
 <text
@@ -918,6 +987,7 @@
      style="stroke-width:746.70709229">+meas_voltage_mains()</tspan></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -929,6 +999,7 @@
      x="5315.8511"
      y="16178.068"
      style="stroke-width:746.70709229">+meas_current_charger()</tspan></text>
+
 
 
 <text
@@ -944,6 +1015,7 @@
      style="stroke-width:746.70709229">+meas_current_consuption()</tspan></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -955,6 +1027,7 @@
      x="5315.7148"
      y="17232.723"
      style="stroke-width:746.70709229">+etc.</tspan></text>
+
 
 
 <path
@@ -974,6 +1047,7 @@
      id="tspan4155">-screen_t{     </tspan></text>
 
 
+
 <path
    style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:26.51944542px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
    d="m 23423.68,4058.6509 h 4445.366"
@@ -990,6 +1064,7 @@
      y="3153.0425"
      style="stroke-width:746.70709229">size, font, coordinates, etc}</tspan></text>
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -1001,6 +1076,7 @@
      x="23529.801"
      y="4462.4131"
      style="stroke-width:746.70709229">+scr_constructor_screen(atrib)</tspan></text>
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -1012,6 +1088,7 @@
      x="23526.896"
      y="4738.9697"
      style="stroke-width:746.70709229">+scr_change_info(*data)</tspan></text>
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -1023,6 +1100,7 @@
      y="5041.3369"
      style="stroke-width:746.70709229"
      id="tspan201">+scr_destructor_screen(*scr)</tspan></text>
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -1034,6 +1112,7 @@
      x="16865.361"
      y="2869.9729"
      style="stroke-width:746.70709229">-list_screen{</tspan></text>
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -1045,6 +1124,7 @@
      x="17330.209"
      y="3134.0105"
      style="stroke-width:746.70709229">scr_main, scr_current, etc}</tspan></text>
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -1056,6 +1136,7 @@
      x="16794.428"
      y="4476.7705"
      style="stroke-width:746.70709229">+menu_swipe_right()</tspan></text>
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -1067,6 +1148,7 @@
      x="16794.428"
      y="4757.8906"
      style="stroke-width:746.70709229">+menu_swipe_left()</tspan></text>
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -1078,6 +1160,7 @@
      x="16791.688"
      y="5040.5469"
      style="stroke-width:746.70709229">+menu_get_info()</tspan></text>
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -1089,6 +1172,7 @@
      x="16795.885"
      y="5321.9697"
      style="stroke-width:746.70709229">+menu_set_info()</tspan></text>
+
 <path
    style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:26.45833206px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
    d="m 20130.74,13989.618 h 4443.356"
@@ -1104,6 +1188,7 @@
      x="20224.326"
      y="14324.808"
      style="stroke-width:746.70709229">+display_create_full_scr()</tspan></text>
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -1115,6 +1200,7 @@
      x="20221.711"
      y="15560.396"
      style="stroke-width:746.70709229">+display_transmit_JSON</tspan></text>
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:282.222229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:746.70709229"
@@ -1126,12 +1212,13 @@
      x="20228.961"
      y="14610.922"
      style="stroke-width:746.70709229">+display_print_scr()</tspan></text>
+
 <path
    style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:26.45833206px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-   d="m 1917,6273.5031 h -661.4462 l -661.45839,661.4583 10e-6,8684.1016 661.45838,661.445 h 3963.4463"
+   d="m 1917,6273.5031 h -661.4462 l -661.45839,661.4583 10e-6,8684.1016"
    id="path283"
    inkscape:connector-curvature="0"
-   sodipodi:nodetypes="cccccc" /><path
+   sodipodi:nodetypes="cccc" /><path
    style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:26.45833206px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
    d="m 5069.2401,16194.044 149.76,86.464 -149.76,86.464"
    id="path313"
@@ -1179,4 +1266,16 @@
    d="M 23438.776,6273.5031 H 21140.208"
    id="path420"
    inkscape:connector-curvature="0"
-   sodipodi:nodetypes="cc" /></svg>
+   sodipodi:nodetypes="cc" /><path
+   style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:26.45833206px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+   d="m 12965.245,8217.2521 h 3723.064"
+   id="path224"
+   inkscape:connector-curvature="0" /><path
+   style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:26.45833969px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+   d="m 13138.156,8303.7161 -149.76,-86.464 149.76,-86.464"
+   id="path313-7-3"
+   inkscape:connector-curvature="0" /><path
+   style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:26.45833206px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+   d="m 4139.512,10132 v 5487.063 l 661.4584,661.458 h 417.6342 v -0.01"
+   id="path251"
+   inkscape:connector-curvature="0" /></svg>
