@@ -1,0 +1,104 @@
+@startuml
+ACTION -right-> SYSTEM_INFO 
+MENU --> SYSTEM_INFO
+MENU --> SCREEN
+ACTION -right-> MENU
+DISPLAY --> MENU
+ACTION -up-> MEASUREMENT
+ACTION -left-> DISPLAY
+
+class ACTION {
++group_system_info()
++group_meas()
++group_display()
++group_menu()
+}
+
+class SYSTEM_INFO {
+-system_parameters{
+voltage_cutoff, type_bat, etc.}
+
+            
+____
+.. SET_methods ..
++sys_info_set_voltage_cutoff()
++sys_info_set_type_battery()
++sys_info_set_charging_type()
++sys_info_set_charge_threshold_Pb_lower()
++sys_info_set_charge_threshold_Pb_upper()
++sys_info_set_charge_threshold_others() 
++sys_info_set_discharge_threshold()
++sys_info_set_quantity_cans()
++sys_info_set_capacity()
++sys_info_set_max_allowable_capacity()
++sys_info_set_internal_voltage_default()
+.. GET_methods ..
++sys_info_get_voltage_cutoff()
++sys_info_get_type_battery()
++sys_info_get_charging_type()
++sys_info_get_charge_threshold_Pb_lower()
++sys_info_get_charge_threshold_Pb_upper()
++sys_info_get_charge_threshold_others() 
++sys_info_get_discharge_threshold()
++sys_info_get_quantity_cans()
++sys_info_get_capacity()
++sys_info_get_max_allowable_capacity()
++sys_info_get_internal_voltage_default()
+}
+
+
+
+class MENU{
+-list_screen{
+scr_main, scr_current, etc}
+
++menu_swipe_right()
++menu_swipe_left()
++menu_get_info()
++menu_set_info()
+}
+
+class SCREEN{
+-screen_t{ 
+size, font, coordinates, etc}
+
++scr_constructor_screen(atrib)
++scr_change_info(*data)
++scr_destructor_screen(*scr)    
+}
+
+class MEASUREMENT{
+-group_voltage{
+gen, input1, main, etc}
+-group_current{
+charger, consuption,etc}
+-group_others{
+resistanse, self-discharge rate, etc}
+
++meas_voltage_gen()
++meas_voltage_input1()
++meas_voltage_input2()
++meas_voltage_mains()
++meas_voltage_output()
+
++meas_current_charger()
++meas_current_consuption()
++meas_current_battery()
+
++meas_internal_resistanse()
++meas_contact_resistanse()
++meas_self-discharge_rate()
+
+
+
+}
+
+class DISPLAY{
+
++display_create_full_scr()
++display_print_scr()
+
++display_transmit_JSON()
+
+}
+@enduml
