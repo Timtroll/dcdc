@@ -108,6 +108,9 @@ class DISPLAY{
 +display_get_parameter()
 +display_set_next_screen()
 +display_set_parameter()
+
++display_create_full_screen()
++display_transmit_screen()
 }
 
 

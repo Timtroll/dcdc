@@ -1,50 +1,5 @@
 
-![test_plantUML](http://www.plantuml.com/plantuml/png/R8xFJi904CRl-nJp03RHgo741jS48otfbWCdOapH9aWDb8kdKYuc6aryaa9em3-KLvXv8wShYpLww6Rc-xxvzJiPnvUZU78x47R3RxeEM8EW7rjrK5tborQlwPov85hIwVpdx8nHU7sZdOOdfMD8UxaCYTEcQb_ONR2CO5AJEwtOgkD9Dlm_v-VATNfjsrFI0r5TQfO5E-p-YFD64c8OnG5e34JztvpQEBmFZeyEw_WAkCMC4ffYJWdcW0NEUSXmpd9AZxZWEUTfIY_0JyfcWU-O7VnGU2qevI-X6JsNHCt29MRuWMl01TXNSHWDgpTPANz7w0at77-Z1tu_GVz-POgmjU4QURNriYBZchjliT2O5StAil3LQ1NiECx2u3jFmN4wpLJw_oVOosglA-tS4IKEpOf25fkTgQ9vzpKDqp1DMoMNDFR7X-tFcBOz3awV1FXMvZfmEOpJYB9KQXHR6qCQ59wGuAXwtuMdpQVn21hdhy9LkttYhuyBQTqjetWfd8EE-WW44KVnDpZI5fH95BgkaNGQGEqrDHB8x3vaVeJYH-nsyjVtLyKB3w55kTk9BVET0rG8fBuoFMskt9_41F6qS9g3ZhRtzeowxGL5XmXu2AvLF_VAXJU8gv1f6DOW0nqWSd7b5P2BV8rTaFr9sbDF9sMqn-LMUj26lGl7KRyhxJWJlNTm7zPxWkYrkrIuXKudHmnaJNxSqyG-riG-qiG-rCIkriIkriIkrSIkqCG-rCJUqyIkqyG-rcG-VNcUygbpFP924m7yAFZDU_I-aVcNIJ62dmuRhzlc0wpmhMTPydpCTBNDGNSnbJ2wC6EAeOwXp7wUAgyveL6AAH0LXlFOapuTzn2LwptWXzWQS8v9MdZdQCuH1eyKaw4GImvFb9ba8vzRJNfJO0VjBKpRpnnD3MdXckYPtnl9pnnlVUDmwQQnLcey2WiSSU-7HFyrCbUn5AxWIZL7CJL7R6IEFasPLi3ILwE8WAoDzWWi1xZkvT9OCcg2IXQD5wKjHxwviaqntJR_lp3do75X3OaOpUPYBzceaap1p_OvjuLhFjB5SMdNEUDvKV2a3TroVQs9oZNvqbpbIkVkAbVHkIazl5EHcD6rQxvvQWVUNuFrcdhh-by3RyyOXAYqCJ2G-et1AwJOUvl9YZC2fUXLxiY9wHluDXtTFm00)
+![test_plantUML](http://www.plantuml.com/plantuml/png/R8xFJi904CRl-nJp03RHgo741jS48otfbWCdOapH9aWDb8kdKYuc6aryaa9em3-KLvXv8wShYpLww6Rc-xxvzJiPnvUZU78x47R3RxeEM8EW7rjrK5tborQlwPov85hIwVpdx8nHU7sZdOOdfMD8UxaCYTEcQb_ONR2CO5AJEwtOgkD9Dlm_v-VATNfjsrFI0r5TQfO5E-p-YFD64c8OnG5e34JztvpQEBmFZeyEw_WAkCMC4ffYJWdcW0NEUSXmpd9AZxZWEUTfIY_0JyfcWU-O7VnGU2qevI-X6JsNHCt29MRuWMl01TXNSHWDgpTPANz7w0at77-Z1tu_GVz-POgmjU4QURNriYBZchjliT2O5StAil3LQ1NqkCa3qJk_miVDXetqVR-WbwhNIjsxDO71eJ8sjSVTZT3-zux1mIGa4Loop3m_timRsrktljTmBj3K8lQ1sr5fy5waJWt5NZaRUkdFdh2JhMdio-uIx11yVajSoxG9_FOraowdPIZU4cSF3ZeaT7ue_bfDe51MWMpJb8BEFSeZK2cGgiENY4yX-IaE1_7h-xlaXITRUt4u57lc6mLAZoIlcLZ6TVf2JEZEgsHr0gTQeqRK_InAEZdq9wjh-VCejVr0jmaP-duBqj897JTNt02voRVO5TcV08PQEiiAZ5z_2dgeEBjATF0fGNCbSDJu6DOQGcT0pnskiO6WYO7ioOz7dgZddgXddgYddgZDdgZDdgYjdgWDdgYddgX7dgXjdgZddkJT5yzJtdMwzIHzvH3DKF0lVwCrfOX_LS4vDDDcutNxk86b_sZPbl5yPBfbJ6CpXvACncRC7CWQqjdFfyfxB6WGnIH4sduyzeG9tH6TrAr1_rNiAzIQIMhyP3MZGciykL2HTQc65ufCeXIlDH3i4km4Hk7q-SnHBY4rtXAzykzEy9FrBcySRjrqhAKU3uL2LjoQFj1_fOXTJ8rBkDJDePY6mvKYgWzJfGjWcgkXSEZP6p0UsGxKpTiyMC81uS8MyBFJYfNlRcAJfllX_rVXgDoleZOGepcSugaQcOf9-1pFjQrIUKkdn3okkUAyo1g2YkwbhdiYOq-kXYjTwJnTwIeQXzBW9rqitbsbyispJFZ7Q_pDcfnXA13A9cXzPnqvCBvhCsKMlVn_WuKpkqSdeQgm9_dRMoCzkTQeI9UI3Yau8-CiZqpVqDIXq_y0)
 
 
 
-
-# Описание внутренней части системы #
-
-/*in progress*/
-
-Представленная схема была создана на основе **UML**-диаграммы классов. В ней представлены *открытые* операции для всех классов и для некоторых классов изображены группы *приватных* атрибутов для обозначения того, чем оперирует блок. 
-
-На схеме изображены 7 классов: [User_action](#USER_ACTION), [System_info](#SYSTEM_INFO), [Measurements](#MEASUREMENTS), 
-[Menu](#MENU), [Screen](#SCREEN), [Display](#DISPLAY) и один дополнительный в виде [JSON_Parser](#JSON_PARSER)
-
-Сами классы в совокупности представляют собой ту часть системы, которая назвывается *блок контроля*,а также	 часть по работе с экраном.
-Здесь происходят главные действия в виде: 
-
-* Измерения 
-* Установка
-* Работа с блоком **I/O**
-
-## Классы ##
-
-
-
-### <a name="USER_ACTION">User_action</a> ###
-
-
-
-### <a name="SYSTEM_INFO">System_info</a> ###
-
-
-
-### <a name="MEASUREMENTS">Measurements</a> ###
-
-
-### <a name="MENU">Menu</a> ###
-
-
-### <a name="SCREEN">Screen</a> ###
-
-
-
-### <a name="DISPLAY">Display</a> ###
-
-
-
-### <a name="JSON_PARSER">JSON_Parser</a> ###
- 
