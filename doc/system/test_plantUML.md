@@ -1,5 +1,5 @@
 
-![test_plantUML](http://www.plantuml.com/plantuml/png/R8xFJi904CRl-nJp03RHgo741jS48otfbWCdOapH9aWDb8kdKYuc6aryaa9em3-KLvXv8wShYpLww6Rc-xxvzJiPnvUZU78x47R3RxeEM8EW7rjrK5tborQlwPov85hIwVpdx8nHU7sZdOOdfMD8UxaCYTEcQb_ONR2CO5AJEwtOgkD9Dlm_v-VATNfjsrFI0r5TQfO5E-p-YFD64c8OnG5e34JztvpQEBmFZeyEw_WAkCMC4ffYJWdcW0NEUSXmpd9AZxZWEUTfIY_0JyfcWU-O7VnGU2qevI-X6JsNHCt29MRuWMl01TXNSHWDgpTPANz7w0at77-Z1tu_GVz-POgmjU4QURNriYBZchjliT2O5StAil3LQ1NqkCa3qJk_miVDXetqVR-WbwhNIjsxDO71eJ8sjSVTZT3-zux1mIGa4Loop3m_timRsrktljTmBj3K8lQ1sr5fy5waJWt5NZaRUkdFdh2JhMdio-uIx11yVajSoxG9_FOraowdPIZU4cSF3ZeaT7ue_bfDe51MWMpJb8BEFSeZK2cGgiENY4yX-IaE1_7h-xlaXITRUt4u57lc6mLAZoIlcLZ6TVf2JEZEgsHr0gTQeqRK_InAEZdq9wjh-VCejVr0jmaP-duBqj897JTNt02voRVO5TcV08PQEiiAZ5z_2dgeEBjATF0fGNCbSDJu6DOQGcT0pnskiO6WYO7ioOz7dgZddgXddgYddgZDdgZDdgYjdgWDdgYddgX7dgXjdgZddkJT5yzJtdMwzIHzvH3DKF0lVwCrfOX_LS4vDDDcutNxk86b_sZPbl5yPBfbJ6CpXvACncRC7CWQqjdFfyfxB6WGnIH4sduyzeG9tH6TrAr1_rNiAzIQIMhyP3MZGciykL2HTQc65ufCeXIlDH3i4km4Hk7q-SnHBY4rtXAzykzEy9FrBcySRjrqhAKU3uL2LjoQFj1_fOXTJ8rBkDJDePY6mvKYgWzJfGjWcgkXSEZP6p0UsGxKpTiyMC81uS8MyBFJYfNlRcAJfllX_rVXgDoleZOGepcSugaQcOf9-1pFjQrIUKkdn3okkUAyo1g2YkwbhdiYOq-kXYjTwJnTwIeQXzBW9rqitbsbyispJFZ7Q_pDcfnXA13A9cXzPnqvCBvhCsKMlVn_WuKpkqSdeQgm9_dRMoCzkTQeI9UI3Yau8-CiZqpVqDIXq_y0)
+![test_plantUML](http://www.plantuml.com/plantuml/png/R8tDIW9H5CVtzodE0oJKDaGQz0P6ZZ9N5wv4Icl07D6Hg9KVco1Bw4d6eIandNc5SzweSsUSOO8MztBuV_n_5nEtEtQd3mDXb9lLkWc5GQ_l5agWsgefQvsgULa7KPDcwp_dQ8pjk_lOALjIcjdIhVCuP5LdHAMg6jT66mgfa8QcerWnLCkIR3JJP35RlL9rizCmB2Mjj9Lvnx0GOkYuFOXbSFhv3eZYn7xkdP-Tbl03C4AFPZJ7W6OO08QuuSF33SiBUaMVxu2lEQs1lmMR8UxGEycjx32a1RyPBUcT5vCj_EJg3su1VJ1kNDiPvZj10Zj0JFjEkGnO0HwqkMVjIxDphOWfRvg5Urh-9N4G4YIjw0K3ZQtOaz6W-vJdRa7NEKjBlGxwnaYZqUVgEjdnVnkjWXwtMI1wvrTmt6oyaRxl5_HIzLgfUqS4Zuah32uCtOsi_UyTOcBiE8diIvAPn_ERUGDaqPS30rlpr53ggp8o19xxFh2zzYxs8fm3GYTQsxYNtJNOWGpbLpsAcQTjf5zV4-byn0RsbZbxwMK723uCxAypA3K85T4rJSNnt8CuIgmue3fyyVGmGGyx7FYlx--25fvS7VZXmFR4Tn4e0g1OCf6CPVfAZE3FgwGwIQzRgo-e-raGUF8GJixKukTH6FS1VXCozlqMfCCJU6eklm5Ias-nAx8_KLfiyIoKj67zAjbBHTbLefEVGXggH1uDF8Qr5i5RQQOErz38Q920vCcFHvxevvxePvxefvxepPxepPxehPxe3PxefvxeHvxeRPxevvwKtPTEOTfrfWqeWl80Tc3qIUzeRSNJDnMz1pjkDbgtJnjOX8-MR4a7BT4jOWQQAPHbDAvWfa3Ha2yCEbNUKq43PwCGuVhB-Sbjx8xWXMajX2-sLs0CaTJmIMek2fqDwAD2vtCDBvYOUCLVQubobs4dQJMChoySrHnImotHAttkE3r5x_oUejQDnrhkyS0qaEBMzX7_gtZgOcvSnkLk3cmS3b_nf3wEbSw0UQu6vY6GDz8683l0D6_JO74l4MQso30vhKdvxYOsQheV_dyLJih3AkeY4fh2EPwh4RcOZ2_nKjigLRPqJapZMYekYvn5gV1UQjaJaNgo6Axytu2cArz5bw6qy8bNYtUBLBbvvedmU4suMLCo19K8eed6t5c7dkhesa9PHC__k91mOW_WXLGAUXI_WxCYe6-jJdGvwG6ZjoBDyeNf6zWwTkOV)
 
 
 
@@ -104,7 +104,11 @@
 ### <a name="DISPLAY">Display</a> ###
 
 
-Класс **Display** - это звено между системой с ее **Menu** и реальным экраном. То есть этот класс собирает из **Menu**, опрашивая какой следующий экран и от этого выстраивается целый какад запросов "ключ-значение", готовую информацию для вывода на экран и переводит ее в удобный для транспортировки формат, и отправляет уже в блок **I/O** 
+Класс **Display** - это звено между системой с ее **Menu** и реальным экраном. То есть этот класс собирает из **Menu**, опрашивая какой следующий экран и от этого выстраивается целый каскад запросов "ключ-значение", готовую информацию для вывода на экран и переводит ее в удобный для транспортировки формат, и отправляет уже в блок **I/O**. 
+
+Пришедший JSON-запрос в **Action**, он сам обработать не может, поэтому уже блок **Display** работает с парсером и в зависимости от того, что было в строке может обращаться к блоку **Menu**, для построения экрана.
+
+Все команды максимально унифицированы, отсюда и получается главная особенность этого блока. Все экраны, которые он формирует на отправку в блок **I/O** или на компьютер, будут выглядеть одинаково. Уже конечная точка будет для себя выстраивать экран в зависимости от пришедших данных.  
 
 ### <a name="JSON_PARSER">JSON_Parser</a> ###
  

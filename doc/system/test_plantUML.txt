@@ -2,19 +2,19 @@
 ACTION -left-> SYSTEM_INFO 
 MENU -left-> SYSTEM_INFO
 MENU -right-> SCREEN
-ACTION -right-> MENU
+ACTION -down-> MENU
 DISPLAY --> MENU
 ACTION -up-> MEASUREMENT
-ACTION -right-> JSON_PARSER 
-JSON_PARSER <-- DISPLAY
-ACTION --> DISPLAY
+DISPLAY<-right-> JSON_PARSER
+ACTION -right-> DISPLAY
 
 
 note right of JSON_PARSER 
 <size:10>В парсере обрабатывается строка,
 <size:10>которую передали в Action,
-<size:10>а в дальнейшем разобранные 
-<size:10>данные использует display
+<size:10>ее он разобрать не может
+<size:10>поэтому передает дальше в Display,
+<size:10>и тот уже отправляет в парсер.
 end note
 
 
