@@ -12,6 +12,7 @@ static void run_all_tests (void) {
     RUN_TEST_GROUP(parser);
     RUN_TEST_GROUP(find_cmd);
     RUN_TEST_GROUP(charger);
+    RUN_TEST_GROUP (static_malloc);
 }
 
 int main(int argc, const char * argv [])
