@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  00020010  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00016750  00000000  00000000  00020040  2**0
+ 12 .debug_info   00016f1e  00000000  00000000  00020040  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_abbrev 00003463  00000000  00000000  00036790  2**0
+ 13 .debug_abbrev 000034ac  00000000  00000000  00036f5e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_aranges 000012c0  00000000  00000000  00039bf8  2**3
+ 14 .debug_aranges 000012c0  00000000  00000000  0003a410  2**3
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_ranges 00001118  00000000  00000000  0003aeb8  2**3
+ 15 .debug_ranges 00001118  00000000  00000000  0003b6d0  2**3
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_macro  0001e31b  00000000  00000000  0003bfd0  2**0
+ 16 .debug_macro  0001ea80  00000000  00000000  0003c7e8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   000104e4  00000000  00000000  0005a2eb  2**0
+ 17 .debug_line   00010621  00000000  00000000  0005b268  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    000afc45  00000000  00000000  0006a7cf  2**0
+ 18 .debug_str    000afc5e  00000000  00000000  0006b889  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  0011a414  2**0
+ 19 .comment      0000007b  00000000  00000000  0011b4e7  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00004c3c  00000000  00000000  0011a490  2**2
+ 20 .debug_frame  00004c3c  00000000  00000000  0011b564  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -471,7 +471,7 @@ void HAL_UART_IDLE_Callback (UART_HandleTypeDef *huart) {
  8000428:	6878      	ldr	r0, [r7, #4]
  800042a:	f002 ffeb 	bl	8003404 <HAL_UART_AbortReceive>
 
-	for (uint8_t num = 0; num <= strlen(uart_input_command_buff); num++)
+	for (uint8_t num = 0; num <= strlen((const char *)uart_input_command_buff); num++)
  800042e:	2300      	movs	r3, #0
  8000430:	73fb      	strb	r3, [r7, #15]
  8000432:	e00b      	b.n	800044c <HAL_UART_IDLE_Callback+0x34>
@@ -484,7 +484,7 @@ void HAL_UART_IDLE_Callback (UART_HandleTypeDef *huart) {
  800043e:	2264      	movs	r2, #100	; 0x64
  8000440:	4619      	mov	r1, r3
  8000442:	f003 fed3 	bl	80041ec <osMessagePut>
-	for (uint8_t num = 0; num <= strlen(uart_input_command_buff); num++)
+	for (uint8_t num = 0; num <= strlen((const char *)uart_input_command_buff); num++)
  8000446:	7bfb      	ldrb	r3, [r7, #15]
  8000448:	3301      	adds	r3, #1
  800044a:	73fb      	strb	r3, [r7, #15]
@@ -1591,103 +1591,47 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
  80009d0:	40020058 	.word	0x40020058
 
 080009d4 <Reset_Handler>:
-
-    .section	.text.Reset_Handler
-	.weak	Reset_Handler
-	.type	Reset_Handler, %function
-Reset_Handler:
-  ldr   sp, =_estack    /* Atollic update: set stack pointer */
  80009d4:	f8df d034 	ldr.w	sp, [pc, #52]	; 8000a0c <LoopForever+0x2>
-
-/* Copy the data segment initializers from flash to SRAM */
-  movs	r1, #0
  80009d8:	2100      	movs	r1, #0
-  b	LoopCopyDataInit
  80009da:	e003      	b.n	80009e4 <LoopCopyDataInit>
 
 080009dc <CopyDataInit>:
-
-CopyDataInit:
-	ldr	r3, =_sidata
  80009dc:	4b0c      	ldr	r3, [pc, #48]	; (8000a10 <LoopForever+0x6>)
-	ldr	r3, [r3, r1]
  80009de:	585b      	ldr	r3, [r3, r1]
-	str	r3, [r0, r1]
  80009e0:	5043      	str	r3, [r0, r1]
-	adds	r1, r1, #4
  80009e2:	3104      	adds	r1, #4
 
 080009e4 <LoopCopyDataInit>:
-
-LoopCopyDataInit:
-	ldr	r0, =_sdata
  80009e4:	480b      	ldr	r0, [pc, #44]	; (8000a14 <LoopForever+0xa>)
-	ldr	r3, =_edata
  80009e6:	4b0c      	ldr	r3, [pc, #48]	; (8000a18 <LoopForever+0xe>)
-	adds	r2, r0, r1
  80009e8:	1842      	adds	r2, r0, r1
-	cmp	r2, r3
  80009ea:	429a      	cmp	r2, r3
-	bcc	CopyDataInit
  80009ec:	d3f6      	bcc.n	80009dc <CopyDataInit>
-	ldr	r2, =_sbss
  80009ee:	4a0b      	ldr	r2, [pc, #44]	; (8000a1c <LoopForever+0x12>)
-	b	LoopFillZerobss
  80009f0:	e002      	b.n	80009f8 <LoopFillZerobss>
 
 080009f2 <FillZerobss>:
-/* Zero fill the bss segment. */
-FillZerobss:
-	movs	r3, #0
  80009f2:	2300      	movs	r3, #0
-	str	r3, [r2], #4
  80009f4:	f842 3b04 	str.w	r3, [r2], #4
 
 080009f8 <LoopFillZerobss>:
-
-LoopFillZerobss:
-	ldr	r3, = _ebss
  80009f8:	4b09      	ldr	r3, [pc, #36]	; (8000a20 <LoopForever+0x16>)
-	cmp	r2, r3
  80009fa:	429a      	cmp	r2, r3
-	bcc	FillZerobss
  80009fc:	d3f9      	bcc.n	80009f2 <FillZerobss>
-
-/* Call the clock system intitialization function.*/
-    bl  SystemInit
  80009fe:	f7ff febb 	bl	8000778 <SystemInit>
-/* Call static constructors */
-    bl __libc_init_array
  8000a02:	f005 fd63 	bl	80064cc <__libc_init_array>
-/* Call the application's entry point.*/
-	bl	main
  8000a06:	f7ff fd3b 	bl	8000480 <main>
 
 08000a0a <LoopForever>:
-
-LoopForever:
-    b LoopForever
  8000a0a:	e7fe      	b.n	8000a0a <LoopForever>
-  ldr   sp, =_estack    /* Atollic update: set stack pointer */
  8000a0c:	20003000 	.word	0x20003000
-	ldr	r3, =_sidata
  8000a10:	080065d4 	.word	0x080065d4
-	ldr	r0, =_sdata
  8000a14:	20000000 	.word	0x20000000
-	ldr	r3, =_edata
  8000a18:	20000010 	.word	0x20000010
-	ldr	r2, =_sbss
  8000a1c:	20000010 	.word	0x20000010
-	ldr	r3, = _ebss
  8000a20:	2000119c 	.word	0x2000119c
 
 08000a24 <ADC1_2_IRQHandler>:
- * @retval : None
-*/
-    .section	.text.Default_Handler,"ax",%progbits
-Default_Handler:
-Infinite_Loop:
-	b	Infinite_Loop
  8000a24:	e7fe      	b.n	8000a24 <ADC1_2_IRQHandler>
 	...
 

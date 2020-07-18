@@ -34,7 +34,7 @@
 		<link>
 			<name>software</name>
 			<type>2</type>
-			<location>H:/Projects/dcdc/software</location>
+			<location>C:/dcdc/software</location>
 		</link>
 	</linkedResources>
 </projectDescription>

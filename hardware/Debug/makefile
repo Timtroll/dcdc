@@ -8,8 +8,14 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include software/src/system_info/subdir.mk
+-include software/src/system_config/subdir.mk
+-include software/src/static_malloc/subdir.mk
 -include software/src/parser/subdir.mk
+-include software/src/menu/subdir.mk
+-include software/src/measurements/subdir.mk
 -include software/src/find/subdir.mk
+-include software/src/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/subdir.mk
@@ -46,8 +52,8 @@ dcdc.bin \
 all: dcdc.elf secondary-outputs
 
 # Tool invocations
-dcdc.elf: $(OBJS) $(USER_OBJS) H:\Projects\dcdc\hardware\STM32F334R8TX_FLASH.ld
-	arm-none-eabi-gcc -o "dcdc.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"H:\Projects\dcdc\hardware\STM32F334R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="dcdc.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+dcdc.elf: $(OBJS) $(USER_OBJS) C:\dcdc\hardware\STM32F334R8TX_FLASH.ld
+	arm-none-eabi-gcc -o "dcdc.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\dcdc\hardware\STM32F334R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="dcdc.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

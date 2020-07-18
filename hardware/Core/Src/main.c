@@ -28,7 +28,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -68,7 +68,7 @@ void HAL_UART_IDLE_Callback (UART_HandleTypeDef *huart) {
 	__HAL_UART_CLEAR_IDLEFLAG(huart);
 	HAL_UART_AbortReceive(huart);
 
-	for (uint8_t num = 0; num <= strlen(uart_input_command_buff); num++)
+	for (uint8_t num = 0; num <= strlen((const char *)uart_input_command_buff); num++)
 		osMessagePut(command_queueHandle, uart_input_command_buff[num] , 100);
 
 	memset(uart_input_command_buff, 0, MAX_SIZE_COMMAND);
