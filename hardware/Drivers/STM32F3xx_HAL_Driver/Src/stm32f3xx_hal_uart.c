@@ -2274,6 +2274,7 @@ void HAL_UART_IRQHandler(UART_HandleTypeDef *huart)
     UART_EndTransmit_IT(huart);
     return;
   }
+
 }
 
 /**
