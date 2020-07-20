@@ -63,7 +63,7 @@ scr_main, scr_current, etc}
 
 +menu_swipe_right()
 +menu_swipe_left()
-+menu_get_info()
++menu_get_actual_screen()
 +menu_set_info()
 }
 
@@ -104,13 +104,11 @@ resistanse, self-discharge rate, etc}
 
 
 class DISPLAY{
-+display_get_next_screen()
-+display_get_parameter()
++display_get_parameter(type_data)
 +display_set_next_screen()
 +display_set_parameter()
 
-+display_create_full_screen()
-+display_transmit_screen()
++display_transmit_json_pair()
 }
 
 
