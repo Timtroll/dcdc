@@ -9,10 +9,13 @@ From this block, a function will be obtained to
  create information for the "data" field
 */
 
+#define MAIN_SCREEN 0
+#define SIDE_SCREEN 1
+
 typedef struct cell_node
 {
 	void 
-		* ahead,
+		* front,
 		* behind,
 		* data;
 
@@ -32,9 +35,9 @@ typedef struct header_node
 
 #define Constructor_cell(name) \
 	cell_t name = { \
-		.head = NULL, \
-		.tail = NULL, \
-		.node_quantity = 0 \
+		.front = NULL, \
+		.behind = NULL, \
+		.data = NULL \
 	}
 
 #define Constructor_header(name) \
@@ -43,6 +46,9 @@ typedef struct header_node
 		.tail = NULL, \
 		.node_quantity = 0 \
 	}
+
+void insert_cell(header_t * header, cell_t * cell);
+void add_data_in_cell(cell_t * cell, void * data, uint16_t type_screen);
 
 
 

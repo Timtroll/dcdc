@@ -8,4 +8,6 @@ TEST_GROUP_RUNNER (navigation) {
 TEST_GROUP_RUNNER (linked_list){
 	RUN_TEST_CASE(linked_list, example_test);
 	RUN_TEST_CASE(linked_list, make_header_list);
+	RUN_TEST_CASE(linked_list, make_node_list);
+	RUN_TEST_CASE(linked_list, push_node_in_list);
 }
