@@ -24,3 +24,54 @@
 
 
 */
+
+void create_menu(void){
+
+	Create_list(list);
+
+}
+
+
+
+uint8_t menu_get_actual_screen(void){
+	
+	cell_t * screen_current = NULL;
+	actual_cell(&screen_current, RETURN);
+
+	if (screen_current == get_main_screen())
+	{
+		return MAIN_SCREEN;
+	}
+	else if (screen_current != get_main_screen())
+	{
+		return SIDE_SCREEN;
+	}
+}
+
+
+void menu_swipe_right(void){
+
+	cell_t * screen_current = NULL;
+	actual_cell(&screen_current, RETURN);
+	printf("1:%x\n\n\n", screen_current);
+	printf("2:%x\n\n\n", screen_current->front);
+	printf("3:%x\n\n\n", screen_current->behind);
+	actual_cell(screen_current->behind, SAVE);
+	//printf("\n\n\n\n%p\n\n\n", screen_current->behind);
+
+	
+}
+
+
+void menu_swipe_left(void){
+
+	cell_t * screen_current = NULL;
+	actual_cell(&screen_current, RETURN);
+	/*printf("1:%x\n\n\n", screen_current);
+	printf("2:%x\n\n\n", screen_current->front);
+	printf("3:%x\n\n\n", screen_current->behind);*/
+	actual_cell(screen_current->front, SAVE);
+
+	
+}
+
