@@ -66,14 +66,14 @@ extern osMessageQId command_queueHandle;
 
 void HAL_UART_IDLE_Callback (UART_HandleTypeDef *huart) {
 	__HAL_UART_CLEAR_IDLEFLAG(huart);
-	HAL_UART_AbortReceive(huart);
-
+//	HAL_UART_AbortReceive(huart);
+	__HAL_UART_DISABLE_IT(&huart1, UART_IT_IDLE);
 	for (uint8_t num = 0; num <= strlen((const char *)uart_input_command_buff); num++)
 		osMessagePut(command_queueHandle, uart_input_command_buff[num] , 100);
 
 	memset(uart_input_command_buff, 0, MAX_SIZE_COMMAND);
-
-	HAL_UART_Receive_DMA(huart, uart_input_command_buff, MAX_SIZE_COMMAND);
+//
+//	HAL_UART_Receive_DMA(huart, uart_input_command_buff, MAX_SIZE_COMMAND);
 }
 /* USER CODE END 0 */
 
@@ -109,8 +109,9 @@ int main(void)
   MX_TIM2_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  __HAL_UART_CLEAR_IDLEFLAG(&huart1);
    __HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE);
-   HAL_UART_Receive_IT(&huart1, uart_input_command_buff, MAX_SIZE_COMMAND);
+//   HAL_UART_Receive_IT(&huart1, uart_input_command_buff, MAX_SIZE_COMMAND);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
