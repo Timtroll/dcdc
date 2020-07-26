@@ -24,7 +24,29 @@ void dl_list_group_delete (void) {
 }
 
 dl_list_t * dl_list_create (void * elt_memory, size_t elt_size) {
-	return NULL;
+	dl_list_t * list = balloc(&dl_list_group_object);
+	if (list == NULL) return NULL;
+
+	list->data = balloc(&dl_list_group_data);
+	if (list->data == NULL) {
+		bfree(&dl_list_group_object, list);
+		return NULL;
+	}
+
+	data_set_head(list->data, NULL);
+	data_set_tail(list->data, NULL);
+	data_set_cell_size(list->data, elt_size);
+	data_set_cell_amount(list->data, 0);
+
+	list->push = _dl_list_push;
+	list->pop = _dl_list_pop;
+	list->head = _dl_list_head;
+	list->tail = _dl_list_tail;
+
+	list->size = _dl_list_size;
+	list->active_size = _dl_list_active_size;
+
+	return list;
 }
 
 void dl_list_delete (dl_list_t * list) {

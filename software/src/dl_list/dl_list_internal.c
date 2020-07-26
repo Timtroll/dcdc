@@ -26,12 +26,20 @@ list_cell_t * cell_prev (list_cell_t * cell) {
 	return Data(cell)->prev;
 }
 
-void data_set_cells (dl_list_data_t * dl_list_data, list_cell_t * cells) {
-	dl_list_data->cells = cells;
+void data_set_head (dl_list_data_t * dl_list_data, list_cell_t * head) {
+	dl_list_data->head = head;
 }
 
-list_cell_t * data_cells (dl_list_data_t * data) {
-	return data->cells;
+list_cell_t * data_head (dl_list_data_t * data) {
+	return data->head;
+}
+
+void data_set_tail (dl_list_data_t * dl_list_data, list_cell_t * tail) {
+	dl_list_data->tail = tail;
+}
+
+list_cell_t * data_tail (dl_list_data_t * data) {
+	return data->tail;
 }
 
 void data_set_cell_size (dl_list_data_t * data, size_t size) {
@@ -48,12 +56,4 @@ void data_set_cell_amount (dl_list_data_t * data, size_t amount) {
 
 size_t data_cell_amount (dl_list_data_t * data) {
 	return data->cell_amount;
-}
-
-void data_set_active_size (dl_list_data_t * data, size_t active_size) {
-	data->active_size = active_size;
-}
-
-size_t data_active_size (dl_list_data_t * data) {
-	return data->active_size;
 }

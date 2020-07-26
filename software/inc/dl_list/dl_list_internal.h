@@ -13,12 +13,13 @@ typedef struct list_cell {
 } list_cell_t;
 
 typedef struct dl_list_data {
-	list_cell_t * cells;
+	list_cell_t
+		* head,
+		* tail;
 
 	size_t
 		cell_size,
-		cell_amount, // size
-		active_size;
+		cell_amount;
 } dl_list_data_t;
 
 Block_box_declare_global(dl_list_gruop_data, dl_list_data_t, LIST_AMOUNT);
@@ -33,18 +34,17 @@ list_cell_t * cell_next (list_cell_t * cell);
 void cell_set_prev (list_cell_t * cell, list_cell_t * prev);
 list_cell_t * cell_prev (list_cell_t * cell);
 
-void data_set_cells (dl_list_data_t * dl_list_data, list_cell_t * cells);
-list_cell_t * data_cells (dl_list_data_t * data);
+void data_set_head (dl_list_data_t * dl_list_data, list_cell_t * head);
+list_cell_t * data_head (dl_list_data_t * data);
+
+void data_set_tail (dl_list_data_t * dl_list_data, list_cell_t * tail);
+list_cell_t * data_tail (dl_list_data_t * data);
 
 void data_set_cell_size (dl_list_data_t * data, size_t size);
 size_t data_cell_size (dl_list_data_t * data);
 
 void data_set_cell_amount (dl_list_data_t * data, size_t amount);
 size_t data_cell_amount (dl_list_data_t * data);
-
-void data_set_active_size (dl_list_data_t * data, size_t active_size);
-size_t data_active_size (dl_list_data_t * data);
-
 
 #endif//_DL_LIST_INTERNAL_H_
 
