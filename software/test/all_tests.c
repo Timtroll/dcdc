@@ -15,6 +15,7 @@ static void run_all_tests (void) {
     RUN_TEST_GROUP(static_malloc);
     RUN_TEST_GROUP(navigation);
     RUN_TEST_GROUP(linked_list);
+    RUN_TEST_GROUP(dl_list);
 }
 
 int main(int argc, const char * argv [])

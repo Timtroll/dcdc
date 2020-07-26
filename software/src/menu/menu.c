@@ -53,9 +53,9 @@ void menu_swipe_right(void){
 
 	cell_t * screen_current = NULL;
 	actual_cell(&screen_current, RETURN);
-	printf("1:%x\n\n\n", screen_current);
-	printf("2:%x\n\n\n", screen_current->front);
-	printf("3:%x\n\n\n", screen_current->behind);
+	// printf("1:%x\n\n\n", screen_current);
+	// printf("2:%x\n\n\n", screen_current->front);
+	// printf("3:%x\n\n\n", screen_current->behind);
 	actual_cell(screen_current->behind, SAVE);
 	//printf("\n\n\n\n%p\n\n\n", screen_current->behind);
 

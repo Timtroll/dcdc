@@ -19,6 +19,7 @@ UNITY_WARNINGFLAGS = -Wswitch-default
 #UNITY_WARNINGFLAGS += -Wshadow
 SRC_DIRS = \
 	$(PROJECT_HOME_DIR)/src/ \
+	$(PROJECT_HOME_DIR)/src/dl_list \
 	$(PROJECT_HOME_DIR)/src/static_malloc \
 	$(PROJECT_HOME_DIR)/src/menu \
 	$(PROJECT_HOME_DIR)/src/system_info \
@@ -29,6 +30,7 @@ SRC_DIRS = \
 
 TEST_SRC_DIRS = \
 	$(PROJECT_TEST_DIR) \
+	$(PROJECT_TEST_DIR)/dl_list \
 	$(PROJECT_TEST_DIR)/static_malloc \
 	$(PROJECT_TEST_DIR)/menu \
 	$(PROJECT_TEST_DIR)/system_info \
@@ -50,6 +52,7 @@ INCLUDE_DIRS = \
 	$(UNITY_HOME)/extras/fixture/src \
 	$(UNITY_HOME)/extras/fixture/test \
 	$(PROJECT_HOME_DIR)/inc/ \
+	$(PROJECT_HOME_DIR)/inc/dl_list \
 	$(PROJECT_HOME_DIR)/inc/static_malloc \
 	$(PROJECT_HOME_DIR)/inc/menu \
 	$(PROJECT_HOME_DIR)/inc/system_info \
