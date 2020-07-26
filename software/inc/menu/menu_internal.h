@@ -3,6 +3,7 @@
 
 #include "menu.h"
 #include <stdint.h>
+#include <stdlib.h>
 /*#include "../screen/screen.h" 
 	uncomment when block screen is created
 	From this block, a function will be obtained to
