@@ -25,6 +25,12 @@ typedef struct dl_list_data {
 Block_box_declare_global(dl_list_gruop_data, dl_list_data_t, LIST_AMOUNT);
 Block_box_declare_global(dl_list_grpup_object, dl_list_t, LIST_AMOUNT);
 
+void _dl_list_push (struct dl_list * list, void * elt);
+void _dl_list_pop (struct dl_list * list, void * elt);
+void * _dl_list_head (struct dl_list * list);
+void * _dl_list_tail (struct dl_list * list);
+int _dl_list_size (struct dl_list * list);
+
 void cell_set_data (list_cell_t * cell, void * data);
 void * cell_data (list_cell_t * cell);
 
@@ -34,10 +40,10 @@ list_cell_t * cell_next (list_cell_t * cell);
 void cell_set_prev (list_cell_t * cell, list_cell_t * prev);
 list_cell_t * cell_prev (list_cell_t * cell);
 
-void data_set_head (dl_list_data_t * dl_list_data, list_cell_t * head);
+void data_set_head (dl_list_data_t * data, list_cell_t * head);
 list_cell_t * data_head (dl_list_data_t * data);
 
-void data_set_tail (dl_list_data_t * dl_list_data, list_cell_t * tail);
+void data_set_tail (dl_list_data_t * data, list_cell_t * tail);
 list_cell_t * data_tail (dl_list_data_t * data);
 
 void data_set_cell_size (dl_list_data_t * data, size_t size);

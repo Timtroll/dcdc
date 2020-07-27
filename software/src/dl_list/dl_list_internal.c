@@ -26,16 +26,16 @@ list_cell_t * cell_prev (list_cell_t * cell) {
 	return Data(cell)->prev;
 }
 
-void data_set_head (dl_list_data_t * dl_list_data, list_cell_t * head) {
-	dl_list_data->head = head;
+void data_set_head (dl_list_data_t * data, list_cell_t * head) {
+	data->head = head;
 }
 
 list_cell_t * data_head (dl_list_data_t * data) {
 	return data->head;
 }
 
-void data_set_tail (dl_list_data_t * dl_list_data, list_cell_t * tail) {
-	dl_list_data->tail = tail;
+void data_set_tail (dl_list_data_t * data, list_cell_t * tail) {
+	data->tail = tail;
 }
 
 list_cell_t * data_tail (dl_list_data_t * data) {

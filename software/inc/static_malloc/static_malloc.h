@@ -31,11 +31,11 @@ typedef struct block_box {
 		.block_status = name ## _box_block_status, \
 		.block_box = name ## _box \
 	}
-#define Block_box_create(name, block_data_type, items_quantity) \ 
+#define Block_box_create(name, block_data_type, items_quantity) \
 	Block_box_declare(name, block_data_type, items_quantity); \
 	___must_be_in_macro____block_box_init(&name)
 
-#define Block_box_declare_global_internal(name, block_data_type, items_quantity) \ 
+#define Block_box_declare_global_internal(name, block_data_type, items_quantity) \
 	bool name ## _box_block_status [items_quantity]; \
 	block_data_type name ## _box   [items_quantity]; \
 	block_box_t name = { \
@@ -44,7 +44,7 @@ typedef struct block_box {
 		.block_status = name ## _box_block_status, \
 		.block_box = name ## _box \
 	}
-#define Block_box_declare_global(name, block_data_type, items_quantity) \ 
+#define Block_box_declare_global(name, block_data_type, items_quantity) \
 	extern bool name ## _box_block_status [items_quantity]; \
 	extern block_data_type name ## _box   [items_quantity]; \
 	extern block_box_t name;
