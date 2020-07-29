@@ -30,7 +30,7 @@ dl_list_t * dl_list_create (size_t elt_size) {
 	data_set_tail(list->data, NULL);
 	data_set_cell_size(list->data, elt_size);
 	data_set_cell_amount(list->data, 0);
-
+ 	
 	list->push = _dl_list_push;
 	list->pop = _dl_list_pop;
 	list->head = _dl_list_head;
@@ -42,12 +42,27 @@ dl_list_t * dl_list_create (size_t elt_size) {
 }
 
 void dl_list_delete (dl_list_t * list) {
+	if (list->data) {
+		bfree(&dl_list_group_cells, list->data);
+		list->data = NULL;
+	}
 
+	bfree(&dl_list_group_lists, list);
+	list = NULL;
 }
 
 
 void _dl_list_push (dl_list_t * list, void * elt) {
+	list_cell_t * new_cell = balloc(&dl_list_group_cells);
+
+	if (new_cell == NULL) {
+		return;
+	}
+
 	data_set_cell_amount(list->data, data_cell_amount(list->data) + 1);
+
+	data_set_head(list->data, new_cell);
+	data_set_tail(list->data, new_cell);	
 }
 
 void _dl_list_pop (struct dl_list * list, void * elt) {

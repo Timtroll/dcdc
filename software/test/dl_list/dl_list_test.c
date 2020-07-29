@@ -12,6 +12,12 @@ test_screen_t screen = {
 	.attr3 = 3
 };
 
+list_cell_t expected_cell = {
+	.data = &screen,
+	.next = NULL,
+	.prev = NULL
+};
+
 TEST_SETUP (dl_list) {
 	create_with_assert(sizeof(test_screen_t));
 }
@@ -43,6 +49,14 @@ TEST (dl_list, create_assign_all_as_defaults) {
 	TEST_ASSERT_EQUAL_PTR(_dl_list_head, test_list->head);
 	TEST_ASSERT_EQUAL_PTR(_dl_list_tail, test_list->tail);
 	TEST_ASSERT_EQUAL_PTR(_dl_list_size, test_list->size);
+}
+
+TEST (dl_list, delete_free_cell_and_list_correctly) {
+	dl_list_t * test_list_2 = dl_list_create(sizeof(test_screen_t));
+
+	dl_list_delete(test_list_2);
+
+	TEST_ASSERT_NULL(test_list_2);
 }
 
 TEST (dl_list, push_increase_amount) {

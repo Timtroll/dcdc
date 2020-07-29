@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-#define LIST_AMOUNT (1)
+#define LIST_AMOUNT (2) // 2 for tests
 #define CELL_AMOUNT (2)
 
 typedef struct dl_list {
