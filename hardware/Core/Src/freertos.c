@@ -49,6 +49,8 @@
 
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
+osThreadId rx_uart_dataHandle;
+osThreadId tx_uart_dataHandle;
 osMessageQId command_queueHandle;
 
 /* Private function prototypes -----------------------------------------------*/
@@ -57,6 +59,8 @@ osMessageQId command_queueHandle;
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
+void rx_uart_data_task(void const * argument);
+void tx_uart_data_task(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -112,6 +116,14 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
+  /* definition and creation of rx_uart_data */
+  osThreadDef(rx_uart_data, rx_uart_data_task, osPriorityNormal, 0, 128);
+  rx_uart_dataHandle = osThreadCreate(osThread(rx_uart_data), NULL);
+
+  /* definition and creation of tx_uart_data */
+  osThreadDef(tx_uart_data, tx_uart_data_task, osPriorityNormal, 0, 128);
+  tx_uart_dataHandle = osThreadCreate(osThread(tx_uart_data), NULL);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -152,6 +164,42 @@ void StartDefaultTask(void const * argument)
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
+}
+
+/* USER CODE BEGIN Header_rx_uart_data_task */
+/**
+* @brief Function implementing the rx_uart_data thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_rx_uart_data_task */
+__weak void rx_uart_data_task(void const * argument)
+{
+  /* USER CODE BEGIN rx_uart_data_task */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END rx_uart_data_task */
+}
+
+/* USER CODE BEGIN Header_tx_uart_data_task */
+/**
+* @brief Function implementing the tx_uart_data thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_tx_uart_data_task */
+__weak void tx_uart_data_task(void const * argument)
+{
+  /* USER CODE BEGIN tx_uart_data_task */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END tx_uart_data_task */
 }
 
 /* Private application code --------------------------------------------------*/

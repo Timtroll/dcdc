@@ -24,12 +24,14 @@ Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS \
 Middlewares/Third_Party/FreeRTOS/Source \
 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F \
 Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang \
-software/src/find \
-software/src/measurements \
-software/src/menu \
-software/src/parser \
-software/src \
-software/src/static_malloc \
-software/src/system_config \
-software/src/system_info \
+src/dl_list \
+src/find \
+src/measurements \
+src/menu \
+src/parser \
+src \
+src/static_malloc \
+src/system_config \
+src/system_info \
+src/uart_data_transfer \
 
