@@ -54,8 +54,8 @@ dcdc.bin \
 all: dcdc.elf secondary-outputs
 
 # Tool invocations
-dcdc.elf: $(OBJS) $(USER_OBJS) H:\Projects\dcdc\hardware\STM32F334R8TX_FLASH.ld
-	arm-none-eabi-gcc -o "dcdc.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"H:\Projects\dcdc\hardware\STM32F334R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="dcdc.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+dcdc.elf: $(OBJS) $(USER_OBJS) C:\dcdc\hardware\STM32F334R8TX_FLASH.ld
+	arm-none-eabi-gcc -o "dcdc.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\dcdc\hardware\STM32F334R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="dcdc.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
