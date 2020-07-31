@@ -1,4 +1,5 @@
-//#define DEBUG_SOFTWARE
+#include "uart_data_transfer_core.h"
+
 #ifndef DEBUG_SOFTWARE
 
 #include <stdint.h>
@@ -109,6 +110,8 @@ void tx_uart_data_task(void const * argument) {
 void transmit_data_by_uart (void) {
 
 }
+void init_uart_data_transfer (void) {
+
+}
+
 #endif //DEBUG_SOFTWARE
-
-
