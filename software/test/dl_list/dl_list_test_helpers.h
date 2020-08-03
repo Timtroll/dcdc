@@ -3,12 +3,12 @@
 
 #include "dl_list.h"
 
-typedef struct test_screen {
+typedef struct test_cell_val {
 	uint8_t
 		attr1,
 		attr2,
 		attr3;
-} test_screen_t;
+} test_cell_val_t;
 
 extern dl_list_t * test_list;
 
