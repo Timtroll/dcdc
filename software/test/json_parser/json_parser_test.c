@@ -12,7 +12,7 @@ char * get_type_screen(void){
 char * get_cell_value(int x, int y){
 	if(x == 0 && y == 0)
 		return "voltage_cut_off";
-	else 
+	else if(x == 14 && y == 12)
 		return "0";
 }
 
@@ -31,6 +31,7 @@ TEST_TEAR_DOWN (json_parser) {
 //[+]json_init_get_func
 //[+]get_type_screen
 //[]get_cell_value
+//[]create_any_json_pair
 
 
 
@@ -56,7 +57,15 @@ TEST(json_parser, get_cell_value){
 	JSON_Value *screen_value = json_value_init_object();
     JSON_Object *screen_object = json_value_get_object(screen_value);
 
-    json_object_set_string(screen_object, "cell","some_value");
+    json_object_set_string(screen_object, "cell","[0][0]");
+    char * test_cell_value_1 = json_serialize_to_string_pretty(screen_value);
 
-    //in progress
+    TEST_ASSERT_EQUAL_STRING("{\"cell\":\"voltage_cut_off\"}", parse_incoming_string(test_cell_value_1));
+
+    json_object_set_string(screen_object, "cell","[14][12]");
+    char * test_cell_value_2 = json_serialize_to_string_pretty(screen_value);
+
+ 	TEST_ASSERT_EQUAL_STRING("{\"cell\":\"0\"}", parse_incoming_string(test_cell_value_2));
+   
 }
+

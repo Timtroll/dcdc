@@ -2,6 +2,8 @@
 #define _JSON_PARSER_INTERNAL_H_
 
 #include <string.h>
+#include <stdio.h>
+
 #include "json_parser.h"
 #include "parson.h"
 
@@ -11,6 +13,7 @@ char * json_get_type_screen(void);
 char * json_get_cell_value(int index_x, int index_y);
 
 char * parse_incoming_string(char * incoming_str);
+int find_cell_index(int coordinate, char * processed_string);
 
 #endif//_JSON_PARSER_INTERNAL_H_
 
