@@ -14,6 +14,7 @@ char * json_get_cell_value(int index_x, int index_y);
 
 char * parse_incoming_string(char * incoming_str);
 int find_cell_index(int coordinate, char * processed_string);
+char * create_json_pair(char * incoming_key, char * incoming_value);
 
 #endif//_JSON_PARSER_INTERNAL_H_
 
