@@ -34,12 +34,12 @@
 		<link>
 			<name>inc</name>
 			<type>2</type>
-			<location>C:/dcdc/software/inc</location>
+			<location>H:/Projects/dcdc/software/inc</location>
 		</link>
 		<link>
 			<name>src</name>
 			<type>2</type>
-			<location>C:/dcdc/software/src</location>
+			<location>H:/Projects/dcdc/software/src</location>
 		</link>
 	</linkedResources>
 </projectDescription>
