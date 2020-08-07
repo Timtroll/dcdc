@@ -10,7 +10,7 @@
 #define _SMART_CHARGER_DATA_BASE_H_
 
 #include "smart_ups_defines_army.h"
-#include "stddef.h"
+#include <stddef.h>
 
 #include "system_info/system_info_internal.h"
 #include "system_config/system_config_internal.h"
@@ -61,7 +61,8 @@ START_CMD_GROUP (set_parameter, SET_PARAMETER_NUM) {
 		RESP_INVALID_PARAMETER)
 };
 	
-
+// HERE MUST BE DECLARATIONS ONLY!
+// NOT IMPLEMENTETIONS!
 void get_vol_cut_off (void) {
 	save_data_from_get(get_for_voltage_cut_off());
 }
@@ -75,7 +76,7 @@ void get_battery_type (void) {
 }
 
 #define GET_PARAMETER_NUM 3
-START_CMD_GROUP (get_parameter, GET_PARAMETER_NUM) {
+START_CMD_GROUP(get_parameter, GET_PARAMETER_NUM) {
 	[VOLTAGE] = {
 		.command = VOLTAGE_CUT_OFF,
 		.response = VOLTAGE_CUT_OFF_GET_RESPONSE,
@@ -92,9 +93,10 @@ START_CMD_GROUP (get_parameter, GET_PARAMETER_NUM) {
 		.action = get_battery_type
 	}
 
-	END_CMD_GROUP_WITH_RESPONSE(
-		SET_PARAMETER_NUM,
-		RESP_INVALID_PARAMETER)
+	END_CMD_GROUP(GET_PARAMETER_NUM)
+//	END_CMD_GROUP_WITH_RESPONSE(
+//		SET_PARAMETER_NUM,
+//		RESP_INVALID_PARAMETER)
 };
 
 

@@ -77,6 +77,10 @@ void rx_uart_data_task (void const * argument) {
 
 
 */
+// EXAMPLE:
+		parse((const char *)rx_uart_data);
+		memset(rx_uart_data, 0, MAX_SIZE_RX_UART_DATA);
+
 		// while not have parse call
 		xEventGroupSetBits(uart_data_transfer_events, NEED_TRANSMIT_DATA);
 	}
@@ -90,6 +94,8 @@ void tx_uart_data_task(void const * argument) {
 
 		//get pointer tx_data
 		//	tx_data = GET_POINTER_FUNCTION
+		// EXAMPLE:
+		tx_data = parser_response();
 
 		if(tx_data != 0)
 			HAL_UART_Transmit_DMA(&huart1, tx_data, strlen((const char*)tx_data));
