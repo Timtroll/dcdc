@@ -1,0 +1,14 @@
+#!/bin/bash
+
+delete_comment_before_unity_in_file () {
+	file=$1
+
+	sed_space="\\x20"
+	comment="\/\/${sed_space}"
+	sed_line="${comment}#define${sed_space}DEBUG_SOFTWARE"
+
+	sed -i "${sed_line}/s/${comment}//" ${file}
+}
+
+file=$1
+delete_comment_before_unity_in_file ${file}
