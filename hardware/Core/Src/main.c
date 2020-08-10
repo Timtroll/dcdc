@@ -61,6 +61,9 @@ void MX_FREERTOS_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+// FOR PARSER INIT:
+#include "smart_ups_data_base.h"
+#include "parser.h"
 /* USER CODE END 0 */
 
 /**
@@ -97,6 +100,8 @@ int main(void)
   MX_ADC1_Init();
   MX_ADC2_Init();
   /* USER CODE BEGIN 2 */
+//  INIT PARSER EXAMPLE:
+  parser_create(&smart_charger_commands, MAX_CMD_LEN);
   init_uart_data_transfer();
   /* USER CODE END 2 */
 

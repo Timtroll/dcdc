@@ -34,12 +34,12 @@
 		<link>
 			<name>inc</name>
 			<type>2</type>
-			<location>H:/Projects/dcdc/software/inc</location>
+			<locationURI>PARENT-1-PROJECT_LOC/software/inc</locationURI>
 		</link>
 		<link>
 			<name>src</name>
 			<type>2</type>
-			<location>H:/Projects/dcdc/software/src</location>
+			<locationURI>PARENT-1-PROJECT_LOC/software/src</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

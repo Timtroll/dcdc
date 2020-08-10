@@ -5,18 +5,23 @@ MENU -right-> SCREEN
 ACTION -down-> MENU
 DISPLAY --> MENU
 ACTION -up-> MEASUREMENT
-DISPLAY<-right-> JSON_PARSER
+DISPLAY -right-> JSON_PARSER
 ACTION -right-> DISPLAY
 
-
-note right of JSON_PARSER 
-<size:10>В парсере обрабатывается строка,
-<size:10>которую передали в Action,
-<size:10>ее он разобрать не может
-<size:10>поэтому передает дальше в Display,
-<size:10>и тот уже отправляет в парсер.
+note top of DISPLAY 
+<size:10>Из главного парсера будет вызвана
+<size:10>функция по display_get_parametr()
+<size:10>с JSON строкой, которую сам блок
+<size:10>не в состоянию разобрать,
+<size:10>поэтому он передаст её в JSON парсер.
 end note
 
+note right of JSON_PARSER 
+<size:10>JSON парсер в свою очередь,
+<size:10>проанализировав пришедшую в него строку,
+<size:10>составит ответ, используя функци,
+<size:10>которые были заданы при его инициализации
+end note
 
 class ACTION {
 +group_system_info()
@@ -104,16 +109,18 @@ resistanse, self-discharge rate, etc}
 
 
 class DISPLAY{
-+display_get_parameter(type_data)
+-display_get_type_screen()
+-display_get_cell_info()
+
++display_get_parametr(json_string)
 +display_set_next_screen()
 +display_set_parameter()
-
-+display_transmit_json_pair()
 }
 
 
 class JSON_PARSER{
++parser_init_data_function()
 +parser_accept_json_string()
-+parser_return_data()
++parser_create_any_json_pair()
 }
 @enduml

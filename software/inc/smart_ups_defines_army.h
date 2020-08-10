@@ -27,9 +27,9 @@
 
 #define CMD_GET                       "get"
 		#define SET_PARAMETER         "set_parameter"
-		#define VOLTAGE_CUT_OFF_GET_RESPONSE "voltage_cut_off was got"
-		#define CHARGE_CURRENT_GET_RESPONSE "charge_current was got"
-		#define BATTERY_TYPE_GET_RESPONSE	"battery_type was got"
+		#define VOLTAGE_CUT_OFF_GET_RESPONSE "voltage_cut_off was got"NEWLINE
+		#define CHARGE_CURRENT_GET_RESPONSE "charge_current was got"NEWLINE
+		#define BATTERY_TYPE_GET_RESPONSE	"battery_type was got"NEWLINE
 
 
 

@@ -10,14 +10,15 @@
 #include "usart.h"
 #include "cmsis_os.h"
 
-#define MAX_SIZE_RX_UART_DATA 100
+#define MAX_SIZE_RX_UART_DATA 99
 
 #define RX_DATA_COMPLETE   1
 #define TX_DATA_COMPLETE   2
 #define NEED_TRANSMIT_DATA 4
 
+#define MIN_LEN_COMMAND 15
 
-uint8_t rx_uart_data[MAX_SIZE_RX_UART_DATA] = {};
+uint8_t rx_uart_data[MAX_SIZE_RX_UART_DATA + 1] = {};
 EventGroupHandle_t uart_data_transfer_events = 0;
 _Bool enable_idle_flag_interrupt = 0,
 		tx_complete = true;
@@ -46,20 +47,37 @@ void event_group_set_bit_from_isr (EventGroupHandle_t event_group, uint32_t bit_
 }
 
 void HAL_UART_IDLE_Callback (UART_HandleTypeDef *huart) {
-	__HAL_UART_CLEAR_IDLEFLAG(huart);
+	if (huart -> Instance == USART1){
+		__HAL_UART_CLEAR_IDLEFLAG(huart);
 
-	if(enable_idle_flag_interrupt){
-		enable_idle_flag_interrupt = false;
-		return;
+		if(enable_idle_flag_interrupt){
+			enable_idle_flag_interrupt = false;
+			return;
+		}
+
+		uint8_t command_len = strlen((const char *)rx_uart_data);
+		if (rx_uart_data[command_len - 1] != '\r')
+			return;
+		rx_uart_data[command_len - 1] = '\0';
+
+		if (strlen((const char *)rx_uart_data) < MIN_LEN_COMMAND)
+			return;
+
+		if(tx_complete == false)
+			return;
+		else
+			tx_complete = false;
+
+		__HAL_UART_DISABLE_IT(huart, UART_IT_IDLE);
+		HAL_UART_AbortReceive_IT(huart);
+
+		event_group_set_bit_from_isr(uart_data_transfer_events, RX_DATA_COMPLETE);
 	}
+}
 
-	if(tx_complete == false)
-		return;
-	else
-		tx_complete = false;
-
-	HAL_UART_AbortReceive(huart);
-	__HAL_UART_DISABLE_IT(&huart1, UART_IT_IDLE);
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+	__HAL_UART_DISABLE_IT(huart, UART_IT_IDLE);
+	HAL_UART_AbortReceive_IT(huart);
 
 	event_group_set_bit_from_isr(uart_data_transfer_events, RX_DATA_COMPLETE);
 }
@@ -68,6 +86,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
 	event_group_set_bit_from_isr(uart_data_transfer_events, TX_DATA_COMPLETE);
 }
 
+#include <string.h>
 void rx_uart_data_task (void const * argument) {
 	for(;;) {
 		xEventGroupWaitBits(uart_data_transfer_events, 1, pdTRUE, pdTRUE, portMAX_DELAY );
@@ -75,9 +94,18 @@ void rx_uart_data_task (void const * argument) {
 /*
 	parse this
 
-
-
 */
+// EXAMPLE:
+		parse((const char *)rx_uart_data);
+		if (strlen(rx_uart_data) > strlen("get charge_current")) {
+			asm("nop");
+		}
+		if (strcmp((const char *)rx_uart_data, "get charge_current") ) {
+			asm("nop");
+		}
+
+		memset(rx_uart_data, 0, MAX_SIZE_RX_UART_DATA);
+
 		// while not have parse call
 		xEventGroupSetBits(uart_data_transfer_events, NEED_TRANSMIT_DATA);
 	}
@@ -91,6 +119,8 @@ void tx_uart_data_task(void const * argument) {
 
 		//get pointer tx_data
 		//	tx_data = GET_POINTER_FUNCTION
+		// EXAMPLE:
+		tx_data = parser_response();
 
 		if(tx_data != 0)
 			HAL_UART_Transmit_DMA(&huart1, tx_data, strlen((const char*)tx_data));
@@ -99,8 +129,8 @@ void tx_uart_data_task(void const * argument) {
 
 		xEventGroupWaitBits(uart_data_transfer_events, TX_DATA_COMPLETE, pdTRUE, pdTRUE, portMAX_DELAY );
 
-
 		tx_complete = true;
+		HAL_UART_Abort(&huart1);
 		__HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE);
 		HAL_UART_Receive_DMA(&huart1, rx_uart_data, MAX_SIZE_RX_UART_DATA);
 	}
