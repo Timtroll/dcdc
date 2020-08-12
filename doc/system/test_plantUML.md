@@ -1,8 +1,8 @@
 
 
 
-![test_plantUML](http://www.plantuml.com/plantuml/png/SYWkIImgAStDuN9q3l7qzrFGpKbDAz6rKmYE30vnzOttz7FpL-3oTVKBnIO3bIZAJCy0opW7kRhwmKrAoI_F0ug2r72vU0O7-3X6AkX21U2AIWl08ex1eK6kG8aGc4g4gLx1_dxn0Ov1mQv1K5q8EQXYBgwy_99KXPBy0eNyD9YW0fTDSMPLgfMXWHs0BBB9II08el3UKzHI4-AL20d4cAWXoCRT36EK19IuynZD2EcMeTihlBgHzJeZTdGn_KDNFLvz3-_mWWzqS6WHaUoS15zmMccDlLPmWgqssDbb8MXr1OyM3X7kLqSVhIJYe4y8kg50al7r_VHcz32ycio7qz5iT3kPpyulYfuwJo1Qwq8h91pi-nm8TrtOLscZh_OCXwEPGCUQmdl4tWon8573rWqYWlNGDZmIjZoP_7fGz9avVM4zZjg8RP66EUiUEpXgYLtVA9uTbZmkpoPtOo7LdcqcJhf570NXVmAzvHR9ZDho_FFFVqnc91apEWHu1Fv2z2QGduCkSz-Id2XB8WomGAfD8NeYnR03foJebiaQzg0rqQ3JDRn9RgHCjP0f0benWgrjPb7WuGWGKLUzG-aD8J0Pwfp6SVaMlXkjWXt7MHXyprDmdMccqly_mLvMUrrfvuvSub1M5B9WTgQAvjtNIPX29ssLNDhON-mFVpPGbLDPY57aJXwRdGu-3JAU8-596jTxxfviF274yfOxhNQxn6yVJGvQZoP7VianSrTYY6Fprri2ZL8bydtV2ZeFA0z0hK1I-mynFOtafzdlnQ_lhvo3ZhwBOhzlTXnl9YWZahoEn3IktP-1EUrvvLH72DeuFQDkUr7ICM0yUjl9dmTf_Hk6JSWq35kGdeuOkBZY2v2B_1Mx2lOdWID3Pwd0nNKg642nT-KumRi4ook1WyNxCEC8WmDxgN27FIHB36HDVjpJH3_MH3_IH3_KH6_MH6_MH6_LH6_GH3_KHD_JH6_JH3_Mf4pVTAxnr5aJIKOL4DtOy2_dCAuLqp-LGa2t31j_jvi6MCOtmxBC-ok7gsqM-sAQQ82Y13O7Bs2acMbD9f_5lBsyJYiRHRDy9Fr0nZCTbqu73D8QX_6ZsIcqbeDq-CwqPghUHGf9aG-V-MYA95hnt071KuOTmMbSqfSORGtfy6kWP_vz4lmKllKLW6kux6-vs6EZaHaRDoJwhnLJENC5CowNTMoMBWcjcDYdPQKLC3VOs0ICB1AuYAmBslxbqc4Y066b3yIBv3gNlBOjd6wR_r-P9-PnPVM96CtcRC-haNan6L_iPMqhLvdjnL7wjgouVEGTWQ9RhkkQoAacLysLRrWiL3wJolPowSqhLswDti_KRbwPVaVlPAHWd7ugaCWGX-zKujQkShJLzEeh2Wy0Oo86pcv8Jcqf--JKKhwB4vJ2WMJ5eN9oPY2KuCuBO02pvFk6haid-my0)
 
+![test_plantUML](http://www.plantuml.com/plantuml/png/R8n13e8m44NtSugvG6z0Z0sEIOsqf5CMh8Y9e2P82PPuVP7GhjY-z_u_Vi9j2lEx1vaxPJIAlks2E23NxAXeb3uRX89qjMSsCRqUpzNabaYdfxl_3WlzDt1IN5vbZIA26CtZIYHNbXRXKfcbsmiRtPJICjaqYswh0GOVMWn-HDz5Y93zo2ARdOI1A0hlVOfPQaACRbtuAgIHnf2W8S16LvGQ9G4bxdoCeKewKbfVuTmtyXojED75_DzxvjplZlktwTdfoJbUK3gyee97WHeDzut31xnDBSF6fl0EQylnniFCeR05IePw1ljV7RjZI8sjtIFOIWADw_N7mq5oqxrC9zrXCagkqidey2ZAoPmgS9RPZFyqs7AyTvnMct5CBRSdFiDZHnEe51Dvhx6X8GKqqk2yubrWZcoZPFXQEyelEr4UpTcZuh6pt76fPLYrRbYcbvRZyLdYSkXY7iS7wNNFYMhBzeiuwSRjY0Z_4sWj5sXebDF3pyz_J0h9DsPK22WHT2Fq5D0pB-PGtboS92iYQc24rF98T4-A4WYgKg0BTPROWsL2WygMA2cvSd5N8vceGGkrOCs55XrAU054ROlMeMiD8QWpqjcNutL2Y71U39BFHgkWjt4MYDxzAxYsIIDzto_OosglAstlQ8B7X1K1BmpRHbR_-mw1nhXk8_kIUDvZUCmRC36AsibJjzF1fr76IoGyI-C6pzrJWsU4EB_LJcjXb_ZjhQj9sxt9cPzgpjgL6EBK_VMMGADKYVmmx0LTHfH7eBr0KeStaPzEyjCT3kBNzsV90q--Z-9mw7QSxofGHYIvpCGobl1xOi9mMO7g144Rfw-ipr6KT0eOJzxsykTHMl-2OHCpZUCMfgSJ1YwkM19paJzoLyd-971aw28LkBYU2aPGZAw0CxnAiBmIE5hyccOSON1WRnNkSO1aYOdioO-lFD7tFT7tFD5tFT6RFT6RFT5RFT4RFD5tFT5VUQAtUQBlUpBlllnXurrdJIGPLK1qKyU_F8TnUv7_gHG2khBPUDmkRs0PNmpRaizNJhU8MHpcK9O1YXBOcdmcCvALjcBgnvYFb-UyiabqPP3q8ndFSbmw7p58Qnp6jswdq5fEqkChoxfAzIvII8fyU9-FSYQn5uyz43nKsWcSnZBzd6FVKdhycEYHVny4FxFUzWx0DIpdMotsr6banSQDYVxRYrpEMi7AgsMTkj8bOI-o-bHMsX1hWqrTmCWcWOl8lg0TdcuT9W8GDlv0l5ckQydRMD7qUVZ_LJWhZwkeJyHi3jTuNOsiYs5W6P_NjeBclLs0kM_d5S-3l2DGz1cqh8dCDLaqLxrXiL7rctGxNkRUN42rDGP_bPOHi1SP2GALKnS8yknr32D-N0FBMnQNvdVqZhd1EDqEPex3LthNqfk0AjUhvRHvshMrznlUFSo965YwALhaa9mgjR-1e1IE91in3SWIW522knJ22ARCzmrTdyxs7m00)
 
 # Описание внутренней части системы #
 
@@ -104,12 +104,12 @@
 ### <a name="DISPLAY">Display</a> ###
 
 
-Класс **Display** - это звено между системой с ее **Menu** и реальным экраном. То есть этот класс собирает из **Menu**, опрашивая какой следующий экран и от этого выстраивается целый каскад запросов "ключ-значение", готовую информацию для вывода на экран и переводит ее в удобный для транспортировки формат, и отправляет уже в блок **I/O**. 
+Класс **Display** - это звено между системой с ее **Menu** и реальным экраном. То есть этот класс собирает информацию об активном экране из **Menu**, после чего другие блоки каскадом JSON запросов могут получить нужные данные и  построить уже у себя активный экран.
 
-Пришедший JSON-запрос в **Action**, он сам обработать не может, поэтому уже блок **Display** работает с парсером и в зависимости от того, что было в строке может обращаться к блоку **Menu**, для построения экрана.
-
-Все команды максимально унифицированы, отсюда и получается главная особенность этого блока. Все экраны, которые он формирует на отправку в блок **I/O** или на компьютер, будут выглядеть одинаково. Уже конечная точка будет для себя выстраивать экран в зависимости от пришедших данных.  
-
+Пришедший JSON-запрос в **Action**, отправляется далее в **Display**, и с помощью JSON парсера обрабатывает и возвращается корректый ответ или предупреждение о некорректном запросе.
+ 
 ### <a name="JSON_PARSER">JSON_Parser</a> ###
  
-Этот небольшой класс разбирает JSON строку, которая приходит в блок **Action** после чего он передать ее в парсер, и результат (числа, текст и тд.) уже использует **Display**.  
+Этот небольшой класс разбирает JSON строку, которая приходит в блок **Display**, по разобранным ключам, блок составляет ответ в JSON формате, используя уже внутренние функции **Display** для получения значений. 
+
+Также есть возможность составить специальную пару "ключ-значение", которая нужна только в определеном случае и не может быть унифицирована. 

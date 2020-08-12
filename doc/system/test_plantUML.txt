@@ -112,8 +112,10 @@ class DISPLAY{
 -display_get_type_screen()
 -display_get_cell_info()
 
-+display_get_parametr(json_string)
-+display_set_next_screen()
++dispaly_start_set_data()
++display_stop_set_data()
++display_get_parameter(json_string)
++display_set_next_screen(direction)
 +display_set_parameter()
 }
 
