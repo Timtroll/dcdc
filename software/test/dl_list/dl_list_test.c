@@ -13,21 +13,6 @@ TEST_TEAR_DOWN (dl_list) {
 	delete_with_assert();
 }
 
-dl_list_t * test_list = NULL;
-
-test_cell_val_t
-	test_val_1 = {
-		.attr1 = 1
-	},
-	test_val_2 = {
-		.attr2 = 2
-	},
-	test_val_3 = {
-		.attr3 = 3
-	};
-
-#define TODO() TEST_FAIL_MESSAGE("          TODO: WRITE THIS TEST...")
-
 /*
 [v] create_assign_all_as_defaults
 [v] delete_and_make_list_null
@@ -74,7 +59,26 @@ TEST (dl_list, delete_and_make_list_null) {
 }
 
 TEST (dl_list, delete_and_free_all_cells) {
-	TODO();
+	test_list_push_3_differ_cells();
+
+	printf("\ntest_list %p\n", test_list);
+
+	list_cell_t
+		* head = Dl_list_head(test_list),
+		* cells [3] = {};
+
+	TEST_ASSERT_NOT_NULL_MESSAGE(head->data, "head->data is NULL...");
+	TEST_ASSERT_NOT_NULL_MESSAGE(head, "head is NULL");
+
+	for (int cell = 0; head; cell++, head = head->next)
+		cells[cell] = head;
+
+	dl_list_delete(&test_list);
+
+	TEST_ASSERT_NULL_MESSAGE(cells[0], "cells[0] is not NULL");
+	TEST_ASSERT_NULL(cells[1]);
+	TEST_ASSERT_NULL(cells[2]);
+
 }
 
 TEST (dl_list, push_increase_amount_if_possible) {

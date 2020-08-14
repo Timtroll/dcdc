@@ -1,29 +1,30 @@
 #include "dl_list_internal.h"
 
-#define Data(dl_list) ((list_cell_t *)(dl_list->data))
+#define List_data(list) ((dl_list_data_t *)((list)->data))
+#define Cell_data(cell) ((list_cell_t *)((cell)->data))
 
 void cell_set_data (list_cell_t * cell, void * data) {
-	Data(cell)->data = data;
+	Cell_data(cell)->data = data;
 }
 
 void * cell_data (list_cell_t * cell) {
-	return Data(cell)->data;
+	return Cell_data(cell)->data;
 }
 
 void cell_set_next (list_cell_t * cell, list_cell_t * next) {
-	Data(cell)->next = next;
+	Cell_data(cell)->next = next;
 }
 
 list_cell_t * cell_next (list_cell_t * cell) {
-	return Data(cell)->next;
+	return Cell_data(cell)->next;
 }
 
 void cell_set_prev (list_cell_t * cell, list_cell_t * prev) {
-	Data(cell)->prev = prev;
+	Cell_data(cell)->prev = prev;
 }
 
 list_cell_t * cell_prev (list_cell_t * cell) {
-	return Data(cell)->prev;
+	return Cell_data(cell)->prev;
 }
 
 void data_set_head (dl_list_data_t * data, list_cell_t * head) {
@@ -56,4 +57,12 @@ void data_set_cell_amount (dl_list_data_t * data, size_t amount) {
 
 size_t data_cell_amount (dl_list_data_t * data) {
 	return data->cell_amount;
+}
+
+list_cell_t ** _dl_list_head_ptr (struct dl_list * list) {
+	return &List_data(list)->head;
+}
+
+list_cell_t ** _dl_list_tail_ptr (struct dl_list * list) {
+	return NULL;
 }

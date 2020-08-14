@@ -26,6 +26,9 @@ void * _dl_list_pop (struct dl_list * list);
 list_cell_t * _dl_list_head (struct dl_list * list);
 list_cell_t * _dl_list_tail (struct dl_list * list);
 
+list_cell_t ** _dl_list_head_ptr (struct dl_list * list);
+list_cell_t ** _dl_list_tail_ptr (struct dl_list * list);
+
 int _dl_list_size (struct dl_list * list);
 
 void cell_set_data (list_cell_t * cell, void * data);
