@@ -104,7 +104,7 @@ void hrtim_reset_timer (void) {
 
 
 void charger_start (void) {
-	hrtim_set_value_pwm_on_outputs(charger_mode, widht_output_pulse);
+	hrtim_set_value_pwm_on_outputs(charger_mode, hrtim_widht_output_pulse);
 	hrtim_outputs_start(charger_mode);
 	hrtim_start_timer();
 }
