@@ -146,11 +146,16 @@ void charger_set_pulse_widght (uint16_t percent_widght) {
 }
 
 
+//temp for test
 void parse_str_hrtim_command(const char * command) {
-	uint16_t count = atoi(command);
-	charger_set_pulse_widght(count);
-//	charger_set_mode(count);
-	charger_restart();
+	uint16_t count = atoi(command + 2);
+
+	if (*command == 'm'){
+		charger_set_mode(count);
+	}else if (*command == 'w'){
+		charger_set_pulse_widght(count);
+	}
+		charger_restart();
 }
 
 
