@@ -44,8 +44,8 @@ TEST_TEAR_DOWN (display) {
 
 //[+]control_of_data change
 //[+]response_json_request
-//[]compute_data_array_main_screen
-//[]compute_data_array_side_screen
+//[+]compute_data_array_main_screen
+//[+]compute_data_array_side_screen
 //[]get_pointer_data_from_menu
 //[]switch_next_screen
 //[]change_pointer_on_data
@@ -85,11 +85,25 @@ TEST(display, compute_data_array_main_screen){
 
 	TEST_ASSERT_EQUAL_STRING(test_screen[0], display_get_type_screen());
 	TEST_ASSERT_EQUAL_STRING(test_screen[2], display_get_cell_value(0,0));
+	TEST_ASSERT_EQUAL_STRING(test_screen[9], display_get_cell_value(1,3));
+	TEST_ASSERT_EQUAL_STRING(END_TABLE, display_get_cell_value(0, 4));
+
+	TEST_ASSERT_EQUAL_STRING(NULL, display_get_cell_value(2, 0));
+	TEST_ASSERT_EQUAL_STRING(NULL, display_get_cell_value(-1 , 0));
+	TEST_ASSERT_EQUAL_STRING(NULL, display_get_cell_value("d", 1));
+	TEST_ASSERT_EQUAL_STRING(NULL, display_get_cell_value(0, -1));
 }
 	
 
-	/*
 
 TEST(display, compute_data_array_side_screen){
 	set_screen_parameters(return_array(SIDE));
-}	*/
+
+	char ** test_screen = return_array(SIDE);
+	TEST_ASSERT_EQUAL_STRING(test_screen[0], display_get_type_screen());
+	TEST_ASSERT_EQUAL_STRING(test_screen[1], display_get_cell_value(0,0));
+	TEST_ASSERT_EQUAL_STRING(test_screen[2], display_get_cell_value(0,1));
+	TEST_ASSERT_EQUAL_STRING(test_screen[3], display_get_cell_value(0,2));
+
+	TEST_ASSERT_EQUAL_STRING(NULL, display_get_cell_value(0,3));
+}	
