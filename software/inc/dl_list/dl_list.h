@@ -33,13 +33,13 @@ void dl_list_group_delete (void);
 dl_list_t * dl_list_create (size_t elt_size);
 void dl_list_delete (dl_list_t ** list);
 
-#define Dl_list_push(list, elt) list->push(list, elt)
-#define Dl_list_pop(list, elt)  list->pop(list)
+#define Dl_list_push(list, elt) (list)->push((list), (elt))
+#define Dl_list_pop(list, elt)  (list)->pop((list))
 
-#define Dl_list_head(list)      list->head(list)
-#define Dl_list_tail(list)      list->tail(list)
+#define Dl_list_head(list)      (list)->head((list))
+#define Dl_list_tail(list)      (list)->tail((list))
 
-#define Dl_list_size(list)      list->size(list)	
+#define Dl_list_size(list)      (list)->size((list))	
 
 
 #endif//_DL_LIST_H_

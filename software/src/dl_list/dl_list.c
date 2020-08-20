@@ -46,12 +46,30 @@ dl_list_t * dl_list_create (size_t elt_size) {
 	return list;
 }
 
+
+#include "unity_fixture.h"
 void dl_list_delete (dl_list_t ** list) {
-	// for each cell in list :
-	// if ((*list)->data) {
-	// 	bfree(&dl_list_group_cells, (*list)->data);
-	// 	(*list)->data = NULL;
-	// }
+	if (list == NULL || *list == NULL) return;
+
+	printf("list %p\n", *list);
+
+	list_cell_t
+		* head = Dl_list_head(*list),
+		** head_ptr = _dl_list_head_ptr(*list);
+
+	TEST_ASSERT_NOT_NULL_MESSAGE(head_ptr, "head_ptr is NULL...");
+	TEST_ASSERT_NOT_NULL_MESSAGE(head, "head is NULL...");
+
+	for (int cell = 0; head; cell++, head_ptr = &head->next, head = head->next) {
+		TEST_ASSERT_NOT_NULL_MESSAGE(head->data, "head->data is NULL...");
+		if (head->data) {
+			bfree(&dl_list_group_cells, head->data);
+			head->data = NULL;
+
+			bfree(&dl_list_group_data, head);
+			*head_ptr = NULL;
+		}
+	}
 
 	bfree(&dl_list_group_lists, *list);
 	*list = NULL;
