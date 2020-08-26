@@ -14,6 +14,7 @@ TEST_TEAR_DOWN (linked_list) {
 }
 
 //[+]create_dl_list
+//[]get_information_from_block_sys_info
 //[]correct_filling_dl_list_with_screen
 //[]save_actual_screen 
 //[]correct_return_data_about_actual_screen	
@@ -39,6 +40,10 @@ TEST(linked_list, create_dl_list){
 	TEST_ASSERT_NOT_NULL(menu->head);
 	TEST_ASSERT_NOT_NULL(menu->tail);
 	TEST_ASSERT_NOT_NULL(menu->size);
+}
+
+TEST(linked_list, get_information_from_block_sys_info){
+	TEST_ASSERT_EQUAL_STRING(sys_info_get_voltage_cut(), _get_raw_data(1));
 }
 
 TEST(linked_list, correct_filling_dl_list_with_screen){
