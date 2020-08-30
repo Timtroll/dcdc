@@ -11,8 +11,9 @@ void menu_swipe_left(void){
 
 }
 
-uint8_t menu_init(void){
+uint8_t _menu_init(void){
 	return 1;
+
 
 	//this func will monitor important
 	// functions about init menu:
@@ -21,4 +22,6 @@ uint8_t menu_init(void){
 
 	//work with help static variable(flags)
 	// which show status INIT/DEINIT 
+
+	//
 }

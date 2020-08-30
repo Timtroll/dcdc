@@ -13,16 +13,20 @@
 #define SIDE_SCREEN "char * main_screen [SIDE_QUANTITY_ELEMENT]"
 #define DIVISION_CELLS "\n\n"
 
-#define QUANTITY_SCREEN 12
 #define MAIN_SCREEN_POSITION 0
 #define SIDE_SCREEN_START_POSITION 1
-
-#define SYS_INFO_START_PHRASE "sys_info_get_"
+#define QUANTITY_SCREEN 12
 
 dl_list_t * menu;
+char * (* get_sys_info [QUANTITY_SCREEN]) (void);
 
-enum screen_name
-{
+#define Raw_data(screen) \
+	return get_sys_info[screen](); \
+
+#define Fill_get_func(list_func, name_func)\
+	list_func[name_func] = sys_info_get_ ## name_func;\
+
+enum screen_name{
 	main_scr,
 	voltage_cut,
 	charging_type,
@@ -41,14 +45,14 @@ enum screen_name
 void menu_create(void);
 void fill_with_data(void);
 
-char * main_screen_all(void);
+void init_get_sys_info_func(void);
 
-#define Raw_data(screen) \
-	if(screen == main_scr) \
-		return main_screen_all(); \
-	return NULL;\
-	//return get_sys_info[screen_index](); \
 
+
+
+
+char * sys_info_get_main_scr(void);
+char * get_raw_data(uint8_t name_screen);
 
 #endif//_MENU_INTERNAL_H_
 

@@ -1,29 +1,33 @@
 #include "menu_internal.h"
 
-char * (* get_sys_info [QUANTITY_SCREEN]) (void) ={NULL};
 
-void _init_get_sys_info_func(void){
-	
+void init_get_sys_info_func(void){
+	Fill_get_func(get_sys_info, main_scr);
+	Fill_get_func(get_sys_info, voltage_cut);
+	Fill_get_func(get_sys_info, charging_type);
+	Fill_get_func(get_sys_info, charge_threshold_Pb_lower);
+	Fill_get_func(get_sys_info, charge_threshold_Pb_upper);
+	Fill_get_func(get_sys_info, charge_threshold_others);
+	Fill_get_func(get_sys_info, discharge_threshold);
+	Fill_get_func(get_sys_info, quantity_cans);
+	Fill_get_func(get_sys_info, capacity);
+	Fill_get_func(get_sys_info, max_allowable_capacity);
+	Fill_get_func(get_sys_info, internal_voltage_default);
+	Fill_get_func(get_sys_info, type_battery);
 }
-/*
-const char * sys_info_end_phrase [QUANTITY_SCREEN] = {
-	"main_scr",
-	"sys_info_get_voltage_cut()",
-	"sys_info_get_charging_type()",
-	"sys_info_get_charge_threshold_Pb_lower()",
-	"sys_info_get_charge_threshold_Pb_upper()",
-	"sys_info_get_charge_threshold_others()",
-	"sys_info_get_discharge_threshold()",
-	"sys_info_get_quantity_cans()",
-	"sys_info_get_capacity()",
-	"sys_info_get_max_allowable_capacity()",
-	"sys_info_get_internal_voltage_default()",
-	"sys_info_get_type_battery()"
-};*/
 
-
-char * _get_raw_data(uint8_t name_screen){
-	Raw_data(name_screen);
+char * get_raw_data(uint8_t name_screen){
+	static uint8_t init_flag = 0;
+	if (init_flag == 0)
+	{
+	 	init_get_sys_info_func();
+	 	init_flag = 1;
+	} 
+	if (name_screen >= main_scr && name_screen <= type_battery)
+	{
+		Raw_data(name_screen);
+	}
+	
 }
 
 void menu_create(void){
@@ -32,18 +36,33 @@ void menu_create(void){
 }
 
 void fill_with_data(void){
+	char * string_with_raw_data = NULL;
+	
 	for (int screen_counter = MAIN_SCREEN_POSITION;
-		screen_counter < 2; 
+		screen_counter < QUANTITY_SCREEN; 
 		screen_counter++)
 	{
-		char * string_with_raw_data = NULL;
-		string_with_raw_data = _get_raw_data(screen_counter);
+		string_with_raw_data = get_raw_data(screen_counter);
 		//printf("%s\n", string_with_raw_data);
 	}
+
+
 }
 
+char * sys_info_get_main_scr(void){
+	char * main_raw_string[QUANTITY_SCREEN - 1] = {
+		get_raw_data(voltage_cut),
+		get_raw_data(charging_type),
+		get_raw_data(charge_threshold_Pb_lower),
+		get_raw_data(charge_threshold_Pb_upper),
+		get_raw_data(charge_threshold_others),
+		get_raw_data(discharge_threshold),
+		get_raw_data(quantity_cans),
+		get_raw_data(capacity),
+		get_raw_data(max_allowable_capacity),
+		get_raw_data(internal_voltage_default),
+		get_raw_data(type_battery)
+	}; 
 
-
-char * main_screen_all(void){
-	return "all";
+	return main_raw_string;
 }

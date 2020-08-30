@@ -17,7 +17,7 @@ char * sys_info_get_charge_threshold_Pb_upper(void){
 	return "charge_threshold_Pb_upper";
 }
 char * sys_info_get_charge_threshold_others(void){
-	return "harge_threshold_others";
+	return "charge_threshold_others";
 }
 char * sys_info_get_discharge_threshold(void){
 	return "discharge_threshold";
