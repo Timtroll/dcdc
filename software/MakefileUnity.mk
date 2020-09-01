@@ -19,6 +19,7 @@ UNITY_WARNINGFLAGS = -Wswitch-default
 #UNITY_WARNINGFLAGS += -Wshadow
 SRC_DIRS = \
 	$(PROJECT_HOME_DIR)/src/ \
+	$(PROJECT_HOME_DIR)/src/screen \
 	$(PROJECT_HOME_DIR)/src/display \
 	$(PROJECT_HOME_DIR)/src/json_parser \
 	$(PROJECT_HOME_DIR)/src/uart_data_transfer \
@@ -33,6 +34,7 @@ SRC_DIRS = \
 
 TEST_SRC_DIRS = \
 	$(PROJECT_TEST_DIR) \
+	$(PROJECT_TEST_DIR)/screen \
 	$(PROJECT_TEST_DIR)/display \
 	$(PROJECT_TEST_DIR)/json_parser \
 	$(PROJECT_TEST_DIR)/uart_data_transfer \
@@ -58,6 +60,7 @@ INCLUDE_DIRS = \
 	$(UNITY_HOME)/extras/fixture/src \
 	$(UNITY_HOME)/extras/fixture/test \
 	$(PROJECT_HOME_DIR)/inc/ \
+	$(PROJECT_HOME_DIR)/inc/screen \
 	$(PROJECT_HOME_DIR)/inc/display \
 	$(PROJECT_HOME_DIR)/inc/json_parser \
 	$(PROJECT_HOME_DIR)/inc/uart_data_transfer \
