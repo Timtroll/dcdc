@@ -13,7 +13,6 @@
 #define SIDE_SCREEN "char * main_screen [SIDE_QUANTITY_ELEMENT]"
 #define DIVISION_CELLS "\n\n"
 
-#define MAIN_SCREEN_POSITION 0
 #define SIDE_SCREEN_START_POSITION 1
 #define QUANTITY_SCREEN 12
 
@@ -41,18 +40,13 @@ enum screen_name{
 	type_battery
 };
 
-
 void menu_create(void);
 void fill_with_data(void);
 
 void init_get_sys_info_func(void);
-
-
-
-
-
-char * sys_info_get_main_scr(void);
 char * get_raw_data(uint8_t name_screen);
+char ** sys_info_get_main_scr(void);
+
 
 #endif//_MENU_INTERNAL_H_
 

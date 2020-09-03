@@ -55,9 +55,6 @@ TEST(linked_list, get_information_from_block_sys_info){
 	TEST_ASSERT_EQUAL_STRING(sys_info_get_max_allowable_capacity(),get_raw_data(9));
 	TEST_ASSERT_EQUAL_STRING(sys_info_get_internal_voltage_default(),get_raw_data(10));
 	TEST_ASSERT_EQUAL_STRING(sys_info_get_type_battery(), get_raw_data(11));
-
-
-
 }
 
 TEST(linked_list, correct_filling_dl_list_with_screen){
@@ -83,11 +80,11 @@ TEST_TEAR_DOWN (navigation) {
 
 }
 
-
-
 //[]selection_main_screen_on_start
 //[]selection_new_actual_screen
 //[]switch_screens_circle_right
 //[]switch_screens_circle_left
+
+
 
 
