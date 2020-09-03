@@ -22,7 +22,7 @@ char * (* get_sys_info [QUANTITY_SCREEN]) (void);
 #define Raw_data(screen) \
 	return get_sys_info[screen](); \
 
-#define Fill_get_func(list_func, name_func)\
+#define Set_raw_data(list_func, name_func)\
 	list_func[name_func] = sys_info_get_ ## name_func;\
 
 enum screen_name{
@@ -43,7 +43,7 @@ enum screen_name{
 void menu_create(void);
 void fill_with_data(void);
 
-void init_get_sys_info_func(void);
+void init_function(void);
 char * get_raw_data(uint8_t name_screen);
 char ** sys_info_get_main_scr(void);
 

@@ -1,25 +1,25 @@
 #include "menu_internal.h"
 
-void init_get_sys_info_func(void){
-	Fill_get_func(get_sys_info, main_scr);
-	Fill_get_func(get_sys_info, voltage_cut);
-	Fill_get_func(get_sys_info, charging_type);
-	Fill_get_func(get_sys_info, charge_threshold_Pb_lower);
-	Fill_get_func(get_sys_info, charge_threshold_Pb_upper);
-	Fill_get_func(get_sys_info, charge_threshold_others);
-	Fill_get_func(get_sys_info, discharge_threshold);
-	Fill_get_func(get_sys_info, quantity_cans);
-	Fill_get_func(get_sys_info, capacity);
-	Fill_get_func(get_sys_info, max_allowable_capacity);
-	Fill_get_func(get_sys_info, internal_voltage_default);
-	Fill_get_func(get_sys_info, type_battery);
+void init_function(void){
+	Set_raw_data(get_sys_info, main_scr);
+	Set_raw_data(get_sys_info, voltage_cut);
+	Set_raw_data(get_sys_info, charging_type);
+	Set_raw_data(get_sys_info, charge_threshold_Pb_lower);
+	Set_raw_data(get_sys_info, charge_threshold_Pb_upper);
+	Set_raw_data(get_sys_info, charge_threshold_others);
+	Set_raw_data(get_sys_info, discharge_threshold);
+	Set_raw_data(get_sys_info, quantity_cans);
+	Set_raw_data(get_sys_info, capacity);
+	Set_raw_data(get_sys_info, max_allowable_capacity);
+	Set_raw_data(get_sys_info, internal_voltage_default);
+	Set_raw_data(get_sys_info, type_battery);
 }
 
 char * get_raw_data(uint8_t name_screen){
 	static uint8_t init_flag = 0;
 	if (init_flag == 0)
 	{
-	 	init_get_sys_info_func();
+	 	init_function();
 	 	init_flag = 1;
 	} 
 
