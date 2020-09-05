@@ -1,7 +1,6 @@
 #include "menu_internal.h"
 
 void init_get_sys_info_func(void){
-	Fill_get_func(get_sys_info, main_scr);
 	Fill_get_func(get_sys_info, voltage_cut);
 	Fill_get_func(get_sys_info, charging_type);
 	Fill_get_func(get_sys_info, charge_threshold_Pb_lower);
@@ -13,6 +12,7 @@ void init_get_sys_info_func(void){
 	Fill_get_func(get_sys_info, max_allowable_capacity);
 	Fill_get_func(get_sys_info, internal_voltage_default);
 	Fill_get_func(get_sys_info, type_battery);
+	Fill_get_func(get_sys_info, main_scr);
 }
 
 char * get_raw_data(uint8_t name_screen){
@@ -46,7 +46,11 @@ void fill_with_data(void){
 }
 
 char ** sys_info_get_main_scr(void){
-	char * main_raw_string[QUANTITY_SCREEN - 1];
+	static char ** main_raw_string[QUANTITY_SCREEN - 1];
+	
+	for(int num = 0; num < (QUANTITY_SCREEN-1); num++){
+		main_raw_string[num] = get_raw_data(num+1);
+	}
 
-	return "all";
+	return main_raw_string;
 }

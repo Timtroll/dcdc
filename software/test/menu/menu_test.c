@@ -68,6 +68,22 @@ TEST(linked_list, save_actual_screen){
 	fill_with_data();
 }
 
+TEST(linked_list, write_screens){
+	char ** p = sys_info_get_main_scr();
+	
+	TEST_ASSERT_EQUAL_STRING(get_raw_data(1), p[0] );
+	TEST_ASSERT_EQUAL_STRING(get_raw_data(2), p[1] );
+	TEST_ASSERT_EQUAL_STRING(get_raw_data(3), p[2] );
+	TEST_ASSERT_EQUAL_STRING(get_raw_data(4), p[3] );
+	TEST_ASSERT_EQUAL_STRING(get_raw_data(5), p[4] );
+	TEST_ASSERT_EQUAL_STRING(get_raw_data(6), p[5] );
+	TEST_ASSERT_EQUAL_STRING(get_raw_data(7), p[6] );
+	TEST_ASSERT_EQUAL_STRING(get_raw_data(8), p[7] );
+	TEST_ASSERT_EQUAL_STRING(get_raw_data(9), p[8] );
+	TEST_ASSERT_EQUAL_STRING(get_raw_data(10), p[9] );
+	TEST_ASSERT_EQUAL_STRING(get_raw_data(11), p[10] );
+}
+
 TEST_GROUP (navigation);
 
 
