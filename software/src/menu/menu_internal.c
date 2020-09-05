@@ -1,5 +1,6 @@
 #include "menu_internal.h"
 
+
 void init_get_sys_info_func(void){
 	Fill_get_func(get_sys_info, voltage_cut);
 	Fill_get_func(get_sys_info, charging_type);
@@ -19,7 +20,7 @@ char * get_raw_data(uint8_t name_screen){
 	static uint8_t init_flag = 0;
 	if (init_flag == 0)
 	{
-	 	init_get_sys_info_func();
+	 	init_function();
 	 	init_flag = 1;
 	} 
 
