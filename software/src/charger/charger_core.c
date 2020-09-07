@@ -28,6 +28,7 @@
 #define CHARGER_CHANNELS_AKK2 (RIGHT_DWN_IN | LEFT_UP2_IN | LEFT_DWN_IN | RIGHT_UP2_IN)
 #define CHARGER_CHANNELS_GEN  (RIGHT_DWN_IN | LEFT_UP3_IN | LEFT_DWN_IN | RIGHT_UP3_IN)
 
+#define HRTIM_ALL_TIMERS_ID (HRTIM_TIMERID_MASTER | HRTIM_TIMERID_TIMER_A | HRTIM_TIMERID_TIMER_B | HRTIM_TIMERID_TIMER_C | HRTIM_TIMERID_TIMER_D | HRTIM_TIMERID_TIMER_E)
 
 void hrtim_set_value_pwm_on_outputs (uint8_t mode, uint8_t pulse_widht);
 void hrtim_outputs_start (uint8_t mode) ;
@@ -74,7 +75,7 @@ void hrtim_outputs_start (uint8_t mode) {
 }
 
 void hrtim_start_timer (void) {
-	HAL_HRTIM_WaveformCountStart(&hhrtim1, HRTIM_TIMERID_MASTER);
+	HAL_HRTIM_WaveformCountStart(&hhrtim1, HRTIM_ALL_TIMERS_ID);
 }
 
 void hrtim_all_outputs_stop (void) {
@@ -95,7 +96,7 @@ void hrtim_set_level_inactive_on_all_outputs (void) {
 }
 
 void hrtim_stop_timer (void) {
-	HAL_HRTIM_WaveformCountStop(&hhrtim1, HRTIM_TIMERID_MASTER);
+	HAL_HRTIM_WaveformCountStop(&hhrtim1, HRTIM_ALL_TIMERS_ID);
 }
 
 void hrtim_reset_timer (void) {
