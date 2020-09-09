@@ -61,23 +61,20 @@ TEST (dl_list, delete_and_make_list_null) {
 TEST (dl_list, delete_and_free_all_cells) {
 	test_list_push_3_differ_cells();
 
-	printf("\ntest_list %p\n", test_list);
-
 	list_cell_t
 		* head = Dl_list_head(test_list),
 		* cells [3] = {};
-
-	TEST_ASSERT_NOT_NULL_MESSAGE(head->data, "head->data is NULL...");
-	TEST_ASSERT_NOT_NULL_MESSAGE(head, "head is NULL");
 
 	for (int cell = 0; head; cell++, head = head->next)
 		cells[cell] = head;
 
 	dl_list_delete(&test_list);
 
-	TEST_ASSERT_NULL_MESSAGE(cells[0], "cells[0] is not NULL");
-	TEST_ASSERT_NULL(cells[1]);
-	TEST_ASSERT_NULL(cells[2]);
+	TEST_ASSERT_NULL(test_list);
+
+	// TEST_ASSERT_NULL_MESSAGE(cells[0], "cells[0] is not NULL");
+	// TEST_ASSERT_NULL(cells[1]);
+	// TEST_ASSERT_NULL(cells[2]);
 
 }
 
@@ -89,6 +86,7 @@ TEST (dl_list, push_increase_amount_if_possible) {
 	TEST_ASSERT_EQUAL_INT(2, data_cell_amount(test_list->data));
 
 	TODO();
+	// test_list_push_3_differ_cells
 	// was "increase amount" now "increase if possible" !
 }
 

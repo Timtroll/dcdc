@@ -46,22 +46,15 @@ dl_list_t * dl_list_create (size_t elt_size) {
 	return list;
 }
 
-
-#include "unity_fixture.h"
 void dl_list_delete (dl_list_t ** list) {
 	if (list == NULL || *list == NULL) return;
-
-	printf("list %p\n", *list);
 
 	list_cell_t
 		* head = Dl_list_head(*list),
 		** head_ptr = _dl_list_head_ptr(*list);
 
-	TEST_ASSERT_NOT_NULL_MESSAGE(head_ptr, "head_ptr is NULL...");
-	TEST_ASSERT_NOT_NULL_MESSAGE(head, "head is NULL...");
-
 	for (int cell = 0; head; cell++, head_ptr = &head->next, head = head->next) {
-		TEST_ASSERT_NOT_NULL_MESSAGE(head->data, "head->data is NULL...");
+
 		if (head->data) {
 			bfree(&dl_list_group_cells, head->data);
 			head->data = NULL;
@@ -77,6 +70,8 @@ void dl_list_delete (dl_list_t ** list) {
 
 
 void _dl_list_push (dl_list_t * list, void * elt) {
+	if (list == NULL) return;
+
 	list_cell_t * new_cell = balloc(&dl_list_group_cells);
 
 	if (new_cell == NULL) {
@@ -86,22 +81,23 @@ void _dl_list_push (dl_list_t * list, void * elt) {
 	size_t cell_amount = data_cell_amount(list->data);
 
 	if (cell_amount == 0) {
-		new_cell->next = NULL;
-		new_cell->prev = NULL;
+		cell_set_next(new_cell, NULL);
+		cell_set_prev(new_cell, NULL);
 
 		data_set_head(list->data, new_cell);
 		data_set_tail(list->data, new_cell);
 	} else {
 		list_cell_t * last_head = data_head(list->data);
+		cell_set_next(last_head, new_cell);
 
-		last_head->next = new_cell;
-		new_cell->prev = last_head;
-		new_cell->next = NULL;
+		cell_set_prev(new_cell, last_head);
+		cell_set_next(new_cell, NULL);
 
 		data_set_head(list->data, new_cell);
 	}
 
 	data_set_cell_amount(list->data, cell_amount + 1);
+	cell_set_data(new_cell, elt);
 }
 
 void * _dl_list_pop (struct dl_list * list) {

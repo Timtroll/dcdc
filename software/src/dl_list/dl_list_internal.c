@@ -1,7 +1,7 @@
 #include "dl_list_internal.h"
 
 #define List_data(list) ((dl_list_data_t *)((list)->data))
-#define Cell_data(cell) ((list_cell_t *)((cell)->data))
+#define Cell_data(cell) ((list_cell_t *)(cell))
 
 void cell_set_data (list_cell_t * cell, void * data) {
 	Cell_data(cell)->data = data;

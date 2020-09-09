@@ -25,14 +25,15 @@ test_cell_val_t
 
 void test_list_push_3_differ_cells (void) {
 	Dl_list_push(test_list, &test_val_1);
-	TEST_ASSERT_EQUAL_INT(1, data_cell_amount(test_list->data));
+	// TEST_ASSERT_EQUAL_INT(1, data_cell_amount(test_list->data));
+	// TEST_ASSERT_NOT_NULL(data_head(test_list->data));
+	// TEST_ASSERT_NOT_NULL(Dl_list_head(test_list));
 
 	Dl_list_push(test_list, &test_val_2);
-	TEST_ASSERT_EQUAL_INT(2, data_cell_amount(test_list->data));
+	// TEST_ASSERT_EQUAL_INT(2, data_cell_amount(test_list->data));
+	// TEST_ASSERT_NOT_NULL(Dl_list_head(test_list));
 
 	Dl_list_push(test_list, &test_val_3);
-	TEST_ASSERT_EQUAL_INT(3, data_cell_amount(test_list->data));
-	// Dl_list_push(test_list, &test_val_1);
-	// Dl_list_push(test_list, &test_val_2);
-	// Dl_list_push(test_list, &test_val_3);
+	// TEST_ASSERT_EQUAL_INT(3, data_cell_amount(test_list->data));
+	// TEST_ASSERT_NOT_NULL(Dl_list_head(test_list));
 }

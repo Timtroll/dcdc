@@ -23,6 +23,6 @@ void delete_with_assert (void);
 
 void test_list_push_3_differ_cells (void);
 
-#define TODO() // TEST_FAIL_MESSAGE("          TODO: WRITE THIS TEST...")
+#define TODO()  TEST_FAIL_MESSAGE("          TODO: WRITE THIS TEST...")
 
 #endif//_DL_LIST_TEST_HELPERS_
