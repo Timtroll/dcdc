@@ -15,6 +15,7 @@ TEST_TEAR_DOWN (linked_list) {
 
 //[+]create_dl_list
 //[+]get_information_from_block_sys_info
+//[+]write_screens
 //[]correct_filling_dl_list_with_screen
 //[]save_actual_screen 
 //[]correct_return_data_about_actual_screen	
@@ -83,6 +84,7 @@ TEST(linked_list, write_screens){
 	TEST_ASSERT_EQUAL_STRING(get_raw_data(10), p[9] );
 	TEST_ASSERT_EQUAL_STRING(get_raw_data(11), p[10] );
 }
+
 
 TEST_GROUP (navigation);
 

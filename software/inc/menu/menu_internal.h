@@ -13,17 +13,20 @@
 #define SIDE_SCREEN "char * main_screen [SIDE_QUANTITY_ELEMENT]"
 #define DIVISION_CELLS "\n\n"
 
+#define MAIN_SCREEN_POSITION 0 
 #define SIDE_SCREEN_START_POSITION 1
 #define QUANTITY_SCREEN 12
 
-dl_list_t * menu;
-char * (* get_sys_info [QUANTITY_SCREEN]) (void);
 
 #define Raw_data(screen) \
 	return get_sys_info[screen](); \
 
 #define Set_raw_data(list_func, name_func)\
 	list_func[name_func] = sys_info_get_ ## name_func;\
+
+
+dl_list_t * menu;
+char * (* get_sys_info [QUANTITY_SCREEN]) (void);
 
 enum screen_name{
 	main_scr,

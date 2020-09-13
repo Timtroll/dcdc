@@ -1,5 +1,33 @@
 #include "menu_internal.h"
 
+char * str_screen_name[QUANTITY_SCREEN] = {
+	"main_scr",
+	"voltage_cut",
+	"charging_type",
+	"charge_threshold_Pb_lower",
+	"charge_threshold_Pb_upper",
+	"charge_threshold_others",
+	"discharge_threshold",
+	"quantity_cans",
+	"capacity",
+	"max_allowable_capacity",
+	"internal_voltage_default",
+	"type_battery"
+};
+
+char * promt_list[QUANTITY_SCREEN-1] = {
+	"test_promt_voltage_cut",
+	"test_promt_charging_type",
+	"test_promt_charge_threshold_Pb_lower",
+	"test_promt_charge_threshold_Pb_upper",
+	"test_promt_charge_threshold_others",
+	"test_promt_discharge_threshold",
+	"test_promt_quantity_cans",
+	"test_promt_capacity",
+	"test_promt_max_allowable_capacity",
+	"test_promt_internal_voltage_default",
+	"test_promt_type_battery"
+};//in work!!!
 
 void init_function(void){
 	Set_raw_data(get_sys_info, voltage_cut);
@@ -25,8 +53,7 @@ char * get_raw_data(uint8_t name_screen){
 	} 
 
 	if (name_screen >= main_scr && name_screen <= type_battery)
-		Raw_data(name_screen);
-	
+		Raw_data(name_screen);	
 }
 
 void menu_create(void){
@@ -37,9 +64,8 @@ void menu_create(void){
 void fill_with_data(void){
 	char * string_with_raw_data = NULL;
 	
-	for (int screen_counter = main_scr;screen_counter < type_battery; screen_counter++){
+	for (int screen_counter = main_scr;screen_counter <= type_battery; screen_counter++){
 		string_with_raw_data = get_raw_data(screen_counter);
-		
 		//function for creat screen
 
 		//function for push data in dl_list 
@@ -55,3 +81,13 @@ char ** sys_info_get_main_scr(void){
 
 	return main_raw_string;
 }
+
+
+char * _get_screen_name(uint8_t number_screen){
+	return str_screen_name[number_screen];
+}
+
+char * _get_promt(uint8_t number_screen){
+	return promt_list[number_screen];
+}
+
