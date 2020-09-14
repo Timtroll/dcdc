@@ -49,7 +49,7 @@ void fill_with_data(void);
 void init_function(void);
 char * get_raw_data(uint8_t name_screen);
 char ** sys_info_get_main_scr(void);
-
+char * full_screen_string_forming(uint8_t name_screen);
 
 #endif//_MENU_INTERNAL_H_
 

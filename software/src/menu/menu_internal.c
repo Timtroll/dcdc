@@ -1,5 +1,6 @@
 #include "menu_internal.h"
 
+
 char * str_screen_name[QUANTITY_SCREEN] = {
 	"main_scr",
 	"voltage_cut",
@@ -73,8 +74,9 @@ void fill_with_data(void){
 }
 
 char ** sys_info_get_main_scr(void){
-	static char ** main_raw_string[QUANTITY_SCREEN - 1];
-	
+	// static char ** main_raw_string[QUANTITY_SCREEN - 1];
+	static char * main_raw_string[QUANTITY_SCREEN - 1];
+
 	for(int num = 0; num < (QUANTITY_SCREEN-1); num++){
 		main_raw_string[num] = get_raw_data(num+1);
 	}
@@ -91,3 +93,25 @@ char * _get_promt(uint8_t number_screen){
 	return promt_list[number_screen];
 }
 
+
+char * full_screen_string_forming(uint8_t name_screen){
+
+	static char screen_raw[
+		sizeof("\n\n\0") + \
+		sizeof(get_raw_data(name_screen)) + \
+		sizeof(promt_list[name_screen]) + \
+		sizeof(_get_screen_name(name_screen))];
+
+
+	strcat(screen_raw, "str_screen_name\n\n");
+	strcat(screen_raw, _get_screen_name(name_screen));
+	strcat(screen_raw, DIVISION_CELLS);
+	strcat(screen_raw, "get_raw_data\n\n");
+	strcat(screen_raw, get_raw_data(name_screen));
+	strcat(screen_raw, DIVISION_CELLS);
+	strcat(screen_raw, "promt_list\n\n");
+	strcat(screen_raw, _get_promt(name_screen));
+	strcat(screen_raw, "\0");
+	
+	return screen_raw;
+}

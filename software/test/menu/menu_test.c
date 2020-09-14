@@ -2,6 +2,8 @@
 
 #include "menu_internal.h"
 
+#include "../../inc/dl_list/dl_list_internal.h"
+
 TEST_GROUP (linked_list);
 
 TEST_SETUP (linked_list) {
@@ -70,8 +72,9 @@ TEST(linked_list, save_actual_screen){
 }
 
 TEST(linked_list, write_screens){
+
 	char ** p = sys_info_get_main_scr();
-	
+
 	TEST_ASSERT_EQUAL_STRING(get_raw_data(1), p[0] );
 	TEST_ASSERT_EQUAL_STRING(get_raw_data(2), p[1] );
 	TEST_ASSERT_EQUAL_STRING(get_raw_data(3), p[2] );
@@ -85,6 +88,10 @@ TEST(linked_list, write_screens){
 	TEST_ASSERT_EQUAL_STRING(get_raw_data(11), p[10] );
 }
 
+TEST(linked_list, print_long_raw_string){
+	char * template = "str_screen_name\n\nvoltage_cut\n\nget_raw_data\n\nvoltage_cut\n\npromt_list\n\ntest_promt_charging_type\0";
+	TEST_ASSERT_EQUAL_STRING(template , full_screen_string_forming(voltage_cut));
+}
 
 TEST_GROUP (navigation);
 
