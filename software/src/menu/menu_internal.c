@@ -74,7 +74,6 @@ void fill_with_data(void){
 }
 
 char ** sys_info_get_main_scr(void){
-	// static char ** main_raw_string[QUANTITY_SCREEN - 1];
 	static char * main_raw_string[QUANTITY_SCREEN - 1];
 
 	for(int num = 0; num < (QUANTITY_SCREEN-1); num++){
@@ -90,28 +89,44 @@ char * _get_screen_name(uint8_t number_screen){
 }
 
 char * _get_promt(uint8_t number_screen){
-	return promt_list[number_screen];
+	return promt_list[number_screen-1];
 }
 
 
 char * full_screen_string_forming(uint8_t name_screen){
 
-	static char screen_raw[
-		sizeof("\n\n\0") + \
-		sizeof(get_raw_data(name_screen)) + \
-		sizeof(promt_list[name_screen]) + \
-		sizeof(_get_screen_name(name_screen))];
+	char * screen_raw = NULL;
 
+	if(name_screen == main_scr){
+		screen_raw = (char*)malloc((SIZEOF_END_SYMBOL + \
+			(SIZEOF_DIV_CELLS * 2) + \
+			strlen("str_screen_nameget_raw_data") + \
+			strlen(get_raw_data(name_screen)) + \
+			strlen(_get_screen_name(name_screen))));
 
-	strcat(screen_raw, "str_screen_name\n\n");
-	strcat(screen_raw, _get_screen_name(name_screen));
-	strcat(screen_raw, DIVISION_CELLS);
-	strcat(screen_raw, "get_raw_data\n\n");
-	strcat(screen_raw, get_raw_data(name_screen));
-	strcat(screen_raw, DIVISION_CELLS);
-	strcat(screen_raw, "promt_list\n\n");
-	strcat(screen_raw, _get_promt(name_screen));
-	strcat(screen_raw, "\0");
-	
+		strcat(screen_raw, "str_screen_name\n\n");
+		strcat(screen_raw, _get_screen_name(name_screen));
+		strcat(screen_raw, DIVISION_CELLS);
+		strcat(screen_raw, "get_raw_data\n\n");
+		strcat(screen_raw, get_raw_data(name_screen));
+	}
+	else{
+		screen_raw = (char*)malloc((SIZEOF_END_SYMBOL + \
+			(SIZEOF_DIV_CELLS * 3) + \
+			strlen("str_screen_nameget_raw_datapromt_list") + \
+			strlen(get_raw_data(name_screen)) + \
+			strlen(_get_promt(name_screen)) + \
+			strlen(_get_screen_name(name_screen))));
+
+		strcat(screen_raw, "str_screen_name\n\n");
+		strcat(screen_raw, _get_screen_name(name_screen));
+		strcat(screen_raw, DIVISION_CELLS);
+		strcat(screen_raw, "get_raw_data\n\n");
+		strcat(screen_raw, get_raw_data(name_screen));
+		strcat(screen_raw, DIVISION_CELLS);
+		strcat(screen_raw, "promt_list\n\n");
+		strcat(screen_raw, _get_promt(name_screen));
+	}
+
 	return screen_raw;
 }

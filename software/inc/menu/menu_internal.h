@@ -17,6 +17,9 @@
 #define SIDE_SCREEN_START_POSITION 1
 #define QUANTITY_SCREEN 12
 
+#define SIZEOF_DIV_CELLS 4
+#define SIZEOF_END_SYMBOL 2
+
 
 #define Raw_data(screen) \
 	return get_sys_info[screen](); \
