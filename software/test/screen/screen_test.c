@@ -1,11 +1,10 @@
 #include "unity_fixture.h"
-
 #include "screen_internal.h"
 
 TEST_GROUP (screen);
 
 TEST_SETUP (screen) {
-
+    puts("test start");
 }
 
 TEST_TEAR_DOWN (screen) {
@@ -41,8 +40,8 @@ TEST (screen, scr_constructor_screen_main) {
     }
 //---------!!! REPEATED_CODE_END---------------
     char scr_data_main[] =
-		"main\n\n4\n\nA\n\na\n\nB\n\nb\n\nC\n\nc\n\nD\n\nd";
-    TEST_ASSERT_TRUE(0 == scr_constructor_screen(scr_data_main, scr_obj));
+		"A\n\na\n\nB\n\nb\n\nC\n\nc\n\nD\n\nd";
+    scr_constructor_screen(main, 4, scr_data_main, scr_obj);
     TEST_ASSERT_EQUAL_STRING("main", scr_obj[0]);
 	TEST_ASSERT_EQUAL_STRING("4", scr_obj[1]);
 	TEST_ASSERT_EQUAL_STRING("A", scr_obj[2]);
@@ -60,8 +59,8 @@ TEST (screen, scr_change_info_main) {
     }
 //---------!!! REPEATED_CODE_END---------------
     char scr_data_main[] =
-		"main\n\n4\n\nA\n\na\n\nB\n\nb\n\nC\n\nc\n\nD\n\nd";
-    TEST_ASSERT_TRUE(0 == scr_constructor_screen(scr_data_main, scr_obj));
+		"A\n\na\n\nB\n\nb\n\nC\n\nc\n\nD\n\nd";
+    scr_constructor_screen(main, 4, scr_data_main, scr_obj);
     TEST_ASSERT_EQUAL_STRING("main", scr_obj[0]);
 	TEST_ASSERT_EQUAL_STRING("4", scr_obj[1]);
 	TEST_ASSERT_EQUAL_STRING("A", scr_obj[2]);
@@ -83,9 +82,9 @@ TEST (screen, scr_constructor_screen_side) {
     }
 //---------!!! REPEATED_CODE_END---------------
 	char scr_data_side [] =
-			"side\n\nheader\n\ninfo\n\nadvice";
+			"header\n\ninfo\n\nadvice";
 
-    TEST_ASSERT_TRUE(0 == scr_constructor_screen(scr_data_side, scr_obj));
+    scr_constructor_screen(side, 0, scr_data_side, scr_obj);
     TEST_ASSERT_EQUAL_STRING("side", scr_obj[0]);
 	TEST_ASSERT_EQUAL_STRING("header", scr_obj[1]);
 	TEST_ASSERT_EQUAL_STRING("info", scr_obj[2]);
@@ -103,9 +102,9 @@ TEST (screen, scr_change_info_side) {
     }
 //---------!!! REPEATED_CODE_END---------------
 	char scr_data_side [] =
-			"side\n\nheader\n\ninfo\n\nadvice";
+			"header\n\ninfo\n\nadvice";
 
-    TEST_ASSERT_TRUE(0 == scr_constructor_screen(scr_data_side, scr_obj));
+    scr_constructor_screen(side, 0, scr_data_side, scr_obj);
     TEST_ASSERT_EQUAL_STRING("side", scr_obj[0]);
 	TEST_ASSERT_EQUAL_STRING("header", scr_obj[1]);
 	TEST_ASSERT_EQUAL_STRING("info", scr_obj[2]);
@@ -129,8 +128,8 @@ TEST (screen, scr_destructor_screen) {
     }
 //---------!!! REPEATED_CODE_END---------------
     char scr_data_main[] =
-		"main\n\n4\n\nA\n\na\n\nB\n\nb\n\nC\n\nc\n\nD\n\nd";
-    TEST_ASSERT_TRUE(0 == scr_constructor_screen(scr_data_main, scr_obj));
+		"A\n\na\n\nB\n\nb\n\nC\n\nc\n\nD\n\nd";
+    scr_constructor_screen(main, 4, scr_data_main, scr_obj);
     TEST_ASSERT_EQUAL_STRING("main", scr_obj[0]);
 	TEST_ASSERT_EQUAL_STRING("4", scr_obj[1]);
 	TEST_ASSERT_EQUAL_STRING("A", scr_obj[2]);

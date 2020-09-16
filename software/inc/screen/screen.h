@@ -4,7 +4,9 @@
 #include <string.h>
 #define DLM_CH "\n\n" // Delimiter character
 
-int scr_constructor_screen (char * data, char ** screen_obj);
+enum screen_type {main, side};
+
+void scr_constructor_screen (int screen_type, int number_lines, char * input_data, void * empty_screen_obj);
 void scr_change_info (int line, int row, char * data, char ** screen_obj);
 void scr_destructor_screen(char ** screen_obj);
 
