@@ -4,7 +4,7 @@
 TEST_GROUP (screen);
 
 TEST_SETUP (screen) {
-    puts("test start");
+    
 }
 
 TEST_TEAR_DOWN (screen) {
@@ -73,6 +73,7 @@ TEST (screen, scr_change_info_main) {
 }
 
 TEST (screen, scr_constructor_screen_side) {
+    puts("scr_constructor_screen_side start");
 //---------!!! REPEATED_CODE_START---------------
     char * scr_obj[MAX_LINES_NUM];
 	
@@ -89,6 +90,8 @@ TEST (screen, scr_constructor_screen_side) {
 	TEST_ASSERT_EQUAL_STRING("header", scr_obj[1]);
 	TEST_ASSERT_EQUAL_STRING("info", scr_obj[2]);
 	TEST_ASSERT_EQUAL_STRING("advice", scr_obj[3]);
+    
+    puts("scr_constructor_screen_side end");
 }
 
 TEST (screen, scr_change_info_side) {
@@ -110,8 +113,8 @@ TEST (screen, scr_change_info_side) {
 	TEST_ASSERT_EQUAL_STRING("info", scr_obj[2]);
 	TEST_ASSERT_EQUAL_STRING("advice", scr_obj[3]);
 //======================================================
-    
-    scr_change_info(0, 0, "new_info", scr_obj);
+    puts("scr_change_info side");
+    scr_change_info(0, 2, "new_info", scr_obj);
     TEST_ASSERT_EQUAL_STRING("side", scr_obj[0]);
 	TEST_ASSERT_EQUAL_STRING("header", scr_obj[1]);
 	TEST_ASSERT_EQUAL_STRING("new_info", scr_obj[2]);

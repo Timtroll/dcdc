@@ -1,14 +1,15 @@
 #include "screen_internal.h"
+#include <stdlib.h>
 
 #define GET_CELL(data_start) cell_start = data_start;               \
                              cell_end = strstr(cell_start, DLM_CH); \
                              *cell_end = '\0'; 
+void itoa(int number_lines, char * str, int num) {
+    strcpy(str, "4");
+}
 
 void scr_constructor_screen (int screen_type, int number_lines, char * input_data, void * empty_screen_obj)
 {
-    
-puts("start_constructor");
-    
     char data[MAX_LINE_SIZE] = {0};
     strcpy(data, input_data);
     
@@ -17,33 +18,29 @@ puts("start_constructor");
 		* cell_end,
 		* tmp;
     char ** screen_obj = (char **)empty_screen_obj;
-	
-// 	if(screen_type == main) {
-// 		strcpy(screen_obj[0], "main");
-// 		
-// puts("writed first item");    
-// 
-// 		itoa(number_lines, screen_obj[1], 10);
-//         
-// 		int i;
-// 		GET_CELL(data)
-// 		for(i = 2; i < 2*number_lines + 1; i++) {
-// 			GET_CELL(cell_end + 2)
-// 			strcpy(screen_obj[i], cell_start);
-// 		}
-// 		cell_start = cell_end + 2;
-// 		strcpy(screen_obj[i], cell_start);
-//         
-// 	} else if(screen_type == side) {
-//         strcpy(screen_obj[0], "side");
-//         int i;
-// 		for(i = 1; i < 3; i++) {
-// 			GET_CELL(cell_end + 2)
-// 			strcpy(screen_obj[i], cell_start);
-// 		}
-// 		cell_start = cell_end + 2;
-// 		strcpy(screen_obj[i], cell_start);
-// 	}
+	if(screen_type == main) {
+		strcpy(screen_obj[0], "main");
+		itoa(number_lines, screen_obj[1], 10);
+        if(!number_lines) return;
+	    else GET_CELL(data)
+        int i;
+        strcpy(screen_obj[2], cell_start);
+		for(i = 3; i < 2*number_lines + 1; i++) {
+            GET_CELL(cell_end + 2)
+            strcpy(screen_obj[i], cell_start);
+		}
+		cell_start = cell_end + 2;
+		strcpy(screen_obj[i], cell_start);
+        
+	} else if(screen_type == side) {
+        strcpy(screen_obj[0], "side");
+        GET_CELL(data)
+        strcpy(screen_obj[1], cell_start);
+        GET_CELL(cell_end + 2)
+        strcpy(screen_obj[2], cell_start);
+		cell_start = cell_end + 2;
+		strcpy(screen_obj[3], cell_start);
+	}
 }
 
 #define ROWS_NUM 2
