@@ -2,15 +2,22 @@
 #define _SCREEN_H_
 
 #include <string.h>
-#define DLM_CH "\n\n" // Delimiter character
 
-enum screen_type {main, side};
+enum screen_type {e_main, e_side};
 
-void scr_constructor_screen (int screen_type, int number_lines, char * input_data, void * empty_screen_obj);
-void scr_change_info (int line, int row, char * data, char ** screen_obj);
-void scr_destructor_screen(char ** screen_obj);
-
-// void print_table (char ** arr, int num_lines, int num_rows);
+void scr_constructor_screen (
+	int screen_type, 
+	int number_lines, 
+	char * input_data, 
+	void * empty_screen_obj
+);
+void scr_change_info (
+	int line, 
+	int row, 
+	char * data, 
+	void * screen_obj
+);
+void scr_destructor_screen (void * screen_obj);
 
 #endif//_SCREEN_H_
 

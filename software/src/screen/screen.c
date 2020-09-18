@@ -4,13 +4,10 @@
 #define GET_CELL(data_start) cell_start = data_start;               \
                              cell_end = strstr(cell_start, DLM_CH); \
                              *cell_end = '\0'; 
-void itoa(int number_lines, char * str, int num) {
-    strcpy(str, "4");
-}
 
 void scr_constructor_screen (int screen_type, int number_lines, char * input_data, void * empty_screen_obj)
 {
-    char data[MAX_LINE_SIZE] = {0};
+    char data[MAX_CELL_SIZE] = {0};
     strcpy(data, input_data);
     
 	char 
@@ -18,9 +15,9 @@ void scr_constructor_screen (int screen_type, int number_lines, char * input_dat
 		* cell_end,
 		* tmp;
     char ** screen_obj = (char **)empty_screen_obj;
-	if(screen_type == main) {
+	if(screen_type == e_main) {
 		strcpy(screen_obj[0], "main");
-		itoa(number_lines, screen_obj[1], 10);
+		itoa(number_lines, screen_obj[1]);
         if(!number_lines) return;
 	    else GET_CELL(data)
         int i;
@@ -32,7 +29,7 @@ void scr_constructor_screen (int screen_type, int number_lines, char * input_dat
 		cell_start = cell_end + 2;
 		strcpy(screen_obj[i], cell_start);
         
-	} else if(screen_type == side) {
+	} else if(screen_type == e_side) {
         strcpy(screen_obj[0], "side");
         GET_CELL(data)
         strcpy(screen_obj[1], cell_start);
@@ -44,64 +41,19 @@ void scr_constructor_screen (int screen_type, int number_lines, char * input_dat
 }
 
 #define ROWS_NUM 2
-void scr_change_info (int line, int row, char * data, char ** screen_obj) {
-    if(strcmp(screen_obj[0], "main") == 0) {
+void scr_change_info (int line, int row, char * data, void * screen_obj) {
+    if(strcmp(( (char **)screen_obj )[0], "main") == 0) {
     strcpy(
-        screen_obj[line*ROWS_NUM + 2 + row],
+        ( (char **)screen_obj )[line*ROWS_NUM + 2 + row],
         data);        
     }
-    else if(strcmp(screen_obj[0], "side") == 0) {
-        strcpy(screen_obj[2], data); 
+    else if(strcmp(( (char **)screen_obj )[0], "side") == 0) {
+        strcpy(( (char **)screen_obj )[2], data); 
     }
 }
 
-void scr_destructor_screen(char ** screen_obj) {
-    for(int i = 0; i < MAX_LINES_NUM; i++) {
-        *screen_obj[i] = '\0';
+void scr_destructor_screen(void * screen_obj) {
+    for(int i = 0; i < MAX_CELLS_NUM; i++) {
+        *( (char **)screen_obj )[i] = '\0';
     }
-}
-
-//=========================================================
-#include <stdio.h>
-
-void print_spaces (int num)
-{
-	for(int i = 0; i < num; i++)
-		printf(" ");
-	printf(" ");
-}
-
-void print_table (char ** arr, int num_lines, int num_rows) 
-{
-	int 
-		length	= 0,
-		max_len = 4, // NULL, '\0'
-		size = num_lines * num_rows;
-	
-	for(int i = 0; i < size; i++) {
-		if(arr[i]) {
-			length = strlen(arr[i]);
-			if(length > max_len)
-				max_len = length;
-		}
-	}
-	for(int i = 0; i < size; i++) {
-		if(arr[i]) {
-			length = strlen(arr[i]);
-			if(length) {
-				printf("%s", arr[i]);
-				print_spaces(max_len-length + 1);
-			}
-			else {
-				printf("\'\\0\'");
-				print_spaces(max_len-4 + 1);
-			}
-		}
-		else {
-			printf("NULL");
-			print_spaces(max_len-4 + 1);
-		}
-		if( !((i+1) % num_rows) )
-			printf("\n");
-	}
 }
