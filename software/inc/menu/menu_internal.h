@@ -7,11 +7,17 @@
 
 #include <stdlib.h>
 
-#define MAIN_QUANTITY_ELEMENT 20
+#define MAIN_QUANTITY_ELEMENT 26
 #define SIDE_QUANTITY_ELEMENT 4
-#define MAIN_SCREEN "char * main_screen [MAIN_QUANTITY_ELEMENT]"
-#define SIDE_SCREEN "char * main_screen [SIDE_QUANTITY_ELEMENT]"
 #define DIVISION_CELLS "\n\n"
+
+typedef struct main_screen_cell{
+	char ** main_screen [MAIN_QUANTITY_ELEMENT];
+} screen_main_t;
+
+typedef struct side_screen_cell{
+	char ** side_screen [SIDE_QUANTITY_ELEMENT];
+} screen_side_t;
 
 #define MAIN_SCREEN_POSITION 0 
 #define SIDE_SCREEN_START_POSITION 1
@@ -29,6 +35,7 @@
 
 
 dl_list_t * menu;
+static list_cell_t * actual_screen = NULL;
 char * (* get_sys_info [QUANTITY_SCREEN]) (void);
 
 enum screen_name{
@@ -47,12 +54,15 @@ enum screen_name{
 };
 
 void menu_create(void);
+void init_function(void);
 void fill_with_data(void);
 
-void init_function(void);
 char * get_raw_data(uint8_t name_screen);
 char ** sys_info_get_main_scr(void);
 char * full_screen_string_forming(uint8_t name_screen);
+
+list_cell_t * get_actual_screen (void);
+void set_actual_screen (list_cell_t * new_screen);
 
 #endif//_MENU_INTERNAL_H_
 

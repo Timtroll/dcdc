@@ -7,7 +7,7 @@
 TEST_GROUP (linked_list);
 
 TEST_SETUP (linked_list) {
-
+	menu_create();
 }
 
 
@@ -25,24 +25,26 @@ TEST_TEAR_DOWN (linked_list) {
 
 
 TEST(linked_list, create_dl_list){
-	menu_create();
-
 	TEST_ASSERT_NOT_NULL(menu);
 	TEST_ASSERT_NOT_NULL(menu->data);
+	TEST_ASSERT_EQUAL_PTR(_dl_list_push, menu->push);
+	TEST_ASSERT_EQUAL_PTR(_dl_list_pop, menu->pop);
+	TEST_ASSERT_EQUAL_PTR(_dl_list_head, menu->head);
+	TEST_ASSERT_EQUAL_PTR(_dl_list_tail, menu->tail);
+	TEST_ASSERT_EQUAL_PTR(_dl_list_size, menu->size);
 
-	TEST_ASSERT_NULL(Dl_list_head(menu));
-	TEST_ASSERT_NULL(Dl_list_tail(menu));
 	TEST_ASSERT_EQUAL_INT(
-		sizeof(MAIN_SCREEN),
+		sizeof(screen_main_t),
 		data_cell_size(menu->data)
 	);
-	TEST_ASSERT_EQUAL_INT(0, data_cell_amount(menu->data));
+	TEST_ASSERT_EQUAL_INT(9, data_cell_amount(menu->data));
+	
+	list_cell_t 
+		* head = Dl_list_head(menu),
+		* tail = Dl_list_tail(menu);
 
-	TEST_ASSERT_NOT_NULL(menu->push);
-	TEST_ASSERT_NOT_NULL(menu->pop);
-	TEST_ASSERT_NOT_NULL(menu->head);
-	TEST_ASSERT_NOT_NULL(menu->tail);
-	TEST_ASSERT_NOT_NULL(menu->size);
+	TEST_ASSERT_EQUAL_PTR(head, tail->prev);
+	TEST_ASSERT_EQUAL_PTR(tail, head->next);
 }
 
 TEST(linked_list, get_information_from_block_sys_info){
@@ -61,14 +63,18 @@ TEST(linked_list, get_information_from_block_sys_info){
 }
 
 TEST(linked_list, correct_filling_dl_list_with_screen){
-	menu_create();
 
 	TEST_ASSERT_EQUAL_INT(1, data_cell_amount(menu->data));
 }
 
 
 TEST(linked_list, save_actual_screen){
-	fill_with_data();
+	TEST_ASSERT_EQUAL_PTR(get_actual_screen(), Dl_list_head(menu));
+
+	set_actual_screen(get_actual_screen()->next);
+	TEST_ASSERT_EQUAL_PTR(get_actual_screen(), Dl_list_tail(menu));
+	set_actual_screen(get_actual_screen()->prev->prev);
+	TEST_ASSERT_EQUAL_PTR(get_actual_screen(), Dl_list_head(menu)->prev);
 }
 
 TEST(linked_list, write_screens){
@@ -89,7 +95,7 @@ TEST(linked_list, write_screens){
 }
 
 TEST(linked_list, get_raw_data){
-	TEST_ASSERT_EQUAL_STRING("main_scr", get_raw_data(0));
+	//TEST_ASSERT_EQUAL_STRING("main_scr", get_raw_data(0));
 	TEST_ASSERT_EQUAL_STRING("voltage_cut",get_raw_data(1));
 	TEST_ASSERT_EQUAL_STRING("charging_type",get_raw_data(2));
 	TEST_ASSERT_EQUAL_STRING("charge_threshold_Pb_lower",get_raw_data(3));
@@ -119,7 +125,7 @@ TEST(linked_list, print_long_raw_string){
 		"str_screen_name\n\ntype_battery\n\nget_raw_data\n\ntype_battery\n\npromt_list\n\ntest_promt_type_battery" };
 	
 
-	TEST_ASSERT_EQUAL_STRING(template[main_scr] , full_screen_string_forming(main_scr));
+	//TEST_ASSERT_EQUAL_STRING(template[main_scr] , full_screen_string_forming(main_scr));
 	TEST_ASSERT_EQUAL_STRING(template[voltage_cut] , full_screen_string_forming(voltage_cut));
 	TEST_ASSERT_EQUAL_STRING(template[charging_type] , full_screen_string_forming(charging_type));
 	TEST_ASSERT_EQUAL_STRING(template[charge_threshold_Pb_lower] , full_screen_string_forming(charge_threshold_Pb_lower));
@@ -135,10 +141,8 @@ TEST(linked_list, print_long_raw_string){
 
 TEST_GROUP (navigation);
 
-
-
 TEST_SETUP (navigation) {
-
+	
 }
 
 TEST_TEAR_DOWN (navigation) {
