@@ -11,13 +11,7 @@
 #define SIDE_QUANTITY_ELEMENT 4
 #define DIVISION_CELLS "\n\n"
 
-typedef struct main_screen_cell{
-	char ** main_screen [MAIN_QUANTITY_ELEMENT];
-} screen_main_t;
 
-typedef struct side_screen_cell{
-	char ** side_screen [SIDE_QUANTITY_ELEMENT];
-} screen_side_t;
 
 #define MAIN_SCREEN_POSITION 0 
 #define SIDE_SCREEN_START_POSITION 1

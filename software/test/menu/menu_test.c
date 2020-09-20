@@ -19,7 +19,7 @@ TEST_TEAR_DOWN (linked_list) {
 //[+]get_information_from_block_sys_info
 //[+]write_screens
 //[]correct_filling_dl_list_with_screen
-//[]save_actual_screen 
+//[+]save_actual_screen 
 //[]correct_return_data_about_actual_screen	
 //[]change_info_in_screen
 
@@ -34,7 +34,7 @@ TEST(linked_list, create_dl_list){
 	TEST_ASSERT_EQUAL_PTR(_dl_list_size, menu->size);
 
 	TEST_ASSERT_EQUAL_INT(
-		sizeof(screen_main_t),
+		sizeof(char * [MAIN_QUANTITY_ELEMENT]),
 		data_cell_size(menu->data)
 	);
 	TEST_ASSERT_EQUAL_INT(9, data_cell_amount(menu->data));
@@ -48,7 +48,7 @@ TEST(linked_list, create_dl_list){
 }
 
 TEST(linked_list, get_information_from_block_sys_info){
-	TEST_ASSERT_EQUAL_STRING(sys_info_get_main_scr(), get_raw_data(0));
+	//TEST_ASSERT_EQUAL_STRING(sys_info_get_main_scr(), get_raw_data(0));
 	TEST_ASSERT_EQUAL_STRING(sys_info_get_voltage_cut(), get_raw_data(1));
 	TEST_ASSERT_EQUAL_STRING(sys_info_get_charging_type(), get_raw_data(2));
 	TEST_ASSERT_EQUAL_STRING(sys_info_get_charge_threshold_Pb_lower(), get_raw_data(3));
@@ -142,14 +142,29 @@ TEST(linked_list, print_long_raw_string){
 TEST_GROUP (navigation);
 
 TEST_SETUP (navigation) {
-	
+
 }
 
 TEST_TEAR_DOWN (navigation) {
 
 }
 
-//[]selection_main_screen_on_start
+TEST(navigation, selection_main_screen_on_start){
+	TEST_ASSERT_EQUAL_PTR(Dl_list_head(menu)->data, menu_get_actual_screen());
+}
+
+
+TEST(navigation, switch_screens_circle_right){
+	char ** test_actual_data = (char **)menu_get_actual_screen();
+	
+	//printf("%p\n", test_actual_data[0]);
+	// menu_swipe_left();
+	// printf("%p\n", menu_get_actual_screen());
+	// TEST_ASSERT_EQUAL_PTR(test_actual_data,menu_get_actual_screen());
+
+}
+
+//[+]selection_main_screen_on_start
 //[]selection_new_actual_screen
 //[]switch_screens_circle_right
 //[]switch_screens_circle_left

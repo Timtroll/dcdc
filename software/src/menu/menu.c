@@ -6,12 +6,12 @@ void menu_swipe_right(void){
 
 void menu_swipe_left(void){
 	_menu_init();
-
+	set_actual_screen(get_actual_screen()->prev);
 }
 
 void * menu_get_actual_screen(void){
 	_menu_init();
-
+	return get_actual_screen()->data;
 }
 
 void menu_set_info(char * new_data){
