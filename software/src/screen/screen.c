@@ -17,7 +17,7 @@ void scr_constructor_screen (int screen_type, int number_lines, char * input_dat
     char ** screen_obj = (char **)empty_screen_obj;
 	if(screen_type == e_main) {
 		strcpy(screen_obj[0], "main");
-		itoa(number_lines, screen_obj[1]);
+		num_to_str(number_lines, screen_obj[1]);
         if(!number_lines) return;
 	    else GET_CELL(data)
         int i;

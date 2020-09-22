@@ -13,7 +13,7 @@
      }
  }
 
- void itoa(int n, char s[])
+ void num_to_str(int n, char s[])
  {
      int i, sign;
  

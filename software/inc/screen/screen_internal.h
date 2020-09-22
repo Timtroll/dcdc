@@ -8,7 +8,7 @@
 #define MAX_CELLS_NUM (10*2) // lines * rows
 #define DLM_CH "\n\n" // Delimiter character
 
-void itoa(int n, char s[]);
+void num_to_str(int n, char s[]);
 
 //==========_FOR_TESTS_===============
 char ** create_empty_screen_obj(void);
