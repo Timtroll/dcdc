@@ -60,6 +60,14 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define RCC_OSC32_OUT_Pin GPIO_PIN_15
 #define RCC_OSC32_OUT_GPIO_Port GPIOC
+#define DisCh_Akk1_Pin GPIO_PIN_0
+#define DisCh_Akk1_GPIO_Port GPIOA
+#define Ch_Akk1_Pin GPIO_PIN_1
+#define Ch_Akk1_GPIO_Port GPIOA
+#define DisCh_Akk2_Pin GPIO_PIN_2
+#define DisCh_Akk2_GPIO_Port GPIOA
+#define Ch_Akk2_Pin GPIO_PIN_3
+#define Ch_Akk2_GPIO_Port GPIOA
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14

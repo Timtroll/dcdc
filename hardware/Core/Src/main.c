@@ -24,12 +24,14 @@
 #include "adc.h"
 #include "dma.h"
 #include "hrtim.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "uart_data_transfer_core.h"
+#include "charger_core.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -99,6 +101,7 @@ int main(void)
   MX_HRTIM1_Init();
   MX_ADC1_Init();
   MX_ADC2_Init();
+  MX_TIM17_Init();
   /* USER CODE BEGIN 2 */
 //  INIT PARSER EXAMPLE:
   parser_create(&smart_charger_commands, MAX_CMD_LEN);
@@ -189,7 +192,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
-
+  if (htim->Instance == TIM17) {
+	  charge_discharge_akk();
+  }
   /* USER CODE END Callback 1 */
 }
 

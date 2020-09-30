@@ -38,8 +38,8 @@ void hrtim_set_level_inactive_on_all_outputs (void);
 void hrtim_stop_timer (void) ;
 void hrtim_reset_timer (void);
 
-void charger_start (void);// rename?
-void charger_stop (void);// rename?
+void charger_start (void);
+void charger_stop (void);
 void charger_restart (void);
 void charger_set_mode (uint8_t mode);
 void charger_set_pulse_widght (uint16_t percent_widght);
@@ -146,6 +146,40 @@ void charger_set_pulse_widght (uint16_t percent_widght) {
 	}
 }
 
+// TEMP_FOR_TEST_NO_REF_CODE
+#include "tim.h"
+
+#define ACTIVE   1
+#define INACTIVE 0
+
+#define GPIO_CHARGE_AKK1(charge_state) (HAL_GPIO_WritePin(GPIOA, Ch_Akk1, charge_state))
+#define GPIO_CHARGE_AKK2(charge_state) (HAL_GPIO_WritePin(GPIOA, Ch_Akk2, charge_state))
+#define GPIO_DISCHARGE_AKK1(discharge_state) (HAL_GPIO_WritePin(GPIOA, DisCh_Akk1, discharge_state))
+#define GPIO_DISCHARGE_AKK2(discharge_state) (HAL_GPIO_WritePin(GPIOA, DisCh_Akk2, discharge_state))
+
+#define CHARGE_SIGNAL_ARRAY_SIZE 10
+
+int8_t charge_signal_array[CHARGE_SIGNAL_ARRAY_SIZE] = {1, 1, 1, 1, 0, -1, 0, 1, 1, 0};
+uint16_t num_pos_charge = 0;
+
+void start_charge_akk1 (void) {
+	htim17.Init.Period = 1000;
+	HAL_TIM_Base_Init(&htim17);
+	HAL_TIM_Base_Start(&htim17);
+}
+
+void charge_discharge_akk (void) {
+	if (charge_signal_array[num_pos_charge] == 1){
+		GPIO_CHARGE_AKK1(ACTIVE);
+	}
+	else if (charge_signal_array[num_pos_charge] == 0) {
+		GPIO_CHARGE_AKK1(INACTIVE);
+		GPIO_DISCHARGE_AKK1(INACTIVE);
+	}
+	else if (charge_signal_array[num_pos_charge] == -1) {
+		GPIO_DISCHARGE_AKK1(ACTIVE);
+	}
+}
 
 
 #else
