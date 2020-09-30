@@ -104,11 +104,6 @@ void rx_uart_data_task (void const * argument) {
 			asm("nop");
 		}
 
-		// TEST_hrtim
-		parse_str_hrtim_command((const char *)rx_uart_data);
-
-
-
 		memset(rx_uart_data, 0, MAX_SIZE_RX_UART_DATA);
 
 		// while not have parse call
