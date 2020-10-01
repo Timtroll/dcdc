@@ -126,20 +126,25 @@ TEST(linked_list, print_long_raw_string){
 	
 
 	// TEST_ASSERT_EQUAL_STRING(template[main_scr] , full_screen_string_forming(main_scr));
-	TEST_ASSERT_EQUAL_STRING(template[voltage_cut] , full_screen_string_forming(voltage_cut));
-	TEST_ASSERT_EQUAL_STRING(template[charging_type] , full_screen_string_forming(charging_type));
-	TEST_ASSERT_EQUAL_STRING(template[charge_threshold_Pb_lower] , full_screen_string_forming(charge_threshold_Pb_lower));
-	TEST_ASSERT_EQUAL_STRING(template[charge_threshold_Pb_upper] , full_screen_string_forming(charge_threshold_Pb_upper));
-	TEST_ASSERT_EQUAL_STRING(template[charge_threshold_others] , full_screen_string_forming(charge_threshold_others));
-	TEST_ASSERT_EQUAL_STRING(template[discharge_threshold] , full_screen_string_forming(discharge_threshold));
-	TEST_ASSERT_EQUAL_STRING(template[quantity_cans] , full_screen_string_forming(quantity_cans));
-	TEST_ASSERT_EQUAL_STRING(template[capacity] , full_screen_string_forming(capacity));
-	TEST_ASSERT_EQUAL_STRING(template[max_allowable_capacity] , full_screen_string_forming(max_allowable_capacity));
-	TEST_ASSERT_EQUAL_STRING(template[internal_voltage_default] , full_screen_string_forming(internal_voltage_default));
-	TEST_ASSERT_EQUAL_STRING(template[type_battery] , full_screen_string_forming(type_battery));
-
+	TEST_ASSERT_EQUAL_STRING(template[voltage_cut] , side_screen_string_forming(voltage_cut));
+	TEST_ASSERT_EQUAL_STRING(template[charging_type] , side_screen_string_forming(charging_type));
+	TEST_ASSERT_EQUAL_STRING(template[charge_threshold_Pb_lower] , side_screen_string_forming(charge_threshold_Pb_lower));
+	TEST_ASSERT_EQUAL_STRING(template[charge_threshold_Pb_upper] , side_screen_string_forming(charge_threshold_Pb_upper));
+	TEST_ASSERT_EQUAL_STRING(template[charge_threshold_others] , side_screen_string_forming(charge_threshold_others));
+	TEST_ASSERT_EQUAL_STRING(template[discharge_threshold] , side_screen_string_forming(discharge_threshold));
+	TEST_ASSERT_EQUAL_STRING(template[quantity_cans] , side_screen_string_forming(quantity_cans));
+	TEST_ASSERT_EQUAL_STRING(template[capacity] , side_screen_string_forming(capacity));
+	TEST_ASSERT_EQUAL_STRING(template[max_allowable_capacity] , side_screen_string_forming(max_allowable_capacity));
+	TEST_ASSERT_EQUAL_STRING(template[internal_voltage_default] , side_screen_string_forming(internal_voltage_default));
+	TEST_ASSERT_EQUAL_STRING(template[type_battery] , side_screen_string_forming(type_battery));
 }
 
+
+TEST(linked_list, main_screen_forming){
+	char * ideal_string = "voltage_cut\n\nvoltage_cut\n\ncharging_type\n\ncharging_type\n\ncharge_threshold_Pb_lower\n\ncharge_threshold_Pb_lower\n\ncharge_threshold_Pb_upper\n\ncharge_threshold_Pb_upper\n\ncharge_threshold_others\n\ncharge_threshold_others\n\ndischarge_threshold\n\ndischarge_threshold\n\nquantity_cans\n\nquantity_cans\n\ncapacity\n\ncapacity\n\nmax_allowable_capacity\n\nmax_allowable_capacity\n\ninternal_voltage_default\n\ninternal_voltage_default\n\ntype_battery\n\ntype_battery";
+	//да, строка выглядит плохо
+	// TEST_ASSERT_EQUAL_STRING(ideal_string, main_screen_string_forming());
+}
 TEST_GROUP (navigation);
 
 TEST_SETUP (navigation) {

@@ -53,7 +53,8 @@ void fill_with_data(void);
 
 char * get_raw_data(uint8_t name_screen);
 char ** sys_info_get_main_scr(void);
-char * full_screen_string_forming(uint8_t name_screen);
+char * side_screen_string_forming(uint8_t name_screen);
+char * main_screen_string_forming(void);
 
 list_cell_t * get_actual_screen (void);
 void set_actual_screen (list_cell_t * new_screen);
