@@ -116,51 +116,42 @@ char ** sys_info_get_main_scr(void){
 }
 
 char * _get_screen_name(uint8_t number_screen){
-	return str_screen_name[number_screen];
+	return str_screen_name[number_screen-1];
 }
 
 char * _get_promt(uint8_t number_screen){
 	return promt_list[number_screen-1];
 }
 
-char * full_screen_string_forming(uint8_t name_screen){
+char * side_screen_string_forming(uint8_t name_screen){
 
-	char * screen_raw = NULL;
+	static char screen_raw[sizeof(_get_screen_name(name_screen))];
 
-	if(name_screen == main_scr){
-		screen_raw = (char*)malloc((SIZEOF_END_SYMBOL + \
-			(SIZEOF_DIV_CELLS * 2) + \
-			strlen("str_screen_nameget_raw_data") + \
-			strlen(get_raw_data(name_screen)) + \
-			strlen(_get_screen_name(name_screen))));
-
-		strcat(screen_raw, "str_screen_name\n\n");
-		strcat(screen_raw, _get_screen_name(name_screen));
-		strcat(screen_raw, DIVISION_CELLS);
-		strcat(screen_raw, "get_raw_data\n\n");
-		strcat(screen_raw, get_raw_data(name_screen));
-	}
-	else{
-		screen_raw = (char*)malloc((SIZEOF_END_SYMBOL + \
-			(SIZEOF_DIV_CELLS * 3) + \
-			strlen("str_screen_nameget_raw_datapromt_list") + \
-			strlen(get_raw_data(name_screen)) + \
-			strlen(_get_promt(name_screen)) + \
-			strlen(_get_screen_name(name_screen))));
-
-		strcat(screen_raw, "str_screen_name\n\n");
-		strcat(screen_raw, _get_screen_name(name_screen));
-		strcat(screen_raw, DIVISION_CELLS);
-		strcat(screen_raw, "get_raw_data\n\n");
-		strcat(screen_raw, get_raw_data(name_screen));
-		strcat(screen_raw, DIVISION_CELLS);
-		strcat(screen_raw, "promt_list\n\n");
-		strcat(screen_raw, _get_promt(name_screen));
-	}
+	strcpy(screen_raw, _get_screen_name(name_screen));
+	strncat(screen_raw, DIVISION_CELLS, SIZEOF_DIV_CELLS);
+	strncat(screen_raw, get_raw_data(name_screen), strlen(get_raw_data(name_screen)));
+	strncat(screen_raw, DIVISION_CELLS,SIZEOF_DIV_CELLS);
+	strncat(screen_raw, _get_promt(name_screen), strlen(_get_promt(name_screen)));
 
 	return screen_raw;
 }
+char * main_screen_string_forming(void){
 
+	static char screen_raw[sizeof(_get_screen_name(voltage_cut))];
+
+	strcpy(screen_raw, _get_screen_name(voltage_cut));
+	strncat(screen_raw, DIVISION_CELLS, SIZEOF_DIV_CELLS);
+	strncat(screen_raw, get_raw_data(voltage_cut), strlen(get_raw_data(voltage_cut)));
+
+	for(int scr_num = 2;scr_num < QUANTITY_SCREEN; scr_num++){
+
+		strncat(screen_raw, DIVISION_CELLS, SIZEOF_DIV_CELLS);
+		strncat(screen_raw, _get_screen_name(scr_num), strlen(_get_screen_name(scr_num)));
+		strncat(screen_raw, DIVISION_CELLS, SIZEOF_DIV_CELLS);
+		strncat(screen_raw, get_raw_data(scr_num), strlen(get_raw_data(scr_num)));	
+	}
+	return screen_raw;
+}
 
 list_cell_t * get_actual_screen (void){
 	return actual_screen;
