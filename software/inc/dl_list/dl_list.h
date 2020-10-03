@@ -5,7 +5,7 @@
 #include <stdint.h>
 
 #define LIST_AMOUNT (2) // 2 for tests
-#define CELL_AMOUNT (10)
+#define CELL_AMOUNT (12)
 
 typedef struct list_cell {
 	void * data;

@@ -82,9 +82,9 @@ void menu_create(void){
 	Dl_list_push(menu, &discharge_threshold);
 	Dl_list_push(menu, &quantity_cans);
 	Dl_list_push(menu, &capacity);
-	//Dl_list_push(menu, &max_allowable_capacity);
-	//Dl_list_push(menu, &internal_voltage_default);
-	//Dl_list_push(menu, &type_battery);
+	Dl_list_push(menu, &max_allowable_capacity);
+	Dl_list_push(menu, &internal_voltage_default);
+	Dl_list_push(menu, &type_battery);
 
 	list_cell_t 
 		* head = Dl_list_head(menu),
@@ -93,9 +93,6 @@ void menu_create(void){
 	head->next = tail;
 
 	set_actual_screen(head);
-	/*
-	ATTENTION: нельзя больше 10 элементов добавить в список.
-	*/
 }
 
 void fill_with_data(void){

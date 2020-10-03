@@ -2,6 +2,7 @@
 
 void menu_swipe_right(void){
 	_menu_init();
+	set_actual_screen(get_actual_screen()->next);
 }
 
 void menu_swipe_left(void){
