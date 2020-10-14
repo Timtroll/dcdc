@@ -1,6 +1,6 @@
 #include "display_internal.h"
 
-uint8_t permission_status = DISABLE;
+static uint8_t permission_status = DISABLE;
 
 uint8_t get_permission_status(void){
 	return permission_status;

@@ -3,15 +3,26 @@
 void menu_swipe_right(void){
 	_menu_init();
 	set_actual_screen(get_actual_screen()->next);
+	
+	#ifdef _DEBUG_DISPLAY_
+		debug_ptr = &test_data_side_screen_1;
+	#endif
 }
 
 void menu_swipe_left(void){
 	_menu_init();
 	set_actual_screen(get_actual_screen()->prev);
+
+	#ifdef _DEBUG_DISPLAY_
+		debug_ptr = &test_data_side_screen_2;
+	#endif
 }
 
 void * menu_get_actual_screen(void){
 	_menu_init();
+	#ifdef _DEBUG_DISPLAY_
+		return debug_ptr;									
+	#endif
 	return get_actual_screen()->data;
 }
 
