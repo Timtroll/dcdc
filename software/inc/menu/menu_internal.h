@@ -30,6 +30,7 @@
 
 dl_list_t * menu;
 static list_cell_t * actual_screen = NULL;
+
 char * (* get_sys_info [QUANTITY_SCREEN]) (void);
 
 enum screen_name{
@@ -53,11 +54,13 @@ void fill_with_data(void);
 
 char * get_raw_data(uint8_t name_screen);
 char ** sys_info_get_main_scr(void);
-char * side_screen_string_forming(uint8_t name_screen);
-char * main_screen_string_forming(void);
 
 list_cell_t * get_actual_screen (void);
 void set_actual_screen (list_cell_t * new_screen);
+
+char * get_screen_name_list(void);
+char * get_promt_list(void);
+char * get_system_info(void);
 
 #endif//_MENU_INTERNAL_H_
 

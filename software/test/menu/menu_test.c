@@ -110,42 +110,63 @@ TEST(linked_list, get_raw_data){
 	TEST_ASSERT_EQUAL_STRING("type_battery",get_raw_data(11));
 }
 
-TEST(linked_list, print_long_raw_string){
-	char * template[QUANTITY_SCREEN] = { \
-		"main_scr\n\nmain_scr", \
-		"voltage_cut\n\nvoltage_cut\n\ntest_promt_voltage_cut", \
-		"charging_type\n\ncharging_type\n\ntest_promt_charging_type", \
-		"charge_threshold_Pb_lower\n\ncharge_threshold_Pb_lower\n\ntest_promt_charge_threshold_Pb_lower", \
-		"charge_threshold_Pb_upper\n\ncharge_threshold_Pb_upper\n\ntest_promt_charge_threshold_Pb_upper", \
-		"charge_threshold_others\n\ncharge_threshold_others\n\ntest_promt_charge_threshold_others", \
-		"discharge_threshold\n\ndischarge_threshold\n\ntest_promt_discharge_threshold", \
-		"quantity_cans\n\nquantity_cans\n\ntest_promt_quantity_cans", \
-		"capacity\n\ncapacity\n\ntest_promt_capacity", \
-		"max_allowable_capacity\n\nmax_allowable_capacity\n\ntest_promt_max_allowable_capacity", \
-		"internal_voltage_default\n\ninternal_voltage_default\n\ntest_promt_internal_voltage_default", \
-		"type_battery\n\ntype_battery\n\ntest_promt_type_battery" };
-	
+TEST(linked_list, get_screen_name){
 
-	// TEST_ASSERT_EQUAL_STRING(template[main_scr] , full_screen_string_forming(main_scr));
-	TEST_ASSERT_EQUAL_STRING(template[voltage_cut] , side_screen_string_forming(voltage_cut));
-	TEST_ASSERT_EQUAL_STRING(template[charging_type] , side_screen_string_forming(charging_type));
-	TEST_ASSERT_EQUAL_STRING(template[charge_threshold_Pb_lower] , side_screen_string_forming(charge_threshold_Pb_lower));
-	TEST_ASSERT_EQUAL_STRING(template[charge_threshold_Pb_upper] , side_screen_string_forming(charge_threshold_Pb_upper));
-	TEST_ASSERT_EQUAL_STRING(template[charge_threshold_others] , side_screen_string_forming(charge_threshold_others));
-	TEST_ASSERT_EQUAL_STRING(template[discharge_threshold] , side_screen_string_forming(discharge_threshold));
-	TEST_ASSERT_EQUAL_STRING(template[quantity_cans] , side_screen_string_forming(quantity_cans));
-	TEST_ASSERT_EQUAL_STRING(template[capacity] , side_screen_string_forming(capacity));
-	TEST_ASSERT_EQUAL_STRING(template[max_allowable_capacity] , side_screen_string_forming(max_allowable_capacity));
-	TEST_ASSERT_EQUAL_STRING(template[internal_voltage_default] , side_screen_string_forming(internal_voltage_default));
-	TEST_ASSERT_EQUAL_STRING(template[type_battery] , side_screen_string_forming(type_battery));
+	char * str_screen_name_example[QUANTITY_SCREEN] = {
+	"voltage_cut",
+	"charging_type",
+	"charge_threshold_Pb_lower",
+	"charge_threshold_Pb_upper",
+	"charge_threshold_others",
+	"discharge_threshold",
+	"quantity_cans",
+	"capacity",
+	"max_allowable_capacity",
+	"internal_voltage_default",
+	"type_battery"
+	};
+
+	TEST_ASSERT_EQUAL_STRING_ARRAY(str_screen_name_example, get_screen_name_list(), QUANTITY_SCREEN);
 }
 
+TEST(linked_list, get_promt_list){
 
-TEST(linked_list, main_screen_forming){
-	char * ideal_string = "voltage_cut\n\nvoltage_cut\n\ncharging_type\n\ncharging_type\n\ncharge_threshold_Pb_lower\n\ncharge_threshold_Pb_lower\n\ncharge_threshold_Pb_upper\n\ncharge_threshold_Pb_upper\n\ncharge_threshold_others\n\ncharge_threshold_others\n\ndischarge_threshold\n\ndischarge_threshold\n\nquantity_cans\n\nquantity_cans\n\ncapacity\n\ncapacity\n\nmax_allowable_capacity\n\nmax_allowable_capacity\n\ninternal_voltage_default\n\ninternal_voltage_default\n\ntype_battery\n\ntype_battery";
-	//да, строка выглядит плохо
-	TEST_ASSERT_EQUAL_STRING(ideal_string, main_screen_string_forming());
+	char * promt_list_example[QUANTITY_SCREEN-1] = {
+	"test_promt_voltage_cut",
+	"test_promt_charging_type",
+	"test_promt_charge_threshold_Pb_lower",
+	"test_promt_charge_threshold_Pb_upper",
+	"test_promt_charge_threshold_others",
+	"test_promt_discharge_threshold",
+	"test_promt_quantity_cans",
+	"test_promt_capacity",
+	"test_promt_max_allowable_capacity",
+	"test_promt_internal_voltage_default",
+	"test_promt_type_battery"
+	};
+
+	TEST_ASSERT_EQUAL_STRING_ARRAY(promt_list_example, get_promt_list(), QUANTITY_SCREEN-1); 
 }
+
+TEST(linked_list, get_system_info){
+
+	char * raw_data_list_example[QUANTITY_SCREEN-1] = {
+	"voltage_cut",
+	"charging_type",
+	"charge_threshold_Pb_lower",
+	"charge_threshold_Pb_upper",
+	"charge_threshold_others",
+	"discharge_threshold",
+	"quantity_cans",
+	"capacity",
+	"max_allowable_capacity",
+	"internal_voltage_default",
+	"type_battery"
+	};
+
+	TEST_ASSERT_EQUAL_STRING_ARRAY(raw_data_list_example, sys_info_get_main_scr(), QUANTITY_SCREEN-1); 
+}
+
 TEST_GROUP (navigation);
 
 TEST_SETUP (navigation) {

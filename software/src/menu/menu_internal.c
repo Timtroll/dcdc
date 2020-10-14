@@ -40,7 +40,7 @@ void init_function(void){
 	Set_raw_data(get_sys_info, max_allowable_capacity);
 	Set_raw_data(get_sys_info, internal_voltage_default);
 	Set_raw_data(get_sys_info, type_battery);
-	//Set_raw_data(get_sys_info, main_scr);
+	// Set_raw_data(get_sys_info, main_scr);
 }
 
 char * get_raw_data(uint8_t name_screen){
@@ -123,39 +123,26 @@ char * _get_promt(uint8_t number_screen){
 	return promt_list[number_screen-1];
 }
 
-char * side_screen_string_forming(uint8_t name_screen){
-
-	static char screen_raw[sizeof(_get_screen_name(name_screen))];
-
-	strcpy(screen_raw, _get_screen_name(name_screen));
-	strncat(screen_raw, DIVISION_CELLS, SIZEOF_DIV_CELLS);
-	strncat(screen_raw, get_raw_data(name_screen), strlen(get_raw_data(name_screen)));
-	strncat(screen_raw, DIVISION_CELLS,SIZEOF_DIV_CELLS);
-	strncat(screen_raw, _get_promt(name_screen), strlen(_get_promt(name_screen)));
-
-	return screen_raw;
-}
-char * main_screen_string_forming(void){
-
-	static char screen_raw[sizeof(_get_screen_name(voltage_cut))];
-
-	strcpy(screen_raw, _get_screen_name(voltage_cut));
-	strncat(screen_raw, DIVISION_CELLS, SIZEOF_DIV_CELLS);
-	strncat(screen_raw, get_raw_data(voltage_cut), strlen(get_raw_data(voltage_cut)));
-
-	for(int scr_num = 2;scr_num < QUANTITY_SCREEN; scr_num++){
-
-		strncat(screen_raw, DIVISION_CELLS, SIZEOF_DIV_CELLS);
-		strncat(screen_raw, _get_screen_name(scr_num), strlen(_get_screen_name(scr_num)));
-		strncat(screen_raw, DIVISION_CELLS, SIZEOF_DIV_CELLS);
-		strncat(screen_raw, get_raw_data(scr_num), strlen(get_raw_data(scr_num)));	
-	}
-	return screen_raw;
-}
-
 list_cell_t * get_actual_screen (void){
 	return actual_screen;
 }
 void set_actual_screen (list_cell_t * new_screen){
 	actual_screen = new_screen;
 }
+
+
+
+char * get_screen_name_list(void){
+	return str_screen_name;
+}
+
+char * get_promt_list(void){
+	return promt_list;
+}
+
+// char * get_system_info(void){
+// 	static char list[QUANTITY_SCREEN-1];
+// 	for(int scr = 1; scr < QUANTITY_SCREEN-1; scr++)
+// 		list[scr]=get_raw_data(scr-1);
+// 	return list;
+// }
