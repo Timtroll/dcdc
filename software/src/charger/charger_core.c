@@ -167,7 +167,6 @@ int8_t * charge_signal = charge_signal_array;
 uint16_t num_pos_charge = 0;
 
 uint8_t charging_akk = 0;
-uint16_t t_charging = 1000;
 _Bool discharge_akk_changed = false,
 	  charger_mode_changed_from_gen = false;
 
@@ -188,7 +187,7 @@ void gpio_discharge_akk (uint8_t charging_akk, _Bool state);
 
 
 void set_t_charging (uint16_t time) {
-	t_charging = time;
+	htim17.Init.Period = time;
 	HAL_TIM_Base_Init(&htim17);
 }
 
@@ -271,7 +270,6 @@ void stop_charge_akk (void) {
 }
 
 
-
 void charge_akk_interrupt (void) {
 	if (charge_signal[num_pos_charge] == 1){
 		gpio_charge_akk(charging_akk, ACTIVE);
@@ -320,111 +318,11 @@ void charge_akk_interrupt (void) {
 		}
 	}
 
-//	if (charging_akk == CHARGING_AKK1) {
-//		if (charge_signal_array[num_pos_charge] == 1){
-//			GPIO_CHARGE_AKK1(ACTIVE);
-//		}
-//		else if (charge_signal_array[num_pos_charge] == 0) {
-//			GPIO_CHARGE_AKK1(INACTIVE);
-//			GPIO_DISCHARGE_AKK1(INACTIVE);
-//
-//			if (discharge_akk_changed == true) {
-//				charger_stop();
-//
-//				GPIO_DISCHARGE_AKK2(ACTIVE);
-//
-//				charger_set_mode(CHARGER_MODE_AKK2);
-//				charger_start();
-//
-//				discharge_akk_changed = false;
-//			}else if (charger_mode_changed_from_gen == true) {
-//				charger_set_mode(CHARGER_MODE_GEN);
-//				charger_restart();
-//
-//				charger_mode_changed_from_gen = false;
-//			}
-//		}
-//		else if (charge_signal_array[num_pos_charge] == -1) {
-//			if (charger_mode == CHARGER_MODE_AKK2){
-//				charger_stop();
-//
-//				GPIO_DISCHARGE_AKK2(INACTIVE);
-//				GPIO_DISCHARGE_AKK1(ACTIVE);
-//
-//				charger_set_mode(CHARGER_MODE_AKK1);
-//				charger_start();
-//
-//				discharge_akk_changed = true;
-//			}
-//			else if (charger_mode == CHARGER_MODE_GEN) {
-//				charger_stop();
-//
-//				GPIO_DISCHARGE_AKK1(ACTIVE);
-//
-//				charger_set_mode(CHARGER_MODE_AKK1);
-//				charger_start();
-//
-//				charger_mode_changed_from_gen = true;
-//			}
-//
-//		}
-//	}
-//	else if (charging_akk == CHARGING_AKK2) {
-//		if (charge_signal_array[num_pos_charge] == 1){
-//			GPIO_CHARGE_AKK2(ACTIVE);
-//		}
-//		else if (charge_signal_array[num_pos_charge] == 0) {
-//			GPIO_CHARGE_AKK2(INACTIVE);
-//			GPIO_DISCHARGE_AKK2(INACTIVE);
-//
-//			if (discharge_akk_changed == true) {
-//				charger_stop();
-//
-//				GPIO_DISCHARGE_AKK1(ACTIVE);
-//
-//				charger_set_mode(CHARGER_MODE_AKK1);
-//				charger_start();
-//
-//				discharge_akk_changed = false;
-//			}else if (charger_mode_changed_from_gen == true) {
-//				charger_set_mode(CHARGER_MODE_GEN);
-//				charger_restart();
-//
-//				charger_mode_changed_from_gen = false;
-//			}
-//		}
-//		else if (charge_signal_array[num_pos_charge] == -1) {
-//			if (charger_mode == CHARGER_MODE_AKK1){
-//				charger_stop();
-//
-//				GPIO_DISCHARGE_AKK1(INACTIVE);
-//				GPIO_DISCHARGE_AKK2(ACTIVE);
-//
-//				charger_set_mode(CHARGER_MODE_AKK2);
-//				charger_start();
-//
-//				discharge_akk_changed = true;
-//			}
-//			else if (charger_mode == CHARGER_MODE_GEN) {
-//				charger_stop();
-//
-//				GPIO_DISCHARGE_AKK2(ACTIVE);
-//
-//				previous_charger_mode = charger_mode;
-//				charger_set_mode(CHARGER_MODE_AKK2);
-//				charger_start();
-//
-//				charger_mode_changed_from_gen = true;
-//			}
-//		}
-//	}
-
 	if (num_pos_charge < 26)
 		num_pos_charge++;
 	else
 		num_pos_charge = 0;
 }
-
 
 #else
 
