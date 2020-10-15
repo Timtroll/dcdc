@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  00020130  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00026d9a  00000000  00000000  00020160  2**0
+ 12 .debug_info   00026d89  00000000  00000000  00020160  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_abbrev 000051f7  00000000  00000000  00046efa  2**0
+ 13 .debug_abbrev 000051f7  00000000  00000000  00046ee9  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_aranges 00001d28  00000000  00000000  0004c0f8  2**3
+ 14 .debug_aranges 00001d28  00000000  00000000  0004c0e0  2**3
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_ranges 00001a90  00000000  00000000  0004de20  2**3
+ 15 .debug_ranges 00001a90  00000000  00000000  0004de08  2**3
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_macro  000232bf  00000000  00000000  0004f8b0  2**0
+ 16 .debug_macro  000232bf  00000000  00000000  0004f898  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   0001ad3e  00000000  00000000  00072b6f  2**0
+ 17 .debug_line   0001ad57  00000000  00000000  00072b57  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    000cea1c  00000000  00000000  0008d8ad  2**0
+ 18 .debug_str    000cea31  00000000  00000000  0008d8ae  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  0015c2c9  2**0
+ 19 .comment      0000007b  00000000  00000000  0015c2df  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00007700  00000000  00000000  0015c344  2**2
+ 20 .debug_frame  00007700  00000000  00000000  0015c35c  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -2235,8 +2235,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
  8000f26:	4a05      	ldr	r2, [pc, #20]	; (8000f3c <HAL_TIM_PeriodElapsedCallback+0x30>)
  8000f28:	4293      	cmp	r3, r2
  8000f2a:	d101      	bne.n	8000f30 <HAL_TIM_PeriodElapsedCallback+0x24>
-	  charge_akk();
- 8000f2c:	f008 fa48 	bl	80093c0 <charge_akk>
+	  charge_akk_interrupt();
+ 8000f2c:	f008 fa48 	bl	80093c0 <charge_akk_interrupt>
   }
   /* USER CODE END Callback 1 */
 }
@@ -25542,10 +25542,10 @@ void charger_set_mode (uint8_t mode) {
  8009338:	200000ec 	.word	0x200000ec
 
 0800933c <gpio_charge_akk>:
-		charger_mode_changed_from_gen = false;
 	}
-}
+	GPIO_DISCHARGE_AKK2(INACTIVE);
 
+}
 
 void gpio_charge_akk (uint8_t charging_akk, _Bool state) {
  800933c:	b580      	push	{r7, lr}
@@ -25631,61 +25631,64 @@ void gpio_discharge_akk (uint8_t charging_akk, _Bool state) {
  80093bc:	46bd      	mov	sp, r7
  80093be:	bd80      	pop	{r7, pc}
 
-080093c0 <charge_akk>:
+080093c0 <charge_akk_interrupt>:
+		charger_mode_changed_from_gen = false;
+	}
+}
 
 
-void charge_akk (void) {
+void charge_akk_interrupt (void) {
  80093c0:	b580      	push	{r7, lr}
  80093c2:	af00      	add	r7, sp, #0
 	if (charge_signal[num_pos_charge] == 1){
- 80093c4:	4b5e      	ldr	r3, [pc, #376]	; (8009540 <charge_akk+0x180>)
+ 80093c4:	4b5e      	ldr	r3, [pc, #376]	; (8009540 <charge_akk_interrupt+0x180>)
  80093c6:	681b      	ldr	r3, [r3, #0]
- 80093c8:	4a5e      	ldr	r2, [pc, #376]	; (8009544 <charge_akk+0x184>)
+ 80093c8:	4a5e      	ldr	r2, [pc, #376]	; (8009544 <charge_akk_interrupt+0x184>)
  80093ca:	8812      	ldrh	r2, [r2, #0]
  80093cc:	4413      	add	r3, r2
  80093ce:	f993 3000 	ldrsb.w	r3, [r3]
  80093d2:	2b01      	cmp	r3, #1
- 80093d4:	d106      	bne.n	80093e4 <charge_akk+0x24>
+ 80093d4:	d106      	bne.n	80093e4 <charge_akk_interrupt+0x24>
 		gpio_charge_akk(charging_akk, ACTIVE);
- 80093d6:	4b5c      	ldr	r3, [pc, #368]	; (8009548 <charge_akk+0x188>)
+ 80093d6:	4b5c      	ldr	r3, [pc, #368]	; (8009548 <charge_akk_interrupt+0x188>)
  80093d8:	781b      	ldrb	r3, [r3, #0]
  80093da:	2101      	movs	r1, #1
  80093dc:	4618      	mov	r0, r3
  80093de:	f7ff ffad 	bl	800933c <gpio_charge_akk>
- 80093e2:	e09c      	b.n	800951e <charge_akk+0x15e>
+ 80093e2:	e09c      	b.n	800951e <charge_akk_interrupt+0x15e>
 	}
 	else if (charge_signal[num_pos_charge] == 0) {
- 80093e4:	4b56      	ldr	r3, [pc, #344]	; (8009540 <charge_akk+0x180>)
+ 80093e4:	4b56      	ldr	r3, [pc, #344]	; (8009540 <charge_akk_interrupt+0x180>)
  80093e6:	681b      	ldr	r3, [r3, #0]
- 80093e8:	4a56      	ldr	r2, [pc, #344]	; (8009544 <charge_akk+0x184>)
+ 80093e8:	4a56      	ldr	r2, [pc, #344]	; (8009544 <charge_akk_interrupt+0x184>)
  80093ea:	8812      	ldrh	r2, [r2, #0]
  80093ec:	4413      	add	r3, r2
  80093ee:	f993 3000 	ldrsb.w	r3, [r3]
  80093f2:	2b00      	cmp	r3, #0
- 80093f4:	d139      	bne.n	800946a <charge_akk+0xaa>
+ 80093f4:	d139      	bne.n	800946a <charge_akk_interrupt+0xaa>
 		gpio_charge_akk(charging_akk, INACTIVE);
- 80093f6:	4b54      	ldr	r3, [pc, #336]	; (8009548 <charge_akk+0x188>)
+ 80093f6:	4b54      	ldr	r3, [pc, #336]	; (8009548 <charge_akk_interrupt+0x188>)
  80093f8:	781b      	ldrb	r3, [r3, #0]
  80093fa:	2100      	movs	r1, #0
  80093fc:	4618      	mov	r0, r3
  80093fe:	f7ff ff9d 	bl	800933c <gpio_charge_akk>
 		gpio_discharge_akk(charging_akk, INACTIVE);
- 8009402:	4b51      	ldr	r3, [pc, #324]	; (8009548 <charge_akk+0x188>)
+ 8009402:	4b51      	ldr	r3, [pc, #324]	; (8009548 <charge_akk_interrupt+0x188>)
  8009404:	781b      	ldrb	r3, [r3, #0]
  8009406:	2100      	movs	r1, #0
  8009408:	4618      	mov	r0, r3
  800940a:	f7ff ffb8 	bl	800937e <gpio_discharge_akk>
 
 		if (discharge_akk_changed == true) {
- 800940e:	4b4f      	ldr	r3, [pc, #316]	; (800954c <charge_akk+0x18c>)
+ 800940e:	4b4f      	ldr	r3, [pc, #316]	; (800954c <charge_akk_interrupt+0x18c>)
  8009410:	781b      	ldrb	r3, [r3, #0]
  8009412:	2b00      	cmp	r3, #0
- 8009414:	d01c      	beq.n	8009450 <charge_akk+0x90>
+ 8009414:	d01c      	beq.n	8009450 <charge_akk_interrupt+0x90>
 			charger_stop();
  8009416:	f7ff ff57 	bl	80092c8 <charger_stop>
 
 			gpio_discharge_akk(charging_akk ==  CHARGING_AKK1 ? CHARGING_AKK2 : CHARGING_AKK1, ACTIVE);//define ?
- 800941a:	4b4b      	ldr	r3, [pc, #300]	; (8009548 <charge_akk+0x188>)
+ 800941a:	4b4b      	ldr	r3, [pc, #300]	; (8009548 <charge_akk_interrupt+0x188>)
  800941c:	781b      	ldrb	r3, [r3, #0]
  800941e:	2b00      	cmp	r3, #0
  8009420:	bf0c      	ite	eq
@@ -25697,12 +25700,12 @@ void charge_akk (void) {
  800942c:	f7ff ffa7 	bl	800937e <gpio_discharge_akk>
 
 			charger_set_mode(charging_akk ==  CHARGING_AKK1 ? CHARGER_MODE_AKK2 : CHARGER_MODE_AKK1);
- 8009430:	4b45      	ldr	r3, [pc, #276]	; (8009548 <charge_akk+0x188>)
+ 8009430:	4b45      	ldr	r3, [pc, #276]	; (8009548 <charge_akk_interrupt+0x188>)
  8009432:	781b      	ldrb	r3, [r3, #0]
  8009434:	2b00      	cmp	r3, #0
- 8009436:	d101      	bne.n	800943c <charge_akk+0x7c>
+ 8009436:	d101      	bne.n	800943c <charge_akk_interrupt+0x7c>
  8009438:	2302      	movs	r3, #2
- 800943a:	e000      	b.n	800943e <charge_akk+0x7e>
+ 800943a:	e000      	b.n	800943e <charge_akk_interrupt+0x7e>
  800943c:	2301      	movs	r3, #1
  800943e:	4618      	mov	r0, r3
  8009440:	f7ff ff56 	bl	80092f0 <charger_set_mode>
@@ -25710,15 +25713,15 @@ void charge_akk (void) {
  8009444:	f7ff ff28 	bl	8009298 <charger_start>
 
 			discharge_akk_changed = false;
- 8009448:	4b40      	ldr	r3, [pc, #256]	; (800954c <charge_akk+0x18c>)
+ 8009448:	4b40      	ldr	r3, [pc, #256]	; (800954c <charge_akk_interrupt+0x18c>)
  800944a:	2200      	movs	r2, #0
  800944c:	701a      	strb	r2, [r3, #0]
- 800944e:	e066      	b.n	800951e <charge_akk+0x15e>
+ 800944e:	e066      	b.n	800951e <charge_akk_interrupt+0x15e>
 		}else if (charger_mode_changed_from_gen == true) {
- 8009450:	4b3f      	ldr	r3, [pc, #252]	; (8009550 <charge_akk+0x190>)
+ 8009450:	4b3f      	ldr	r3, [pc, #252]	; (8009550 <charge_akk_interrupt+0x190>)
  8009452:	781b      	ldrb	r3, [r3, #0]
  8009454:	2b00      	cmp	r3, #0
- 8009456:	d062      	beq.n	800951e <charge_akk+0x15e>
+ 8009456:	d062      	beq.n	800951e <charge_akk_interrupt+0x15e>
 			charger_set_mode(CHARGER_MODE_GEN);
  8009458:	2003      	movs	r0, #3
  800945a:	f7ff ff49 	bl	80092f0 <charger_set_mode>
@@ -25726,35 +25729,35 @@ void charge_akk (void) {
  800945e:	f7ff ff3f 	bl	80092e0 <charger_restart>
 
 			charger_mode_changed_from_gen = false;
- 8009462:	4b3b      	ldr	r3, [pc, #236]	; (8009550 <charge_akk+0x190>)
+ 8009462:	4b3b      	ldr	r3, [pc, #236]	; (8009550 <charge_akk_interrupt+0x190>)
  8009464:	2200      	movs	r2, #0
  8009466:	701a      	strb	r2, [r3, #0]
- 8009468:	e059      	b.n	800951e <charge_akk+0x15e>
+ 8009468:	e059      	b.n	800951e <charge_akk_interrupt+0x15e>
 		}
 	}
 	else if (charge_signal[num_pos_charge] == -1) {
- 800946a:	4b35      	ldr	r3, [pc, #212]	; (8009540 <charge_akk+0x180>)
+ 800946a:	4b35      	ldr	r3, [pc, #212]	; (8009540 <charge_akk_interrupt+0x180>)
  800946c:	681b      	ldr	r3, [r3, #0]
- 800946e:	4a35      	ldr	r2, [pc, #212]	; (8009544 <charge_akk+0x184>)
+ 800946e:	4a35      	ldr	r2, [pc, #212]	; (8009544 <charge_akk_interrupt+0x184>)
  8009470:	8812      	ldrh	r2, [r2, #0]
  8009472:	4413      	add	r3, r2
  8009474:	f993 3000 	ldrsb.w	r3, [r3]
  8009478:	f1b3 3fff 	cmp.w	r3, #4294967295
- 800947c:	d14f      	bne.n	800951e <charge_akk+0x15e>
+ 800947c:	d14f      	bne.n	800951e <charge_akk_interrupt+0x15e>
 		if ((charger_mode == CHARGER_MODE_AKK1) || (charger_mode == CHARGER_MODE_AKK2)) {
- 800947e:	4b35      	ldr	r3, [pc, #212]	; (8009554 <charge_akk+0x194>)
+ 800947e:	4b35      	ldr	r3, [pc, #212]	; (8009554 <charge_akk_interrupt+0x194>)
  8009480:	781b      	ldrb	r3, [r3, #0]
  8009482:	2b01      	cmp	r3, #1
- 8009484:	d003      	beq.n	800948e <charge_akk+0xce>
- 8009486:	4b33      	ldr	r3, [pc, #204]	; (8009554 <charge_akk+0x194>)
+ 8009484:	d003      	beq.n	800948e <charge_akk_interrupt+0xce>
+ 8009486:	4b33      	ldr	r3, [pc, #204]	; (8009554 <charge_akk_interrupt+0x194>)
  8009488:	781b      	ldrb	r3, [r3, #0]
  800948a:	2b02      	cmp	r3, #2
- 800948c:	d127      	bne.n	80094de <charge_akk+0x11e>
+ 800948c:	d127      	bne.n	80094de <charge_akk_interrupt+0x11e>
 			charger_stop();
  800948e:	f7ff ff1b 	bl	80092c8 <charger_stop>
 
 			gpio_discharge_akk(charging_akk ==  CHARGING_AKK1 ? CHARGING_AKK2 : CHARGING_AKK1, INACTIVE);
- 8009492:	4b2d      	ldr	r3, [pc, #180]	; (8009548 <charge_akk+0x188>)
+ 8009492:	4b2d      	ldr	r3, [pc, #180]	; (8009548 <charge_akk_interrupt+0x188>)
  8009494:	781b      	ldrb	r3, [r3, #0]
  8009496:	2b00      	cmp	r3, #0
  8009498:	bf0c      	ite	eq
@@ -25765,7 +25768,7 @@ void charge_akk (void) {
  80094a2:	4618      	mov	r0, r3
  80094a4:	f7ff ff6b 	bl	800937e <gpio_discharge_akk>
 			gpio_discharge_akk(charging_akk ==  CHARGING_AKK1 ? CHARGING_AKK1 : CHARGING_AKK2, ACTIVE);
- 80094a8:	4b27      	ldr	r3, [pc, #156]	; (8009548 <charge_akk+0x188>)
+ 80094a8:	4b27      	ldr	r3, [pc, #156]	; (8009548 <charge_akk_interrupt+0x188>)
  80094aa:	781b      	ldrb	r3, [r3, #0]
  80094ac:	2b00      	cmp	r3, #0
  80094ae:	bf14      	ite	ne
@@ -25777,12 +25780,12 @@ void charge_akk (void) {
  80094ba:	f7ff ff60 	bl	800937e <gpio_discharge_akk>
 
 			charger_set_mode(charging_akk ==  CHARGING_AKK1 ? CHARGER_MODE_AKK1 : CHARGER_MODE_AKK2);
- 80094be:	4b22      	ldr	r3, [pc, #136]	; (8009548 <charge_akk+0x188>)
+ 80094be:	4b22      	ldr	r3, [pc, #136]	; (8009548 <charge_akk_interrupt+0x188>)
  80094c0:	781b      	ldrb	r3, [r3, #0]
  80094c2:	2b00      	cmp	r3, #0
- 80094c4:	d101      	bne.n	80094ca <charge_akk+0x10a>
+ 80094c4:	d101      	bne.n	80094ca <charge_akk_interrupt+0x10a>
  80094c6:	2301      	movs	r3, #1
- 80094c8:	e000      	b.n	80094cc <charge_akk+0x10c>
+ 80094c8:	e000      	b.n	80094cc <charge_akk_interrupt+0x10c>
  80094ca:	2302      	movs	r3, #2
  80094cc:	4618      	mov	r0, r3
  80094ce:	f7ff ff0f 	bl	80092f0 <charger_set_mode>
@@ -25790,21 +25793,21 @@ void charge_akk (void) {
  80094d2:	f7ff fee1 	bl	8009298 <charger_start>
 
 			discharge_akk_changed = true;
- 80094d6:	4b1d      	ldr	r3, [pc, #116]	; (800954c <charge_akk+0x18c>)
+ 80094d6:	4b1d      	ldr	r3, [pc, #116]	; (800954c <charge_akk_interrupt+0x18c>)
  80094d8:	2201      	movs	r2, #1
  80094da:	701a      	strb	r2, [r3, #0]
- 80094dc:	e01f      	b.n	800951e <charge_akk+0x15e>
+ 80094dc:	e01f      	b.n	800951e <charge_akk_interrupt+0x15e>
 		}
 		else if (charger_mode == CHARGER_MODE_GEN) {
- 80094de:	4b1d      	ldr	r3, [pc, #116]	; (8009554 <charge_akk+0x194>)
+ 80094de:	4b1d      	ldr	r3, [pc, #116]	; (8009554 <charge_akk_interrupt+0x194>)
  80094e0:	781b      	ldrb	r3, [r3, #0]
  80094e2:	2b03      	cmp	r3, #3
- 80094e4:	d11b      	bne.n	800951e <charge_akk+0x15e>
+ 80094e4:	d11b      	bne.n	800951e <charge_akk_interrupt+0x15e>
 			charger_stop();
  80094e6:	f7ff feef 	bl	80092c8 <charger_stop>
 
 			gpio_discharge_akk(charging_akk ==  CHARGING_AKK1 ? CHARGING_AKK1 : CHARGING_AKK2, ACTIVE);
- 80094ea:	4b17      	ldr	r3, [pc, #92]	; (8009548 <charge_akk+0x188>)
+ 80094ea:	4b17      	ldr	r3, [pc, #92]	; (8009548 <charge_akk_interrupt+0x188>)
  80094ec:	781b      	ldrb	r3, [r3, #0]
  80094ee:	2b00      	cmp	r3, #0
  80094f0:	bf14      	ite	ne
@@ -25816,12 +25819,12 @@ void charge_akk (void) {
  80094fc:	f7ff ff3f 	bl	800937e <gpio_discharge_akk>
 
 			charger_set_mode(charging_akk ==  CHARGING_AKK1 ? CHARGER_MODE_AKK1 : CHARGER_MODE_AKK2);
- 8009500:	4b11      	ldr	r3, [pc, #68]	; (8009548 <charge_akk+0x188>)
+ 8009500:	4b11      	ldr	r3, [pc, #68]	; (8009548 <charge_akk_interrupt+0x188>)
  8009502:	781b      	ldrb	r3, [r3, #0]
  8009504:	2b00      	cmp	r3, #0
- 8009506:	d101      	bne.n	800950c <charge_akk+0x14c>
+ 8009506:	d101      	bne.n	800950c <charge_akk_interrupt+0x14c>
  8009508:	2301      	movs	r3, #1
- 800950a:	e000      	b.n	800950e <charge_akk+0x14e>
+ 800950a:	e000      	b.n	800950e <charge_akk_interrupt+0x14e>
  800950c:	2302      	movs	r3, #2
  800950e:	4618      	mov	r0, r3
  8009510:	f7ff feee 	bl	80092f0 <charger_set_mode>
@@ -25829,32 +25832,30 @@ void charge_akk (void) {
  8009514:	f7ff fec0 	bl	8009298 <charger_start>
 
 			charger_mode_changed_from_gen = true;
- 8009518:	4b0d      	ldr	r3, [pc, #52]	; (8009550 <charge_akk+0x190>)
+ 8009518:	4b0d      	ldr	r3, [pc, #52]	; (8009550 <charge_akk_interrupt+0x190>)
  800951a:	2201      	movs	r2, #1
  800951c:	701a      	strb	r2, [r3, #0]
-//				charger_mode_changed_from_gen = true;
-//			}
-//		}
-//	}
+		}
+	}
 
 	if (num_pos_charge < 26)
- 800951e:	4b09      	ldr	r3, [pc, #36]	; (8009544 <charge_akk+0x184>)
+ 800951e:	4b09      	ldr	r3, [pc, #36]	; (8009544 <charge_akk_interrupt+0x184>)
  8009520:	881b      	ldrh	r3, [r3, #0]
  8009522:	2b19      	cmp	r3, #25
- 8009524:	d806      	bhi.n	8009534 <charge_akk+0x174>
+ 8009524:	d806      	bhi.n	8009534 <charge_akk_interrupt+0x174>
 		num_pos_charge++;
- 8009526:	4b07      	ldr	r3, [pc, #28]	; (8009544 <charge_akk+0x184>)
+ 8009526:	4b07      	ldr	r3, [pc, #28]	; (8009544 <charge_akk_interrupt+0x184>)
  8009528:	881b      	ldrh	r3, [r3, #0]
  800952a:	3301      	adds	r3, #1
  800952c:	b29a      	uxth	r2, r3
- 800952e:	4b05      	ldr	r3, [pc, #20]	; (8009544 <charge_akk+0x184>)
+ 800952e:	4b05      	ldr	r3, [pc, #20]	; (8009544 <charge_akk_interrupt+0x184>)
  8009530:	801a      	strh	r2, [r3, #0]
 	else
 		num_pos_charge = 0;
 }
- 8009532:	e002      	b.n	800953a <charge_akk+0x17a>
+ 8009532:	e002      	b.n	800953a <charge_akk_interrupt+0x17a>
 		num_pos_charge = 0;
- 8009534:	4b03      	ldr	r3, [pc, #12]	; (8009544 <charge_akk+0x184>)
+ 8009534:	4b03      	ldr	r3, [pc, #12]	; (8009544 <charge_akk_interrupt+0x184>)
  8009536:	2200      	movs	r2, #0
  8009538:	801a      	strh	r2, [r3, #0]
 }

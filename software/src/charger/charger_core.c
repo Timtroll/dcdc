@@ -240,7 +240,7 @@ void gpio_discharge_akk (uint8_t charging_akk, _Bool state) {
 		GPIO_DISCHARGE_AKK1(state);
 	}
 	else if (charging_akk == CHARGING_AKK2) {
-		GPIO_DISCHARGE_AKK1(state);
+		GPIO_DISCHARGE_AKK2(state);
 	}
 }
 
