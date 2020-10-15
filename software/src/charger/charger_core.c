@@ -3,6 +3,8 @@
 #ifndef DEBUG_SOFTWARE
 
 #include "hrtim.h"
+#include "tim.h"
+#include <stdbool.h>
 
 #define RIGHT_DWN_IN HRTIM_OUTPUT_TB2
 #define LEFT_DWN_IN  HRTIM_OUTPUT_TB1
@@ -19,16 +21,24 @@
 #define TIMERS_PERIOD 640
 #define MIN_VALUE_WIDHT_OUTPUT_PULSE 6
 
-#define CHARGER_MODE_AKK1 1
-#define CHARGER_MODE_AKK2 2
-#define CHARGER_MODE_GEN  3
-#define CHARGER_MODE_ERR  4
-
 #define CHARGER_CHANNELS_AKK1 (RIGHT_DWN_IN | LEFT_UP1_IN | LEFT_DWN_IN | RIGHT_UP1_IN)
 #define CHARGER_CHANNELS_AKK2 (RIGHT_DWN_IN | LEFT_UP2_IN | LEFT_DWN_IN | RIGHT_UP2_IN)
 #define CHARGER_CHANNELS_GEN  (RIGHT_DWN_IN | LEFT_UP3_IN | LEFT_DWN_IN | RIGHT_UP3_IN)
 
 #define HRTIM_ALL_TIMERS_ID (HRTIM_TIMERID_MASTER | HRTIM_TIMERID_TIMER_A | HRTIM_TIMERID_TIMER_B | HRTIM_TIMERID_TIMER_C | HRTIM_TIMERID_TIMER_D | HRTIM_TIMERID_TIMER_E)
+
+#define GPIO_CHARGE_AKK1(charge_state) (HAL_GPIO_WritePin(GPIOA, Ch_Akk1_Pin, charge_state))
+#define GPIO_CHARGE_AKK2(charge_state) (HAL_GPIO_WritePin(GPIOA, Ch_Akk2_Pin, charge_state))
+#define GPIO_DISCHARGE_AKK1(discharge_state) (HAL_GPIO_WritePin(GPIOA, DisCh_Akk1_Pin, discharge_state))
+#define GPIO_DISCHARGE_AKK2(discharge_state) (HAL_GPIO_WritePin(GPIOA, DisCh_Akk2_Pin, discharge_state))
+
+#define CHARGE_SIGNAL_ARRAY_SIZE 26
+#define CHARGING_AKK1 0
+#define CHARGING_AKK2 1
+
+#define ACTIVE   1
+#define INACTIVE 0
+
 
 void hrtim_set_value_pwm_on_outputs (uint8_t mode, uint8_t pulse_widht);
 void hrtim_outputs_start (uint8_t mode) ;
@@ -38,11 +48,10 @@ void hrtim_set_level_inactive_on_all_outputs (void);
 void hrtim_stop_timer (void) ;
 void hrtim_reset_timer (void);
 
-void charger_start (void);
-void charger_stop (void);
-void charger_restart (void);
-void charger_set_mode (uint8_t mode);
-void charger_set_pulse_widght (uint16_t percent_widght);
+
+void gpio_charge_akk (uint8_t charging_akk, _Bool state);
+void gpio_discharge_akk (uint8_t charging_akk, _Bool state);
+
 
 
 HRTIM_CompareCfgTypeDef channel_compare_cfg = {
@@ -52,6 +61,18 @@ HRTIM_CompareCfgTypeDef channel_compare_cfg = {
 
 uint8_t charger_mode = CHARGER_MODE_ERR,
 		hrtim_widht_output_pulse = MIN_VALUE_WIDHT_OUTPUT_PULSE;
+
+
+
+int8_t charge_signal_array[CHARGE_SIGNAL_ARRAY_SIZE] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 1, 0, 1, 0, 1, 0};
+int8_t * charge_signal = charge_signal_array;
+uint16_t num_pos_charge = 0;
+
+uint8_t charging_akk = 0;
+_Bool discharge_akk_changed = false,
+	  charger_mode_changed_from_gen = false;
+
+
 
 
 void hrtim_set_value_pwm_on_outputs (uint8_t mode, uint8_t pulse_widht) {
@@ -145,44 +166,6 @@ void charger_set_pulse_widght (uint16_t percent_widght) {
 		hrtim_widht_output_pulse = MIN_VALUE_WIDHT_OUTPUT_PULSE;
 	}
 }
-
-// TEMP_FOR_TEST_NO_REF_CODE
-#include "tim.h"
-#include <stdbool.h>
-
-#define GPIO_CHARGE_AKK1(charge_state) (HAL_GPIO_WritePin(GPIOA, Ch_Akk1_Pin, charge_state))
-#define GPIO_CHARGE_AKK2(charge_state) (HAL_GPIO_WritePin(GPIOA, Ch_Akk2_Pin, charge_state))
-#define GPIO_DISCHARGE_AKK1(discharge_state) (HAL_GPIO_WritePin(GPIOA, DisCh_Akk1_Pin, discharge_state))
-#define GPIO_DISCHARGE_AKK2(discharge_state) (HAL_GPIO_WritePin(GPIOA, DisCh_Akk2_Pin, discharge_state))
-
-#define CHARGE_SIGNAL_ARRAY_SIZE 26
-#define CHARGING_AKK1 0
-#define CHARGING_AKK2 1
-
-#define ACTIVE   1
-#define INACTIVE 0
-
-int8_t charge_signal_array[CHARGE_SIGNAL_ARRAY_SIZE] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 1, 0, 1, 0, 1, 0};
-int8_t * charge_signal = charge_signal_array;
-uint16_t num_pos_charge = 0;
-
-uint8_t charging_akk = 0;
-_Bool discharge_akk_changed = false,
-	  charger_mode_changed_from_gen = false;
-
-
-void start_charge_akk1 (void);
-void start_charge_akk2 (void);
-void start_discharge_akk1 (void);
-void start_discharge_akk2 (void);
-void stop_discharge_akk1 (void);
-void stop_discharge_akk2 (void);
-void stop_charge_akk (void);
-void charge_akk_interrupt (void);
-void set_t_charging (uint16_t time);
-
-void gpio_charge_akk (uint8_t charging_akk, _Bool state);
-void gpio_discharge_akk (uint8_t charging_akk, _Bool state);
 
 
 
@@ -325,6 +308,64 @@ void charge_akk_interrupt (void) {
 }
 
 #else
+
+
+void charger_start (void) {
+
+}
+
+void charger_stop (void) {
+
+}
+
+void charger_restart (void) {
+
+}
+
+void charger_set_mode (uint8_t mode) {
+
+}
+
+void charger_set_pulse_widght (uint16_t percent_widght) {
+
+}
+
+
+void start_charge_akk1 (void) {
+
+}
+
+void start_charge_akk2 (void) {
+
+}
+
+void start_discharge_akk1 (void) {
+
+}
+
+void start_discharge_akk2 (void) {
+
+}
+
+void stop_discharge_akk1 (void) {
+
+}
+
+void stop_discharge_akk2 (void) {
+
+}
+
+void stop_charge_akk (void) {
+
+}
+
+void charge_akk_interrupt (void) {
+
+}
+
+void set_t_charging (uint16_t time) {
+
+}
 
 
 

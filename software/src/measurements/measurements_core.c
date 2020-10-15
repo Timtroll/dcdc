@@ -37,8 +37,8 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 
 
 void start_measurements (void) {
-	HAL_ADC_Start_DMA(&hadc1, adc1_measurements, ADC1_SIZE_MEASUREMENTS);
-	HAL_ADC_Start_DMA(&hadc2, adc2_measurements, ADC2_SIZE_MEASUREMENTS);
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adc1_measurements, ADC1_SIZE_MEASUREMENTS);
+	HAL_ADC_Start_DMA(&hadc2, (uint32_t *)adc2_measurements, ADC2_SIZE_MEASUREMENTS);
 }
 
 double meas_voltage_gen (void) {

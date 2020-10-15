@@ -32,7 +32,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "charger_core.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
