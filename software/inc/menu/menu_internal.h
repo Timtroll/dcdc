@@ -53,14 +53,13 @@ void init_function(void);
 void fill_with_data(void);
 
 char * get_raw_data(uint8_t name_screen);
-char ** sys_info_get_main_scr(void);
 
 list_cell_t * get_actual_screen (void);
 void set_actual_screen (list_cell_t * new_screen);
 
-char * get_screen_name_list(void);
-char * get_promt_list(void);
-char * get_system_info(void);
+char ** get_screen_name_list(void);
+char ** get_promt_list(void);
+char ** get_raw_data_list(void);
 
 #endif//_MENU_INTERNAL_H_
 

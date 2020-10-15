@@ -105,23 +105,6 @@ void fill_with_data(void){
 	}
 }
 
-char ** sys_info_get_main_scr(void){
-	static char * main_raw_string[QUANTITY_SCREEN - 1];
-
-	for(int num = 0; num < (QUANTITY_SCREEN-1); num++){
-		main_raw_string[num] = get_raw_data(num+1);
-	}
-
-	return main_raw_string;
-}
-
-char * _get_screen_name(uint8_t number_screen){
-	return str_screen_name[number_screen-1];
-}
-
-char * _get_promt(uint8_t number_screen){
-	return promt_list[number_screen-1];
-}
 
 list_cell_t * get_actual_screen (void){
 	return actual_screen;
@@ -132,17 +115,21 @@ void set_actual_screen (list_cell_t * new_screen){
 
 
 
-char * get_screen_name_list(void){
+char ** get_raw_data_list(void){
+	static char * main_raw_string[QUANTITY_SCREEN - 1];
+
+	for(int num = 0; num < (QUANTITY_SCREEN-1); num++){
+		main_raw_string[num] = get_raw_data(num+1);
+	}
+
+	return main_raw_string;
+}
+
+char ** get_screen_name_list(void){
 	return str_screen_name;
 }
 
-char * get_promt_list(void){
+char ** get_promt_list(void){
 	return promt_list;
 }
 
-// char * get_system_info(void){
-// 	static char list[QUANTITY_SCREEN-1];
-// 	for(int scr = 1; scr < QUANTITY_SCREEN-1; scr++)
-// 		list[scr]=get_raw_data(scr-1);
-// 	return list;
-// }

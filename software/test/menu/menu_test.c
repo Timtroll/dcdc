@@ -49,7 +49,6 @@ TEST(linked_list, create_dl_list){
 }
 
 TEST(linked_list, get_information_from_block_sys_info){
-	//TEST_ASSERT_EQUAL_STRING(sys_info_get_main_scr(), get_raw_data(0));
 	TEST_ASSERT_EQUAL_STRING(sys_info_get_voltage_cut(), get_raw_data(1));
 	TEST_ASSERT_EQUAL_STRING(sys_info_get_charging_type(), get_raw_data(2));
 	TEST_ASSERT_EQUAL_STRING(sys_info_get_charge_threshold_Pb_lower(), get_raw_data(3));
@@ -78,37 +77,6 @@ TEST(linked_list, save_actual_screen){
 	TEST_ASSERT_EQUAL_PTR(get_actual_screen(), Dl_list_head(menu)->prev);
 }
 
-TEST(linked_list, write_screens){
-
-	char ** p = sys_info_get_main_scr();
-
-	TEST_ASSERT_EQUAL_STRING(get_raw_data(1), p[0] );
-	TEST_ASSERT_EQUAL_STRING(get_raw_data(2), p[1] );
-	TEST_ASSERT_EQUAL_STRING(get_raw_data(3), p[2] );
-	TEST_ASSERT_EQUAL_STRING(get_raw_data(4), p[3] );
-	TEST_ASSERT_EQUAL_STRING(get_raw_data(5), p[4] );
-	TEST_ASSERT_EQUAL_STRING(get_raw_data(6), p[5] );
-	TEST_ASSERT_EQUAL_STRING(get_raw_data(7), p[6] );
-	TEST_ASSERT_EQUAL_STRING(get_raw_data(8), p[7] );
-	TEST_ASSERT_EQUAL_STRING(get_raw_data(9), p[8] );
-	TEST_ASSERT_EQUAL_STRING(get_raw_data(10), p[9] );
-	TEST_ASSERT_EQUAL_STRING(get_raw_data(11), p[10] );
-}
-
-TEST(linked_list, get_raw_data){
-	//TEST_ASSERT_EQUAL_STRING("main_scr", get_raw_data(0));
-	TEST_ASSERT_EQUAL_STRING("voltage_cut",get_raw_data(1));
-	TEST_ASSERT_EQUAL_STRING("charging_type",get_raw_data(2));
-	TEST_ASSERT_EQUAL_STRING("charge_threshold_Pb_lower",get_raw_data(3));
-	TEST_ASSERT_EQUAL_STRING("charge_threshold_Pb_upper",get_raw_data(4));
-	TEST_ASSERT_EQUAL_STRING("charge_threshold_others",get_raw_data(5));
-	TEST_ASSERT_EQUAL_STRING("discharge_threshold",get_raw_data(6));
-	TEST_ASSERT_EQUAL_STRING("quantity_cans",get_raw_data(7));
-	TEST_ASSERT_EQUAL_STRING("capacity",get_raw_data(8));
-	TEST_ASSERT_EQUAL_STRING("max_allowable_capacity",get_raw_data(9));
-	TEST_ASSERT_EQUAL_STRING("internal_voltage_default",get_raw_data(10));
-	TEST_ASSERT_EQUAL_STRING("type_battery",get_raw_data(11));
-}
 
 TEST(linked_list, get_screen_name){
 
@@ -125,7 +93,7 @@ TEST(linked_list, get_screen_name){
 	"internal_voltage_default",
 	"type_battery"
 	};
-
+	// printf("\n\n\n%s\n\n\n", get_screen_name_list()[0]);
 	TEST_ASSERT_EQUAL_STRING_ARRAY(str_screen_name_example, get_screen_name_list(), QUANTITY_SCREEN);
 }
 
@@ -144,7 +112,7 @@ TEST(linked_list, get_promt_list){
 	"test_promt_internal_voltage_default",
 	"test_promt_type_battery"
 	};
-
+	// printf("\n\n\n%s\n\n\n", get_promt_list()[0]);
 	TEST_ASSERT_EQUAL_STRING_ARRAY(promt_list_example, get_promt_list(), QUANTITY_SCREEN-1); 
 }
 
@@ -163,9 +131,12 @@ TEST(linked_list, get_system_info){
 	"internal_voltage_default",
 	"type_battery"
 	};
-
-	TEST_ASSERT_EQUAL_STRING_ARRAY(raw_data_list_example, sys_info_get_main_scr(), QUANTITY_SCREEN-1); 
+	// printf("\n\n\n%s\n\n\n", get_raw_data_list()[0]);
+	TEST_ASSERT_EQUAL_STRING_ARRAY(raw_data_list_example, get_raw_data_list(), QUANTITY_SCREEN-1); 
 }
+
+
+
 
 TEST_GROUP (navigation);
 
