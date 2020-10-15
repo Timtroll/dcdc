@@ -21,10 +21,35 @@ char * display_get_type_screen(void){
 }
 
 
+void init_json_parser (void){
+	static uint8_t init_flag = DEINIT;
+	if(init_flag == DEINIT){
+		parser_init_data_function(&display_get_type_screen, &display_get_cell_value);
+		init_flag = INIT;
+	}
+}
+
+void set_screen_parameters(char ** data_array){
+	static char *** screen = NULL;
+	screen = keeper_data();
+	*screen = data_array;
+}
+
+static char *** keeper_data(void){
+	static char ** _screen;
+	return &_screen;
+}
+
+uint8_t get_type(void){
+	if (strcmp(display_get_type_screen(), "main") == STRING_EQUAL)
+		return MAIN;
+	else if (strcmp(display_get_type_screen(), "side") == STRING_EQUAL)
+		return SIDE;
+	else return ERROR;
+}
 char * display_get_cell_value(int index_x, int index_y){
 	
 	char *** cell_value = keeper_data();
-
 	switch (get_type()){
 		case MAIN:
 			Get_value(MAIN, cell_value, index_x, index_y);
@@ -36,32 +61,4 @@ char * display_get_cell_value(int index_x, int index_y){
 			return NULL;
 	}		
 
-}
-
-void init_json_parser (void){
-	static uint8_t init_flag = DEINIT;
-	if(init_flag == DEINIT){
-		parser_init_data_function(&display_get_type_screen, &display_get_cell_value);
-		init_flag = INIT;
-	}
-}
-
-
-void set_screen_parameters(char ** data_array){
-	char *** screen = keeper_data();
-	*screen = data_array;
-}
-
-
-char *** keeper_data(void){
-	static char ** _screen ;
-	return &_screen;
-}
-
-uint8_t get_type(void){
-	if (strcmp(display_get_type_screen(), "main") == STRING_EQUAL)
-		return MAIN;
-	else if (strcmp(display_get_type_screen(), "side") == STRING_EQUAL)
-		return SIDE;
-	else return ERROR;
 }

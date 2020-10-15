@@ -36,7 +36,7 @@ char * display_get_cell_value(int index_x, int index_y);
 void init_json_parser (void);
 void set_screen_parameters(char ** data_array);
 
-char *** keeper_data(void);
+static char *** keeper_data(void);
 uint8_t get_type(void);
 
 #define Cell_MAIN(x, y) (y * 2 + 2 + x) 

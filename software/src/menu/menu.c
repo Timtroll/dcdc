@@ -5,7 +5,10 @@ void menu_swipe_right(void){
 	set_actual_screen(get_actual_screen()->next);
 	
 	#ifdef _DEBUG_DISPLAY_
-		debug_ptr = &test_data_side_screen_1;
+		initital_state++;
+		if (initital_state == 3)
+			initital_state = 0;
+
 	#endif
 }
 
@@ -14,14 +17,30 @@ void menu_swipe_left(void){
 	set_actual_screen(get_actual_screen()->prev);
 
 	#ifdef _DEBUG_DISPLAY_
-		debug_ptr = &test_data_side_screen_2;
+		initital_state--;
+		if (initital_state == -3)
+			initital_state = 0;
+
 	#endif
 }
 
 void * menu_get_actual_screen(void){
 	_menu_init();
 	#ifdef _DEBUG_DISPLAY_
-		return debug_ptr;									
+		#include <math.h>	
+
+		if (initital_state == 0)
+			return &debug_data_main_screen_1;
+		else if (initital_state == 1)
+			return &debug_data_side_screen_1;
+		else if (initital_state == 2)
+			return &debug_data_side_screen_2;
+		else if (initital_state == -1)
+			return &debug_data_side_screen_2;
+		else if (initital_state == -2)
+			return &debug_data_side_screen_1;
+
+
 	#endif
 	return get_actual_screen()->data;
 }
