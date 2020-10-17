@@ -8,7 +8,9 @@ enum screen_type {e_main, e_side};
 void scr_constructor_screen (
 	int screen_type, 
 	int number_lines, 
-	char * input_data, 
+	char ** field_name,
+	char ** value,
+	char ** hint, 
 	void * empty_screen_obj
 );
 void scr_change_info (
