@@ -4,10 +4,8 @@
 #include "screen.h"
 #include <string.h>
 
-#define MAX_CELL_SIZE 100 // string length
 #define MAX_CELLS_NUM (10*2) // lines * rows
-#define DLM_CH "\n\n" // Delimiter character
-
+#define MAX_CELL_SIZE (50)
 void num_to_str(int n, char s[]);
 
 //==========_FOR_TESTS_===============

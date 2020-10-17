@@ -1,42 +1,28 @@
 #include "screen_internal.h"
 #include <stdlib.h>
 
-#define GET_CELL(data_start) cell_start = data_start;               \
-                             cell_end = strstr(cell_start, DLM_CH); \
-                             *cell_end = '\0'; 
-
-void scr_constructor_screen (int screen_type, int number_lines, char * input_data, void * empty_screen_obj)
-{
-    char data[MAX_CELL_SIZE] = {0};
-    strcpy(data, input_data);
-    
-	char 
-		* cell_start,
-		* cell_end,
-		* tmp;
+void scr_constructor_screen (
+    int screen_type, 
+    int number_lines, 
+    char ** field_name,
+    char ** value,
+    char ** hint, 
+    void * empty_screen_obj
+) {
     char ** screen_obj = (char **)empty_screen_obj;
-	if(screen_type == e_main) {
+	if(screen_type == e_main/*screen_type == 0*/) {
 		strcpy(screen_obj[0], "main");
 		num_to_str(number_lines, screen_obj[1]);
-        if(!number_lines) return;
-	    else GET_CELL(data)
-        int i;
-        strcpy(screen_obj[2], cell_start);
-		for(i = 3; i < 2*number_lines + 1; i++) {
-            GET_CELL(cell_end + 2)
-            strcpy(screen_obj[i], cell_start);
-		}
-		cell_start = cell_end + 2;
-		strcpy(screen_obj[i], cell_start);
         
-	} else if(screen_type == e_side) {
+		for(int i = 0; i < number_lines; i++) {
+            strcpy(screen_obj[2*i+2], field_name[i]);
+            strcpy(screen_obj[2*i+3], value[i]);
+		}
+	} else/*screen_type == 1...N*/{ 
         strcpy(screen_obj[0], "side");
-        GET_CELL(data)
-        strcpy(screen_obj[1], cell_start);
-        GET_CELL(cell_end + 2)
-        strcpy(screen_obj[2], cell_start);
-		cell_start = cell_end + 2;
-		strcpy(screen_obj[3], cell_start);
+        strcpy(screen_obj[1], field_name[screen_type-1]);
+        strcpy(screen_obj[2], value[screen_type-1]);
+		strcpy(screen_obj[3], hint[screen_type-1]);
 	}
 }
 
