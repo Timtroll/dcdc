@@ -55,13 +55,14 @@ void HAL_UART_IDLE_Callback (UART_HandleTypeDef *huart) {
 			return;
 		}
 
+		if (strlen((const char *)rx_uart_data) < MIN_LEN_COMMAND)
+			return;
+
 		uint8_t command_len = strlen((const char *)rx_uart_data);
 		if (rx_uart_data[command_len - 1] != '\r')
 			return;
 		rx_uart_data[command_len - 1] = '\0';
 
-		if (strlen((const char *)rx_uart_data) < MIN_LEN_COMMAND)
-			return;
 
 		if(tx_complete == false)
 			return;
