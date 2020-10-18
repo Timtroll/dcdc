@@ -223,7 +223,7 @@ void charge_akk_interrupt (void) {
 
 	}
 	else if (charge_signal[num_pos_charge] == -1) {
-		gpio_discharge_akk(charging_akk ==  CHARGING_AKK1 ? CHARGING_AKK1 : CHARGING_AKK2, ACTIVE);
+		gpio_discharge_akk(charging_akk, ACTIVE);
 	}
 
 	if (num_pos_charge < 26)
