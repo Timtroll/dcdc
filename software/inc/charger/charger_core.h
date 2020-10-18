@@ -16,15 +16,11 @@ void charger_restart (void);
 void charger_set_mode (uint8_t mode);
 void charger_set_pulse_widght (uint16_t percent_widght);
 
+void set_t_charging (uint16_t time);
 void start_charge_akk1 (void);
 void start_charge_akk2 (void);
 void start_discharge_akk1 (void);
-void start_discharge_akk2 (void);
-void stop_discharge_akk1 (void);
-void stop_discharge_akk2 (void);
 void stop_charge_akk (void);
 void charge_akk_interrupt (void);
-void set_t_charging (uint16_t time);
-
 
 #endif//_CHARGER_CORE_H_

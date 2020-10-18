@@ -184,29 +184,14 @@ void start_charge_akk2 (void) {
 	HAL_TIM_Base_Start_IT(&htim17);
 }
 
-void start_discharge_akk1 (void) {
-	GPIO_DISCHARGE_AKK1(ACTIVE);
-}
 
-void start_discharge_akk2 (void) {
-	GPIO_DISCHARGE_AKK2(ACTIVE);
-}
+void stop_charge_akk (void) {
+	HAL_TIM_Base_Stop_IT(&htim17);
 
+	gpio_charge_akk(charging_akk, INACTIVE);
+	gpio_discharge_akk(charging_akk, INACTIVE);
 
-//state where state == -1 discharge will be active in 0
-void stop_discharge_akk1 (void) {
-	if (discharge_akk_changed == true) {
-		discharge_akk_changed = false;
-	}
-	GPIO_DISCHARGE_AKK1(INACTIVE);
-}
-
-void stop_discharge_akk2 (void) {
-	if (discharge_akk_changed == true) {
-		discharge_akk_changed = false;
-	}
-	GPIO_DISCHARGE_AKK2(INACTIVE);
-
+	num_pos_charge = 0;
 }
 
 void gpio_charge_akk (uint8_t charging_akk, _Bool state) {
@@ -228,31 +213,6 @@ void gpio_discharge_akk (uint8_t charging_akk, _Bool state) {
 }
 
 
-void stop_charge_akk (void) {
-	HAL_TIM_Base_Stop_IT(&htim17);
-
-	gpio_charge_akk(charging_akk, INACTIVE);
-	gpio_discharge_akk(charging_akk, INACTIVE);
-
-	num_pos_charge = 0;
-
-	if (discharge_akk_changed == true) {
-		gpio_discharge_akk(charging_akk ==  CHARGING_AKK1 ? CHARGING_AKK2 : CHARGING_AKK1, ACTIVE);
-
-		charger_set_mode(charging_akk ==  CHARGING_AKK1 ? CHARGER_MODE_AKK2 : CHARGER_MODE_AKK1);
-		charger_start();
-
-		discharge_akk_changed = false;
-	}
-	else if (charger_mode_changed_from_gen == true) {
-		charger_set_mode(CHARGER_MODE_GEN);
-		charger_restart();
-
-		charger_mode_changed_from_gen = false;
-	}
-}
-
-
 void charge_akk_interrupt (void) {
 	if (charge_signal[num_pos_charge] == 1){
 		gpio_charge_akk(charging_akk, ACTIVE);
@@ -261,44 +221,9 @@ void charge_akk_interrupt (void) {
 		gpio_charge_akk(charging_akk, INACTIVE);
 		gpio_discharge_akk(charging_akk, INACTIVE);
 
-		if (discharge_akk_changed == true) {
-			charger_stop();
-
-			gpio_discharge_akk(charging_akk ==  CHARGING_AKK1 ? CHARGING_AKK2 : CHARGING_AKK1, ACTIVE);//define ?
-
-			charger_set_mode(charging_akk ==  CHARGING_AKK1 ? CHARGER_MODE_AKK2 : CHARGER_MODE_AKK1);
-			charger_start();
-
-			discharge_akk_changed = false;
-		}else if (charger_mode_changed_from_gen == true) {
-			charger_set_mode(CHARGER_MODE_GEN);
-			charger_restart();
-
-			charger_mode_changed_from_gen = false;
-		}
 	}
 	else if (charge_signal[num_pos_charge] == -1) {
-		if ((charger_mode == CHARGER_MODE_AKK1) || (charger_mode == CHARGER_MODE_AKK2)) {
-			charger_stop();
-
-			gpio_discharge_akk(charging_akk ==  CHARGING_AKK1 ? CHARGING_AKK2 : CHARGING_AKK1, INACTIVE);
-			gpio_discharge_akk(charging_akk ==  CHARGING_AKK1 ? CHARGING_AKK1 : CHARGING_AKK2, ACTIVE);
-
-			charger_set_mode(charging_akk ==  CHARGING_AKK1 ? CHARGER_MODE_AKK1 : CHARGER_MODE_AKK2);
-			charger_start();
-
-			discharge_akk_changed = true;
-		}
-		else if (charger_mode == CHARGER_MODE_GEN) {
-			charger_stop();
-
-			gpio_discharge_akk(charging_akk ==  CHARGING_AKK1 ? CHARGING_AKK1 : CHARGING_AKK2, ACTIVE);
-
-			charger_set_mode(charging_akk ==  CHARGING_AKK1 ? CHARGER_MODE_AKK1 : CHARGER_MODE_AKK2);
-			charger_start();
-
-			charger_mode_changed_from_gen = true;
-		}
+		gpio_discharge_akk(charging_akk ==  CHARGING_AKK1 ? CHARGING_AKK1 : CHARGING_AKK2, ACTIVE);
 	}
 
 	if (num_pos_charge < 26)
@@ -339,22 +264,6 @@ void start_charge_akk2 (void) {
 
 }
 
-void start_discharge_akk1 (void) {
-
-}
-
-void start_discharge_akk2 (void) {
-
-}
-
-void stop_discharge_akk1 (void) {
-
-}
-
-void stop_discharge_akk2 (void) {
-
-}
-
 void stop_charge_akk (void) {
 
 }
@@ -366,7 +275,5 @@ void charge_akk_interrupt (void) {
 void set_t_charging (uint16_t time) {
 
 }
-
-
 
 #endif
