@@ -37,9 +37,9 @@ extern HRTIM_HandleTypeDef hhrtim1;
 /* USER CODE END Private defines */
 
 void MX_HRTIM1_Init(void);
-                        
+
 void HAL_HRTIM_MspPostInit(HRTIM_HandleTypeDef *hhrtim);
-                    
+
 /* USER CODE BEGIN Prototypes */
 
 /* USER CODE END Prototypes */

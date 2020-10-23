@@ -248,11 +248,11 @@ void HAL_HRTIM_MspPostInit(HRTIM_HandleTypeDef* hrtimHandle)
   /* USER CODE BEGIN HRTIM1_MspPostInit 0 */
 
   /* USER CODE END HRTIM1_MspPostInit 0 */
-  
+
     __HAL_RCC_GPIOB_CLK_ENABLE();
     __HAL_RCC_GPIOC_CLK_ENABLE();
     __HAL_RCC_GPIOA_CLK_ENABLE();
-    /**HRTIM1 GPIO Configuration    
+    /**HRTIM1 GPIO Configuration
     PB12     ------> HRTIM1_CHC1
     PB13     ------> HRTIM1_CHC2
     PB14     ------> HRTIM1_CHD1
@@ -262,7 +262,7 @@ void HAL_HRTIM_MspPostInit(HRTIM_HandleTypeDef* hrtimHandle)
     PA8     ------> HRTIM1_CHA1
     PA9     ------> HRTIM1_CHA2
     PA10     ------> HRTIM1_CHB1
-    PA11     ------> HRTIM1_CHB2 
+    PA11     ------> HRTIM1_CHB2
     */
     GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -306,7 +306,7 @@ void HAL_HRTIM_MspDeInit(HRTIM_HandleTypeDef* hrtimHandle)
 
   /* USER CODE END HRTIM1_MspDeInit 1 */
   }
-} 
+}
 
 /* USER CODE BEGIN 1 */
 
