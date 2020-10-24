@@ -4,7 +4,7 @@
 #include "user_actions.h"
 
 //maybe this part will be moved to separated block
-#define RESP_INVALID_PARAMETER  "invalid (must be 0 - 255)"NEWLINE
+#define RESP_INVALID_PARAMETER  "invalid (must be 0 - 255)"
 
 #define MAX_CMD_LEN      100//change this
 //	
@@ -12,20 +12,20 @@
 
 
 void set_charger_start(void){
-
+	// set_for_charger_start();
 }
 void set_charger_stop(void){
-	
+	// set_for_charger_stop();
 }
 void set_charger_mode(void){
-	
+	// set_for_charger_mode();
 }
 void set_charger_pulse_width(void){
-	
+	// set_for_charger_pulse_width();
 }
 
 #define START 		0
-#define STOP 		1
+#define STOP_CHARGER 		1
 #define MODE 		2
 #define PULSE_WIDTH 3
 
@@ -39,7 +39,7 @@ START_CMD_GROUP (charger_subcomands, CHARGER_CMD_NUM) {
 		.action = set_charger_start
 		
 	},
-	[STOP] = {
+	[STOP_CHARGER] = {
 		.command = "stop",
 		.response =  "charger stop was set",
 		.action = set_charger_stop
@@ -58,26 +58,26 @@ START_CMD_GROUP (charger_subcomands, CHARGER_CMD_NUM) {
 	END_CMD_GROUP_WITH_RESPONSE(
 		CHARGER_CMD_NUM,
 		RESP_INVALID_PARAMETER)
-}
+};
 
 
 void set_charging_time(void){
-
+	// set_for_charging_time();
 }
 void set_charging_start_akk_1(void){
-	
+	// set_for_charging_start_akk_1();
 }
 void set_charging_start_akk_2(void){
-	
+	// set_for_charging_start_akk_2();
 }
 void set_charging_stop(void){
-	
+	// set_for_charging_stop();
 }
 
 #define TIME 		0
 #define START_AKK_1 1
 #define START_AKK_2 2
-#define STOP 		3
+#define STOP_CHARGING 		3
 
 #define CHARGING_CMD_NUM 4
 
@@ -98,7 +98,7 @@ START_CMD_GROUP (charging_subcomands, CHARGING_CMD_NUM) {
 		.response =  "charging start_akk_2 was set",
 		.action = set_charging_start_akk_2
 	},
-	[STOP] = {
+	[STOP_CHARGING] = {
 		.command = "stop",
 		.response =  "charging top was set",
 		.action = set_charging_stop
@@ -107,7 +107,7 @@ START_CMD_GROUP (charging_subcomands, CHARGING_CMD_NUM) {
 	END_CMD_GROUP_WITH_RESPONSE(
 		CHARGING_CMD_NUM,
 		RESP_INVALID_PARAMETER)
-}
+};
 
 
 #define CHARGER 	0
@@ -130,16 +130,16 @@ START_CMD_GROUP (set_parameter_subcomands, SET_COMANDS_NUM) {
 
 
 void get_voltage_scheme_generator(void){
-
+	// get_for_voltage_scheme_generator();
 }
 void get_voltage_output(void){
-	
+	// get_for_voltage_output();
 }
 void get_voltage_first_battery(void){
-	
+	// get_for_voltage_first_battery();
 }
 void get_voltage_second_battery(void){
-	
+	// get_for_voltage_second_battery();
 }
 
 
@@ -187,8 +187,7 @@ START_CMD_GROUP (get_parameter_subcomands, GET_COMANDS_NUM) {
 	[VOLTAGE] = {
 		.command = "voltage",
 		.subcommand = SUBCOMMAND(voltage_subcomands)
-	},
-
+	}
 	END_CMD_GROUP(GET_COMANDS_NUM)
 };
 
