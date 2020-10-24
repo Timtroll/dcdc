@@ -100,7 +100,7 @@ START_CMD_GROUP (charging_subcomands, CHARGING_CMD_NUM) {
 	},
 	[STOP_CHARGING] = {
 		.command = "stop",
-		.response =  "charging top was set",
+		.response =  "charging stop was set",
 		.action = set_charging_stop
 	}
 

@@ -1,7 +1,20 @@
 #include "unity_fixture.h"
 
-TEST_GROUP_RUNNER (user_actions) {
-	RUN_TEST_CASE (user_actions, right_extract_of_set_command);
-	RUN_TEST_CASE (user_actions, right_extract_of_get_command)
+TEST_GROUP_RUNNER (set_group) {
+	RUN_TEST_CASE (set_group, charger_start);
+	RUN_TEST_CASE (set_group, charger_stop);
+	RUN_TEST_CASE (set_group, charger_mode);
+	RUN_TEST_CASE (set_group, charger_pulse_width);
+
+	RUN_TEST_CASE (set_group, charging_time);
+	RUN_TEST_CASE (set_group, charging_start_akk_1);
+	RUN_TEST_CASE (set_group, charging_start_akk_2);
+	RUN_TEST_CASE (set_group, charging_stop);
 }
 
+TEST_GROUP_RUNNER (get_group) {
+	RUN_TEST_CASE (get_group, voltage_scheme_generator);
+	RUN_TEST_CASE (get_group, voltage_output);
+	RUN_TEST_CASE (get_group, voltage_first_battery);
+	RUN_TEST_CASE (get_group, voltage_second_battery);
+}
