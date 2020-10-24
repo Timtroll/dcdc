@@ -1,5 +1,4 @@
 #include "dl_list_internal.h"
-
 Block_box_declare_global_internal(dl_list_group_cells, list_cell_t, CELL_AMOUNT);
 Block_box_declare_global_internal(dl_list_group_data, dl_list_data_t, DATA_AMOUNT);
 Block_box_declare_global_internal(dl_list_group_lists, dl_list_t, LIST_AMOUNT);
@@ -51,17 +50,17 @@ dl_list_t * dl_list_create (size_t elt_size) {
 void dl_list_delete (dl_list_t ** list) {
 	if (list == NULL || *list == NULL) return;
 
-	printf("list %p\n", *list);
+	// printf("list %p\n", *list);/////////uncomment!
 
 	list_cell_t
 		* head = Dl_list_head(*list),
 		** head_ptr = _dl_list_head_ptr(*list);
 
-	TEST_ASSERT_NOT_NULL_MESSAGE(head_ptr, "head_ptr is NULL...");
-	TEST_ASSERT_NOT_NULL_MESSAGE(head, "head is NULL...");
+	// TEST_ASSERT_NOT_NULL_MESSAGE(head_ptr, "head_ptr is NULL...");/////////uncomment!
+	// TEST_ASSERT_NOT_NULL_MESSAGE(head, "head is NULL...");/////////uncomment!
 
 	for (int cell = 0; head; cell++, head_ptr = &head->next, head = head->next) {
-		TEST_ASSERT_NOT_NULL_MESSAGE(head->data, "head->data is NULL...");
+		// TEST_ASSERT_NOT_NULL_MESSAGE(head->data, "head->data is NULL...");
 		if (head->data) {
 			bfree(&dl_list_group_cells, head->data);
 			head->data = NULL;

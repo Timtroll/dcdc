@@ -9,12 +9,28 @@
 #define MAX_CMD_LEN      100//change this
 //	
 
+
+
+void set_charger_start(void){
+
+}
+void set_charger_stop(void){
+	
+}
+void set_charger_mode(void){
+	
+}
+void set_charger_pulse_width(void){
+	
+}
+
 #define START 		0
 #define STOP 		1
 #define MODE 		2
 #define PULSE_WIDTH 3
 
 #define CHARGER_CMD_NUM 4
+
 
 START_CMD_GROUP (charger_subcomands, CHARGER_CMD_NUM) {
 	[START] = {
@@ -42,6 +58,20 @@ START_CMD_GROUP (charger_subcomands, CHARGER_CMD_NUM) {
 	END_CMD_GROUP_WITH_RESPONSE(
 		CHARGER_CMD_NUM,
 		RESP_INVALID_PARAMETER)
+}
+
+
+void set_charging_time(void){
+
+}
+void set_charging_start_akk_1(void){
+	
+}
+void set_charging_start_akk_2(void){
+	
+}
+void set_charging_stop(void){
+	
 }
 
 #define TIME 		0
@@ -77,7 +107,7 @@ START_CMD_GROUP (charging_subcomands, CHARGING_CMD_NUM) {
 	END_CMD_GROUP_WITH_RESPONSE(
 		CHARGING_CMD_NUM,
 		RESP_INVALID_PARAMETER)
-};
+}
 
 
 #define CHARGER 	0
@@ -99,7 +129,18 @@ START_CMD_GROUP (set_parameter_subcomands, SET_COMANDS_NUM) {
 
 
 
+void get_voltage_scheme_generator(void){
 
+}
+void get_voltage_output(void){
+	
+}
+void get_voltage_first_battery(void){
+	
+}
+void get_voltage_second_battery(void){
+	
+}
 
 
 #define SCHEME_GENERATOR 0

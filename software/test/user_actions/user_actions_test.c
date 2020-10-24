@@ -12,9 +12,12 @@ TEST_TEAR_DOWN (user_actions) {
 
 }
 
-TEST (user_actions, start_here) {
-
-	TEST_FAIL_MESSAGE("start test user_actions here");
+TEST (user_actions, right_extract_of_set_command) {
+// dbase_record_t * set_result =
+// 		dbase_table_find(parser_command_dbase(),
+// 		"set voltage_cut_off 120"
+// 	);
+	
 }
 
 
