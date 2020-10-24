@@ -55,36 +55,36 @@ char * get_raw_data(uint8_t name_screen){
 		Raw_data(name_screen);	
 }
 
+static char * _main_screen [MAIN_QUANTITY_ELEMENT];
+static char
+	* _voltage_cut [SIDE_QUANTITY_ELEMENT],
+	* _charging_type [SIDE_QUANTITY_ELEMENT],
+	* _charge_threshold_Pb_lower [SIDE_QUANTITY_ELEMENT],
+	* _charge_threshold_Pb_upper [SIDE_QUANTITY_ELEMENT],
+	* _charge_threshold_others [SIDE_QUANTITY_ELEMENT],
+	* _discharge_threshold [SIDE_QUANTITY_ELEMENT],
+	* _quantity_cans [SIDE_QUANTITY_ELEMENT],
+	* _capacity [SIDE_QUANTITY_ELEMENT],
+	* _max_allowable_capacity [SIDE_QUANTITY_ELEMENT],
+	* _internal_voltage_default [SIDE_QUANTITY_ELEMENT],
+	* _type_battery [SIDE_QUANTITY_ELEMENT];
+
 void menu_create(void){
 	dl_list_group_create();
 	menu = dl_list_create(sizeof(char * [MAIN_QUANTITY_ELEMENT]));
 
-	char * main_screen [MAIN_QUANTITY_ELEMENT];
-	char * 
-		voltage_cut [SIDE_QUANTITY_ELEMENT],
-		charging_type [SIDE_QUANTITY_ELEMENT],
-		charge_threshold_Pb_lower [SIDE_QUANTITY_ELEMENT],
-		charge_threshold_Pb_upper [SIDE_QUANTITY_ELEMENT],
-		charge_threshold_others [SIDE_QUANTITY_ELEMENT],
-		discharge_threshold [SIDE_QUANTITY_ELEMENT],
-		quantity_cans [SIDE_QUANTITY_ELEMENT],
-		capacity [SIDE_QUANTITY_ELEMENT],
-		max_allowable_capacity [SIDE_QUANTITY_ELEMENT],
-		internal_voltage_default [SIDE_QUANTITY_ELEMENT],
-		type_battery [SIDE_QUANTITY_ELEMENT];
-
-	Dl_list_push(menu, &main_screen);
-	Dl_list_push(menu, &voltage_cut);
-	Dl_list_push(menu, &charging_type);
-	Dl_list_push(menu, &charge_threshold_Pb_lower);
-	Dl_list_push(menu, &charge_threshold_Pb_upper);
-	Dl_list_push(menu, &charge_threshold_others);
-	Dl_list_push(menu, &discharge_threshold);
-	Dl_list_push(menu, &quantity_cans);
-	Dl_list_push(menu, &capacity);
-	Dl_list_push(menu, &max_allowable_capacity);
-	Dl_list_push(menu, &internal_voltage_default);
-	Dl_list_push(menu, &type_battery);
+	Dl_list_push(menu, _main_screen);
+	Dl_list_push(menu, _voltage_cut);
+	Dl_list_push(menu, _charging_type);
+	Dl_list_push(menu, _charge_threshold_Pb_lower);
+	Dl_list_push(menu, _charge_threshold_Pb_upper);
+	Dl_list_push(menu, _charge_threshold_others);
+	Dl_list_push(menu, _discharge_threshold);
+	Dl_list_push(menu, _quantity_cans);
+	Dl_list_push(menu, _capacity);
+	Dl_list_push(menu, _max_allowable_capacity);
+	Dl_list_push(menu, _internal_voltage_default);
+	Dl_list_push(menu, _type_battery);
 
 	list_cell_t 
 		* head = Dl_list_head(menu),
@@ -93,6 +93,8 @@ void menu_create(void){
 	head->next = tail;
 
 	set_actual_screen(head);
+
+	printf("menu_create_addr: %p\n", menu);
 }
 
 void fill_with_data(void){

@@ -24,9 +24,9 @@ char ** return_array(int type){
 								  "advice"};
 	
 	if (type == MAIN)
-		return &test_data_main_screen;
+		return test_data_main_screen;
 	else if (type == SIDE)
-		return &test_data_side_screen;
+		return test_data_side_screen;
 }
 
 TEST_GROUP (display);

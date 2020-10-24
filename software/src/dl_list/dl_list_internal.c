@@ -1,30 +1,29 @@
 #include "dl_list_internal.h"
 
 #define List_data(list) ((dl_list_data_t *)((list)->data))
-#define Cell_data(cell) ((list_cell_t *)((cell)->data))
 
 void cell_set_data (list_cell_t * cell, void * data) {
-	Cell_data(cell)->data = data;
+	cell->data = data;
 }
 
 void * cell_data (list_cell_t * cell) {
-	return Cell_data(cell)->data;
+	return cell->data;
 }
 
 void cell_set_next (list_cell_t * cell, list_cell_t * next) {
-	Cell_data(cell)->next = next;
+	cell->next = next;
 }
 
 list_cell_t * cell_next (list_cell_t * cell) {
-	return Cell_data(cell)->next;
+	return cell->next;
 }
 
 void cell_set_prev (list_cell_t * cell, list_cell_t * prev) {
-	Cell_data(cell)->prev = prev;
+	cell->prev = prev;
 }
 
 list_cell_t * cell_prev (list_cell_t * cell) {
-	return Cell_data(cell)->prev;
+	return cell->prev;
 }
 
 void data_set_head (dl_list_data_t * data, list_cell_t * head) {

@@ -1,7 +1,7 @@
 #ifndef _MEASUREMENTS_CORE_H_
 #define _MEASUREMENTS_CORE_H_
 
-// #define DEBUG_SOFTWARE
+#define DEBUG_SOFTWARE
 
 #endif//_MEASUREMENTS_CORE_H_
 

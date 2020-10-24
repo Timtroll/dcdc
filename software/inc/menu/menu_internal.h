@@ -27,7 +27,6 @@
 #define Set_raw_data(list_func, name_func)\
 	list_func[name_func] = sys_info_get_ ## name_func;\
 
-
 dl_list_t * menu;
 static list_cell_t * actual_screen = NULL;
 

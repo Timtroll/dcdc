@@ -155,6 +155,14 @@ TEST (dl_list, next_assign_cell_pointers_correctly) {
 
 }
 
+TEST (dl_list, push_val) {
+	Dl_list_push(test_list, &test_val_1);
+	Dl_list_push(test_list, &test_val_2);
+
+	TEST_ASSERT_EQUAL_MEMORY(&test_val_1, Dl_list_tail(test_list)->data, sizeof(test_val_1));
+	TEST_ASSERT_EQUAL_MEMORY(&test_val_2, Dl_list_head(test_list)->data, sizeof(test_val_2));
+}
+
 TEST (dl_list, pop_decrease_amount_if_possible) {
 	TODO();
 }

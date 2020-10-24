@@ -8,7 +8,8 @@
 TEST_GROUP (linked_list);
 
 TEST_SETUP (linked_list) {
-	menu_create();
+	// menu_create(); // created two times here
+	_menu_init();
 }
 
 
@@ -38,7 +39,7 @@ TEST(linked_list, create_dl_list){
 		sizeof(char * [MAIN_QUANTITY_ELEMENT]),
 		data_cell_size(menu->data)
 	);
-	TEST_ASSERT_EQUAL_INT(12, data_cell_amount(menu->data));
+	TEST_ASSERT_EQUAL_INT(CELL_AMOUNT, data_cell_amount(menu->data));
 	
 	list_cell_t 
 		* head = Dl_list_head(menu),
@@ -64,7 +65,7 @@ TEST(linked_list, get_information_from_block_sys_info){
 
 TEST(linked_list, correct_filling_dl_list_with_screen){
 
-	TEST_ASSERT_EQUAL_INT(1, data_cell_amount(menu->data));
+	TEST_ASSERT_EQUAL_INT(CELL_AMOUNT, data_cell_amount(menu->data));
 }
 
 
@@ -135,9 +136,6 @@ TEST(linked_list, get_system_info){
 	TEST_ASSERT_EQUAL_STRING_ARRAY(raw_data_list_example, get_raw_data_list(), QUANTITY_SCREEN-1); 
 }
 
-
-
-
 TEST_GROUP (navigation);
 
 TEST_SETUP (navigation) {
@@ -150,19 +148,43 @@ TEST_TEAR_DOWN (navigation) {
 
 TEST(navigation, selection_main_screen_on_start){
 	// TEST_FAIL_MESSAGE("UNCORRECT TEST, return NULL ptr");
-	// TEST_ASSERT_EQUAL_PTR(Dl_list_head(menu)->data, menu_get_actual_screen());
+	printf("\n");
+
+	char
+		** test_actual_data = menu_get_actual_screen(),
+		** menu_head_data = (Dl_list_head(menu)->data);
+
+	printf("menu_in_use_addr: %p\n", menu);
+	printf("menu_in_use_head_addr: %p\n", Dl_list_head(menu));
+	printf("menu_in_use_tail_addr: %p\n", Dl_list_tail(menu));
+
+	list_cell_t * _cell = Dl_list_head(menu);
+	for (int cell = 0; cell < 12; cell++) {
+		printf("head_ptr[0]: %p\n",((char **)_cell->data)[0]);
+		_cell = _cell->next;
+	}
+
+	printf("CELL_AMOUNT: %d\n", Dl_list_size(menu));
+
+	printf("data_ptr: %p\n", test_actual_data);
+	printf("head_ptr: %p\n", menu_head_data);
+	printf("data_ptr[0]: %p\n", test_actual_data[0]);
+	printf("head_ptr[0]: %p\n", menu_head_data[0]);
+	printf("data_str: %s\n", test_actual_data[0]);
+	printf("head_str: %s\n", menu_head_data);
+
+	TEST_ASSERT_EQUAL_PTR(test_actual_data, menu_head_data);
 }
 
 
 TEST(navigation, switch_screens_circle_right){
-	char ** test_actual_data = (char **)menu_get_actual_screen();
-	for (int count_scr = 0; count_scr < QUANTITY_SCREEN; count_scr++) menu_swipe_right();
+	char ** test_actual_data = menu_get_actual_screen();
 
-	// printf("%p\n", test_actual_data[0]);
-	// TEST_FAIL_MESSAGE("Pointer cannot be cast to type and cannot be addressed");
-	// printf("%s\n", test_actual_data[0]);
-	// TEST_FAIL_MESSAGE("A pointer cannot be cast and cannot be accessed");
-	// TEST_ASSERT_EQUAL_PTR(test_actual_data,menu_get_actual_screen());
+	for (int count_scr = 0; count_scr < QUANTITY_SCREEN; count_scr++) {
+		menu_swipe_right();
+	}
+
+	TEST_ASSERT_EQUAL_PTR(test_actual_data, menu_get_actual_screen());
 }
 
 //[+]selection_main_screen_on_start
