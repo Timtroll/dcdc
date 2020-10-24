@@ -24,10 +24,25 @@ TEST (user_actions, right_extract_of_set_command) {
 	TEST_ASSERT_EQUAL_STRING(" 120", set_result->parameter);
 	TEST_ASSERT_EQUAL_STRING("start", set_result->command);
 
+
 	parse("set charger start 120");
 	TEST_ASSERT_EQUAL_STRING(" 120", parser_parameter());
 	TEST_ASSERT_EQUAL_STRING("charger start was set", parser_response());
-	// TEST_ASSERT_EQUAL_STRING(" 120", parser_parameter());
+	TEST_ASSERT_EQUAL_PTR(set_charger_start, parser_action());
 }
 
+TEST (user_actions, right_extract_of_get_command) {
+	dbase_record_t * get_result =
+		dbase_table_find(parser_command_dbase(),
+		"get voltage scheme_generator"
+	);
 
+	TEST_ASSERT_EQUAL_STRING("scheme_generator", get_result->command);
+	TEST_ASSERT_EQUAL_STRING("voltage scheme_generator was got", get_result->response);
+	TEST_ASSERT_EQUAL_PTR(get_voltage_scheme_generator, get_result->action);
+
+
+	parse("get voltage scheme_generator");
+	TEST_ASSERT_EQUAL_STRING("voltage scheme_generator was got", parser_response());
+	TEST_ASSERT_EQUAL_PTR(get_voltage_scheme_generator, parser_action());
+}
