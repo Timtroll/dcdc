@@ -33,8 +33,6 @@
 #define GPIO_DISCHARGE_AKK2(discharge_state) (HAL_GPIO_WritePin(GPIOA, DisCh_Akk2_Pin, discharge_state))
 
 #define CHARGE_SIGNAL_ARRAY_SIZE 26
-#define CHARGING_AKK1 0
-#define CHARGING_AKK2 1
 
 #define ACTIVE   1
 #define INACTIVE 0
@@ -69,8 +67,6 @@ int8_t * charge_signal = charge_signal_array;
 uint16_t num_pos_charge = 0;
 
 uint8_t charging_akk = 0;
-_Bool discharge_akk_changed = false,
-	  charger_mode_changed_from_gen = false;
 
 
 
@@ -167,7 +163,9 @@ void charger_set_pulse_widght (uint16_t percent_widght) {
 	}
 }
 
-
+uint8_t get_charger_mode (void) {
+	return charger_mode;
+}
 
 void set_t_charging (uint16_t time) {
 	htim17.Init.Period = time;
@@ -187,6 +185,8 @@ void start_charge_akk2 (void) {
 
 void stop_charge_akk (void) {
 	HAL_TIM_Base_Stop_IT(&htim17);
+
+	charging_akk = AKK_NOT_CHARGING;
 
 	gpio_charge_akk(charging_akk, INACTIVE);
 	gpio_discharge_akk(charging_akk, INACTIVE);
@@ -212,6 +212,9 @@ void gpio_discharge_akk (uint8_t charging_akk, _Bool state) {
 	}
 }
 
+uint8_t get_charging_akk (void) {
+	return charging_akk;
+}
 
 void charge_akk_interrupt (void) {
 	if (charge_signal[num_pos_charge] == 1){
