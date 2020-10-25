@@ -1,7 +1,6 @@
 #ifndef _USER_COMAND_H_
 #define _USER_COMAND_H_
 
-#include "user_actions.h"
 
 //maybe this part will be moved to separated block
 #define RESP_INVALID_PARAMETER  "invalid (must be 0 - 255)"

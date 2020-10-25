@@ -1,5 +1,5 @@
 #include "unity_fixture.h"
-
+#include "user_actions_internal.h"
 #include "user_comand.h"
 #include "../../inc/parser/parser.h"
 #include "../../inc/find/find_internal.h"
@@ -224,8 +224,54 @@ TEST (get_group, voltage_second_battery) {
 	TEST_ASSERT_EQUAL_STRING("voltage of second battery was got", get_result->response);
 	TEST_ASSERT_EQUAL_PTR(get_voltage_second_battery, get_result->action);
 
-
 	parse("get voltage second_battery");
 	TEST_ASSERT_EQUAL_STRING("voltage of second battery was got", parser_response());
 	TEST_ASSERT_EQUAL_PTR(get_voltage_second_battery, parser_action());
 }
+
+
+
+
+
+
+TEST_GROUP (parameter_control);
+
+//has a settable parameter
+// * mode
+// * pulse_widght
+// * time
+
+//[]check_parameter_mode
+//[]check_parameter_pulse_widght
+//[]check_parameter_time
+//[]check_unnecessary_parameters
+
+TEST_SETUP (parameter_control) {
+	parser_create(&groups_of_commands, MAX_CMD_LEN);
+}
+
+TEST_TEAR_DOWN (parameter_control) {
+	parser_delete();
+}
+
+
+
+TEST (parameter_control, check_parameter_mode) {
+	parse("set charger mode akk1 ");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(MODE_PARAMETER,parser_parameter()));
+
+}
+
+
+
+
+TEST_GROUP (incorrect_request);
+
+TEST_SETUP (incorrect_request) {
+
+}
+
+TEST_TEAR_DOWN (incorrect_request) {
+	
+}
+

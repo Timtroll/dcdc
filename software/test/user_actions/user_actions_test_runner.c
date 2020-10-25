@@ -18,3 +18,7 @@ TEST_GROUP_RUNNER (get_group) {
 	RUN_TEST_CASE (get_group, voltage_first_battery);
 	RUN_TEST_CASE (get_group, voltage_second_battery);
 }
+
+TEST_GROUP_RUNNER (parameter_control) {
+	RUN_TEST_CASE (parameter_control, check_parameter_mode);
+}
