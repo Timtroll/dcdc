@@ -236,13 +236,8 @@ TEST (get_group, voltage_second_battery) {
 
 TEST_GROUP (parameter_control);
 
-//has a settable parameter
-// * mode
-// * pulse_widght
-// * time
-
-//[]check_parameter_mode
-//[]check_parameter_pulse_widght
+//[+]check_parameter_mode
+//[]check_parameter_pulse_wight
 //[]check_parameter_time
 //[]check_unnecessary_parameters
 
@@ -257,12 +252,25 @@ TEST_TEAR_DOWN (parameter_control) {
 
 
 TEST (parameter_control, check_parameter_mode) {
-	parse("set charger mode akk1 ");
+	parse("set charger mode akk1");
 	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(MODE_PARAMETER,parser_parameter()));
-
+	parse("set charger mode  		akk2           ");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(MODE_PARAMETER,parser_parameter()));
+	parse("set charger mode  		gen  d 			");
+	TEST_ASSERT_EQUAL_INT(UNEXISTING_CHARGER, check_parameter(MODE_PARAMETER,parser_parameter()));
+	parse("set charger mode  		");//Why hasn't the parameter been overwritten?
+	TEST_ASSERT_EQUAL_INT(INCORRECT_PARAMETER_INPUT, check_parameter(MODE_PARAMETER,parser_parameter()));
+	// parse("set charger mode  	qqqqq		");//Why hasn't the parameter been overwritten?
+	// TEST_ASSERT_EQUAL_INT(UNEXISTING_CHARGER, check_parameter(MODE_PARAMETER,parser_parameter()));
 }
 
+TEST (parameter_control, check_parameter_pulse_widht){
+	
+	parse("set charger pulse_width 345");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(PULSE_WIDTH_PARAMETER,parser_parameter()));
 
+
+}
 
 
 TEST_GROUP (incorrect_request);
