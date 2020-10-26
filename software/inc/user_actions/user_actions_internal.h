@@ -3,8 +3,14 @@
 
 #include "user_actions.h"
 #include <string.h>
+#include <stdbool.h>
 
 #define MAX_LEN 50
+#define UPPER_LIMIT_TIME 32000
+#define LOWER_LIMIT_TIME 100
+#define LOWER_WIDTH 2
+#define TOP_WIDTH 49
+
 
 enum settable_parameter{
 	MODE_PARAMETER,
@@ -25,6 +31,7 @@ enum error_type
 };
 
 uint8_t check_parameter(uint8_t type_parameter, char * parameter);
+
 
 
 #endif//_USER_ACTIONS_INTERNAL_H_

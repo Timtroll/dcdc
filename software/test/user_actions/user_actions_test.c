@@ -237,8 +237,8 @@ TEST (get_group, voltage_second_battery) {
 TEST_GROUP (parameter_control);
 
 //[+]check_parameter_mode
-//[]check_parameter_pulse_wight
-//[]check_parameter_time
+//[+]check_parameter_pulse_wight
+//[+]check_parameter_time
 //[]check_unnecessary_parameters
 
 TEST_SETUP (parameter_control) {
@@ -253,25 +253,72 @@ TEST_TEAR_DOWN (parameter_control) {
 
 TEST (parameter_control, check_parameter_mode) {
 	parse("set charger mode akk1");
-	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(MODE_PARAMETER,parser_parameter()));
-	parse("set charger mode  		akk2           ");
-	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(MODE_PARAMETER,parser_parameter()));
-	parse("set charger mode  		gen  d 			");
-	TEST_ASSERT_EQUAL_INT(UNEXISTING_CHARGER, check_parameter(MODE_PARAMETER,parser_parameter()));
-	parse("set charger mode  		");//Why hasn't the parameter been overwritten?
-	TEST_ASSERT_EQUAL_INT(INCORRECT_PARAMETER_INPUT, check_parameter(MODE_PARAMETER,parser_parameter()));
-	// parse("set charger mode  	qqqqq		");//Why hasn't the parameter been overwritten?
-	// TEST_ASSERT_EQUAL_INT(UNEXISTING_CHARGER, check_parameter(MODE_PARAMETER,parser_parameter()));
-}
-
-TEST (parameter_control, check_parameter_pulse_widht){
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(MODE_PARAMETER, parser_parameter()));
 	
-	parse("set charger pulse_width 345");
-	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(PULSE_WIDTH_PARAMETER,parser_parameter()));
-
-
+	parse("set charger mode  		akk2           ");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(MODE_PARAMETER, parser_parameter()));
+	
+	parse("set charger mode  		gen  d 			");
+	TEST_ASSERT_EQUAL_INT(INCORRECT_PARAMETER_INPUT, check_parameter(MODE_PARAMETER, parser_parameter()));
+	
+	parse("set charger mode  		");
+	TEST_ASSERT_EQUAL_INT(INCORRECT_PARAMETER_INPUT, check_parameter(MODE_PARAMETER, parser_parameter()));
+	
+	parse("set charger mode  	qqqqq		");
+	TEST_ASSERT_EQUAL_INT(UNEXISTING_CHARGER, check_parameter(MODE_PARAMETER, parser_parameter()));
 }
 
+TEST (parameter_control, check_parameter_pulse_widht) {
+	parse("set charger pulse_width 7");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(PULSE_WIDTH_PARAMETER, parser_parameter()));
+	
+	parse("set charger pulse_width    7    ");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(PULSE_WIDTH_PARAMETER, parser_parameter()));
+	
+	parse("set charger pulse_width 11 a");
+	TEST_ASSERT_EQUAL_INT(INCORRECT_PARAMETER_INPUT, check_parameter(PULSE_WIDTH_PARAMETER, parser_parameter()));
+	
+	parse("set charger pulse_width 11aaa");
+	TEST_ASSERT_EQUAL_INT(INCORRECT_PARAMETER_INPUT, check_parameter(PULSE_WIDTH_PARAMETER, parser_parameter()));
+	
+	parse("set charger pulse_width    		 	 	");
+	TEST_ASSERT_EQUAL_INT(INCORRECT_PARAMETER_INPUT, check_parameter(PULSE_WIDTH_PARAMETER, parser_parameter()));
+	
+	parse("set charger pulse_width 1");
+	TEST_ASSERT_EQUAL_INT(INCORRECT_PULSE_WIDTH, check_parameter(PULSE_WIDTH_PARAMETER, parser_parameter()));
+	
+	parse("set charger pulse_width 50000000000000000000");
+	TEST_ASSERT_EQUAL_INT(INCORRECT_PULSE_WIDTH, check_parameter(PULSE_WIDTH_PARAMETER, parser_parameter()));
+	
+	//parse("set charger pulse_width 5555555ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd555555555555555555555555555555555555555555555555555555555555555555555555");
+	//TEST_ASSERT_EQUAL_INT(INCORRECT_PARAMETER_INPUT, check_parameter(PULSE_WIDTH_PARAMETER,parser_parameter()));
+	//!!VERY STRANGER RESOLT!!
+
+	parse("set charger pulse_width            		 	 	 		");
+	TEST_ASSERT_EQUAL_INT(INCORRECT_PARAMETER_INPUT, check_parameter(PULSE_WIDTH_PARAMETER, parser_parameter()));
+}
+
+TEST (parameter_control, check_parameter_time) {
+	parse("set charging time 456");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(TIME_PARAMETER, parser_parameter()));
+
+	parse("set charging time    456    ");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(TIME_PARAMETER, parser_parameter()));
+	
+	parse("set charging time 456 dsdfsfsdasksi ");
+	TEST_ASSERT_EQUAL_INT(INCORRECT_PARAMETER_INPUT, check_parameter(TIME_PARAMETER, parser_parameter()));
+	
+	parse("set charging time 456dsdfsfsdasksi");
+	TEST_ASSERT_EQUAL_INT(INCORRECT_PARAMETER_INPUT, check_parameter(TIME_PARAMETER, parser_parameter()));
+	
+	parse("set charging time 5000000000");
+	TEST_ASSERT_EQUAL_INT(MORE_POSSIBLE, check_parameter(TIME_PARAMETER, parser_parameter()));
+
+	parse("set charging time 5");
+	TEST_ASSERT_EQUAL_INT(LESS_POSSIBLE, check_parameter(TIME_PARAMETER, parser_parameter()));
+
+	
+}
 
 TEST_GROUP (incorrect_request);
 
