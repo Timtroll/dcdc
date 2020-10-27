@@ -101,6 +101,7 @@ int main(void)
   MX_ADC1_Init();
   MX_ADC2_Init();
   MX_TIM17_Init();
+  MX_TIM15_Init();
   /* USER CODE BEGIN 2 */
 //  INIT PARSER EXAMPLE:
   parser_create(&smart_charger_commands, MAX_CMD_LEN);
