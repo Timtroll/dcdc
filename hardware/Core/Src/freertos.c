@@ -159,24 +159,6 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void const * argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
-	osEvent event;
-	static uint8_t input_command [100] = {0};// 100 max size queue?
-	static uint16_t num_cell = 0;
-  /* Infinite loop */
-  for(;;)
-  {
-	event = osMessageGet(command_queueHandle, 100);
-	if (event.status == osEventMessage) {
-		input_command [num_cell] =  event.value.v;
-		num_cell++;
-		if((input_command [num_cell-1] == 0) || num_cell == 100) { // num_cell == 100 need? we have max size command 20, 21 cell = '\0'
-//			HAL_UART_Transmit(&huart1, input_command, strlen(input_command), 100); //push input command str to uart
-
-//			parse(input_command); // need add init
-
-			num_cell = 0;
-		}
-	}
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
