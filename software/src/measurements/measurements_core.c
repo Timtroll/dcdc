@@ -3,6 +3,7 @@
 #ifndef DEBUG_SOFTWARE
 
 #include "adc.h"
+#include "tim.h"
 
 #define ADC1_SIZE_MEASUREMENTS 4
 #define ADC2_SIZE_MEASUREMENTS 3
