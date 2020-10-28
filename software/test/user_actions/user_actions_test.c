@@ -272,7 +272,7 @@ TEST (parameter_control, check_parameter_pulse_widht) {
 	parse("set charger pulse_width 7");
 	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(PULSE_WIDTH_PARAMETER, parser_parameter()));
 	
-	parse("set charger pulse_width    7    ");
+	parse("set charger pulse_width        7    ");
 	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(PULSE_WIDTH_PARAMETER, parser_parameter()));
 	
 	parse("set charger pulse_width 11 a");
@@ -316,8 +316,32 @@ TEST (parameter_control, check_parameter_time) {
 
 	parse("set charging time 5");
 	TEST_ASSERT_EQUAL_INT(LESS_POSSIBLE, check_parameter(TIME_PARAMETER, parser_parameter()));
+}
 
-	
+TEST (parameter_control, check_unnecessary_parameters){
+	parse("set charger start");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(OTHERS, parser_parameter()));		
+	parse("set charger stop");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(OTHERS, parser_parameter()));		
+
+	parse("set charging start_akk1");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(OTHERS, parser_parameter()));
+	parse("set charging start_akk2");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(OTHERS, parser_parameter()));
+	parse("set charging stop");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(OTHERS, parser_parameter()));
+
+	parse("get voltage output  some_value");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(OTHERS, parser_parameter()));		
+	parse("get voltage scheme  some_value");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(OTHERS, parser_parameter()));		
+	parse("get voltage generator  some_value");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(OTHERS, parser_parameter()));		
+	parse("get voltage first_battery  some_value");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(OTHERS, parser_parameter()));		
+	parse("get voltage second_battery  some_value");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(OTHERS, parser_parameter()));		
+		
 }
 
 TEST_GROUP (incorrect_request);
@@ -329,4 +353,5 @@ TEST_SETUP (incorrect_request) {
 TEST_TEAR_DOWN (incorrect_request) {
 	
 }
+
 

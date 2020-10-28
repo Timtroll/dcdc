@@ -6,7 +6,9 @@
 #define PHRASE_END 3
 
 static inline uint8_t extra_letters(char * string, uint8_t cntr){
-	if (strlen(string) > MAX_LEN) return  INCORRECT_PARAMETER_INPUT;
+	if (strlen(string) > MAX_LEN) {
+		return  INCORRECT_PARAMETER_INPUT;
+	}
 	for (; cntr < strlen(string); cntr++)
 	{
 		if (string[cntr] >= 'a' && string[cntr] <= 'z' ) 
@@ -17,9 +19,9 @@ static inline uint8_t extra_letters(char * string, uint8_t cntr){
 
 char * _clear_data(char * parameter){
 	if (strlen(parameter) > MAX_LEN)
-			return NULL;
+		return NULL;
 
-	static char cleared_string [MAX_LEN] = " ";		
+	static char cleared_string [MAX_LEN] = " ";
 	uint16_t 
 			counter = 0,
 		 	internal_counter = 0;
@@ -31,7 +33,7 @@ char * _clear_data(char * parameter){
 		memset(cleared_string, 0, MAX_LEN);
 	char cmp_string [MAX_LEN];
 	for (; counter < MAX_LEN; counter++)
-		if (cleared_string[counter] != " ") internal_counter++;
+		if (cleared_string[counter] != ' ') internal_counter++;
 
 	strncpy(cmp_string, cleared_string, internal_counter);
 	counter = 0;
@@ -51,27 +53,29 @@ char * _clear_data(char * parameter){
 		{
 			if (whole_word == WORD_START) whole_word = WORD_END;
 			else if (whole_word == PHRASE_END) return NULL;
-
 			cleared_string[internal_counter] = parameter [counter];
 			counter++;
 			internal_counter++;
 			continue;
-		}else if (cleared_string[0] !=  ' ' )
-			return NULL;	
+		}
 	}
-	if (strncmp(cleared_string, cmp_string, MAX_LEN) ==  0)
+	if (strncmp(cleared_string, cmp_string, MAX_LEN) ==  0){
 		return NULL;
+	}
 	return cleared_string;
 }
 
 uint8_t check_parameter(uint8_t type_parameter, char * parameter){
+	if (type_parameter == OTHERS)
+		return SUCCESSFUL;
 	char * compute_parameter = _clear_data(parameter);
-
 	uint8_t symbol_ctnr = 0;
-	if (compute_parameter == NULL)
+	if (compute_parameter == NULL) 
 		return INCORRECT_PARAMETER_INPUT;
+	
 
-	char compared_strings [strlen(compute_parameter)];
+	char compared_strings [MAX_LEN] = " ";
+	memset(compared_strings, 0, MAX_LEN);
 	strncpy(compared_strings, compute_parameter, strlen(compute_parameter));
 
 
@@ -85,27 +89,28 @@ uint8_t check_parameter(uint8_t type_parameter, char * parameter){
 		break;
 
 		case PULSE_WIDTH_PARAMETER:
-			
 			if (SUCCESSFUL != extra_letters(compared_strings, symbol_ctnr))
 				return INCORRECT_PARAMETER_INPUT;
-			if (atoi(compared_strings) >= LOWER_WIDTH && atoi(compared_strings	) <= TOP_WIDTH)
+
+			if (atoi(compared_strings) >= LOWER_WIDTH && atoi(compared_strings) <= TOP_WIDTH)
 				return SUCCESSFUL;
-			
 			return INCORRECT_PULSE_WIDTH;
 		break;
 
 		case TIME_PARAMETER:
-			if (SUCCESSFUL != extra_letters(compute_parameter, symbol_ctnr))
+			if (SUCCESSFUL != extra_letters(compared_strings, symbol_ctnr))
 				return INCORRECT_PARAMETER_INPUT;
-
-			if (atoi(compared_strings) >= LOWER_LIMIT_TIME && atoi(compared_strings) <= UPPER_LIMIT_TIME)
-				return SUCCESSFUL;
-			else if (atoi(compared_strings) < LOWER_LIMIT_TIME)
+	
+			if (atoi(compared_strings) < LOWER_LIMIT_TIME)
 				return LESS_POSSIBLE;
 			else if (atoi(compared_strings) > UPPER_LIMIT_TIME)
 				return MORE_POSSIBLE;
-	
+			else return SUCCESSFUL;
 			return INCORRECT_PARAMETER_INPUT;
+		break;
+
+		case OTHERS:
+			return UNNECESSARY_PARAMETERS;
 		break;
 
 		default:
@@ -113,3 +118,4 @@ uint8_t check_parameter(uint8_t type_parameter, char * parameter){
 	}	
 	
 }
+

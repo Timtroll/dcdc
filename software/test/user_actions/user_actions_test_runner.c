@@ -23,4 +23,5 @@ TEST_GROUP_RUNNER (parameter_control) {
 	RUN_TEST_CASE (parameter_control, check_parameter_mode);
 	RUN_TEST_CASE (parameter_control, check_parameter_pulse_widht);
 	RUN_TEST_CASE (parameter_control, check_parameter_time);
+	RUN_TEST_CASE (parameter_control, check_unnecessary_parameters);
 }
