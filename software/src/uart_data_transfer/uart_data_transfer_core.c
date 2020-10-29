@@ -55,13 +55,14 @@ void HAL_UART_IDLE_Callback (UART_HandleTypeDef *huart) {
 			return;
 		}
 
+		if (strlen((const char *)rx_uart_data) < MIN_LEN_COMMAND)
+			return;
+
 		uint8_t command_len = strlen((const char *)rx_uart_data);
 		if (rx_uart_data[command_len - 1] != '\r')
 			return;
 		rx_uart_data[command_len - 1] = '\0';
 
-		if (strlen((const char *)rx_uart_data) < MIN_LEN_COMMAND)
-			return;
 
 		if(tx_complete == false)
 			return;
@@ -76,10 +77,8 @@ void HAL_UART_IDLE_Callback (UART_HandleTypeDef *huart) {
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
-	__HAL_UART_DISABLE_IT(huart, UART_IT_IDLE);
 	HAL_UART_AbortReceive_IT(huart);
-
-	event_group_set_bit_from_isr(uart_data_transfer_events, RX_DATA_COMPLETE);
+	rx_uart_data[MAX_SIZE_RX_UART_DATA - 1] = '\r';
 }
 
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
