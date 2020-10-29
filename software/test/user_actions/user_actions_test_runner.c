@@ -13,7 +13,8 @@ TEST_GROUP_RUNNER (set_group) {
 }
 
 TEST_GROUP_RUNNER (get_group) {
-	RUN_TEST_CASE (get_group, voltage_scheme_generator);
+	RUN_TEST_CASE (get_group, voltage_scheme);
+	RUN_TEST_CASE (get_group, voltage_generator);
 	RUN_TEST_CASE (get_group, voltage_output);
 	RUN_TEST_CASE (get_group, voltage_first_battery);
 	RUN_TEST_CASE (get_group, voltage_second_battery);
