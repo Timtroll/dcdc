@@ -1,7 +1,7 @@
 #ifndef _MEASUREMENTS_CORE_H_
 #define _MEASUREMENTS_CORE_H_
 
-//#define DEBUG_SOFTWARE
+// #define DEBUG_SOFTWARE
 
 double meas_get_voltage_akk1 (void);
 double meas_get_voltage_akk2 (void);
