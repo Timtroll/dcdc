@@ -6,7 +6,7 @@
 #define PHRASE_END 3
 
 
-static inline uint8_t extra_letters(char * string, uint8_t cntr){
+static inline uint8_t extra_letters(char *string, uint8_t cntr){
 	if (strlen(string) > MAX_LEN)
 		return  INCORRECT_PARAMETER_INPUT;
 	for (; cntr < strlen(string); cntr++)
@@ -17,7 +17,7 @@ static inline uint8_t extra_letters(char * string, uint8_t cntr){
 	return SUCCESSFUL;
 }	
 
-char * _clear_data(char * parameter){
+char *_clear_data(char *parameter){
 	if (strlen(parameter) > MAX_LEN)
 		return NULL;
 
@@ -70,11 +70,11 @@ char * _clear_data(char * parameter){
 	return cleared_string;
 }
 
-uint8_t check_parameter(uint8_t type_parameter, char * parameter){
+uint8_t check_parameter(uint8_t type_parameter, char *parameter){
 	if (type_parameter == OTHERS)
 		return SUCCESSFUL;
 
-	char * compute_parameter = _clear_data(parameter);
+	char *compute_parameter = _clear_data(parameter);
 	uint8_t symbol_ctnr = 0;
 	if (compute_parameter == NULL) 
 		return INCORRECT_PARAMETER_INPUT;

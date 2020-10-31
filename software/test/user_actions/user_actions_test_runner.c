@@ -28,6 +28,7 @@ TEST_GROUP_RUNNER (parameter_control) {
 }
 
 TEST_GROUP_RUNNER (user_action) {
-	RUN_TEST_CASE (user_action, write_in_response_string);
+	//RUN_TEST_CASE (user_action, write_in_response_string);
 	RUN_TEST_CASE (user_action, analysis_error_type);
+	RUN_TEST_CASE (user_action, set_charger_actions);
 }

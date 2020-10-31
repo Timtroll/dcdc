@@ -360,7 +360,6 @@ TEST_GROUP (user_action);
 //[]set_charging_actions
 //[]get_actions
 
-char new_array [] = "set charger mode no_gen";
 
 TEST_SETUP (user_action) {
 	parser_create(&groups_of_commands, MAX_CMD_LEN);
@@ -370,14 +369,14 @@ TEST_TEAR_DOWN (user_action) {
 	parser_delete();
 }
 
-TEST (user_action, write_in_response_string){
-	prepare_response("test string");
-	TEST_ASSERT_EQUAL_STRING("test string", get_user_response());
-	prepare_response("____");
-	TEST_ASSERT_EQUAL_STRING("____", get_user_response());
-	prepare_response("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-	TEST_ASSERT_EQUAL_STRING("____", get_user_response());
-}
+// TEST (user_action, write_in_response_string){
+// 	prepare_response("test string");
+// 	TEST_ASSERT_EQUAL_STRING("test string", get_user_response());
+// 	prepare_response("____");
+// 	TEST_ASSERT_EQUAL_STRING("____", get_user_response());
+// 	prepare_response("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+// 	TEST_ASSERT_EQUAL_STRING("", get_user_response());
+// }
 
 TEST (user_action, analysis_error_type){
 	parse("set charger mode no_gen");
@@ -399,6 +398,26 @@ TEST (user_action, analysis_error_type){
 	parse("set charging time 5000000000");
 	parser_action()();
 	TEST_ASSERT_EQUAL_STRING("Your error: The entered value is more than acceptable", get_user_response());
+}
 
+TEST(user_action, set_charger_actions){
+	parse("set charger start");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING(CHARGER_START_RESPONSE, get_user_response());
 
+	parse("set charger stop");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING(CHARGER_STOP_RESPONSE, get_user_response());
+
+	parse("set charger mode akk1");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("You set the mode: akk1", get_user_response());
+
+	parse("set charger mode akk2");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("You set the mode: akk2", get_user_response());		
+
+	parse("set charger mode gen");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("You set the mode: gen", get_user_response());		
 }
