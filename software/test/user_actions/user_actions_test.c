@@ -264,7 +264,7 @@ TEST (parameter_control, check_parameter_mode) {
 	parse("set charger mode  		akk2           ");
 	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(MODE_PARAMETER, parser_parameter()));
 	
-	parse("set charger mode  		gen  d 			");
+	parse("set charger mode  		gen _d 			");
 	TEST_ASSERT_EQUAL_INT(INCORRECT_PARAMETER_INPUT, check_parameter(MODE_PARAMETER, parser_parameter()));
 	
 	parse("set charger mode  		");
@@ -347,17 +347,58 @@ TEST (parameter_control, check_unnecessary_parameters){
 	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(OTHERS, parser_parameter()));		
 	parse("get voltage second_battery  some_value");
 	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(OTHERS, parser_parameter()));		
-		
-}
-
-TEST_GROUP (incorrect_request);
-
-TEST_SETUP (incorrect_request) {
-
-}
-
-TEST_TEAR_DOWN (incorrect_request) {
+	parse("get voltage output");
+	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(OTHERS, parser_parameter()));		
 	
 }
 
+TEST_GROUP (user_action);
 
+//[+]write_in_response_string
+//[+]analysis_error_type
+//[]set_charger_actions
+//[]set_charging_actions
+//[]get_actions
+
+char new_array [] = "set charger mode no_gen";
+
+TEST_SETUP (user_action) {
+	parser_create(&groups_of_commands, MAX_CMD_LEN);
+}
+
+TEST_TEAR_DOWN (user_action) {
+	parser_delete();
+}
+
+TEST (user_action, write_in_response_string){
+	prepare_response("test string");
+	TEST_ASSERT_EQUAL_STRING("test string", get_user_response());
+	prepare_response("____");
+	TEST_ASSERT_EQUAL_STRING("____", get_user_response());
+	prepare_response("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+	TEST_ASSERT_EQUAL_STRING("____", get_user_response());
+}
+
+TEST (user_action, analysis_error_type){
+	parse("set charger mode no_gen");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Your error: Invalid parameter", get_user_response());
+	
+	parse("set charger mode unexist");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Your error: Non-existent charger", get_user_response());
+
+	parse("set charger pulse_width 50000000000000000000000000000");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Your error: Incorrect pulse width", get_user_response());
+
+	parse("set charging time 5");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Your error: The entered value is less than acceptable", get_user_response());
+
+	parse("set charging time 5000000000");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Your error: The entered value is more than acceptable", get_user_response());
+
+
+}

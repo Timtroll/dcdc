@@ -26,3 +26,8 @@ TEST_GROUP_RUNNER (parameter_control) {
 	RUN_TEST_CASE (parameter_control, check_parameter_time);
 	RUN_TEST_CASE (parameter_control, check_unnecessary_parameters);
 }
+
+TEST_GROUP_RUNNER (user_action) {
+	RUN_TEST_CASE (user_action, write_in_response_string);
+	RUN_TEST_CASE (user_action, analysis_error_type);
+}

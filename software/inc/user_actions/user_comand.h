@@ -26,19 +26,12 @@
 //	
 
 
-
-void set_charger_start(void){
-	// set_for_charger_start();
-}
-void set_charger_stop(void){
-	// set_for_charger_stop();
-}
-void set_charger_mode(void){
-	// set_for_charger_mode();
-}
-void set_charger_pulse_width(void){
-	// set_for_charger_pulse_width();
-}
+//!!ONLY DEFINITION FUNCTIONS!!
+//All realization is in user_action.c  
+void set_charger_start(void);
+void set_charger_stop(void);
+void set_charger_mode(void);
+void set_charger_pulse_width(void);
 
 #define START 				0
 #define STOP_CHARGER 		1
@@ -77,18 +70,10 @@ START_CMD_GROUP (charger_subcomands, CHARGER_CMD_NUM) {
 };
 
 
-void set_charging_time(void){
-	// set_for_charging_time();
-}
-void set_charging_start_akk_1(void){
-	// set_for_charging_start_akk_1();
-}
-void set_charging_start_akk_2(void){
-	// set_for_charging_start_akk_2();
-}
-void set_charging_stop(void){
-	// set_for_charging_stop();
-}
+void set_charging_time(void);
+void set_charging_start_akk_1(void);
+void set_charging_start_akk_2(void);
+void set_charging_stop(void);
 
 #define TIME 				0
 #define START_AKK_1 		1
@@ -144,23 +129,11 @@ START_CMD_GROUP (set_parameter_subcomands, SET_COMANDS_NUM) {
 };
 
 
-
-
-void get_voltage_generator(void){
-	// get_for_voltage_scheme_generator();
-}
-void get_voltage_scheme(void){
-	// get_for_voltage_scheme_generator();
-}
-void get_voltage_output(void){
-	// get_for_voltage_output();
-}
-void get_voltage_first_battery(void){
-	// get_for_voltage_first_battery();
-}
-void get_voltage_second_battery(void){
-	// get_for_voltage_second_battery();
-}
+void get_voltage_generator(void);
+void get_voltage_scheme(void);
+void get_voltage_output(void);
+void get_voltage_first_battery(void);
+void get_voltage_second_battery(void);
 
 
 #define SCHEME 			 0
@@ -215,14 +188,6 @@ START_CMD_GROUP (get_parameter_subcomands, GET_COMANDS_NUM) {
 	}
 	END_CMD_GROUP(GET_COMANDS_NUM)
 };
-
-
-
-
-
-
-
-
 
 #define SET_CMD_NUM 	1
 #define GET_CMD_NUM  	0

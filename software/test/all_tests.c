@@ -20,6 +20,7 @@ static void run_all_tests (void) {
     RUN_TEST_GROUP(set_group);
     RUN_TEST_GROUP(get_group);
     RUN_TEST_GROUP(parameter_control);
+    RUN_TEST_GROUP(user_action);
 }
 
 int main(int argc, const char * argv [])
