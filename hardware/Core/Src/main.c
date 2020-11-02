@@ -106,6 +106,7 @@ int main(void)
 //  INIT PARSER EXAMPLE:
   parser_create(&smart_charger_commands, MAX_CMD_LEN);
   init_uart_data_transfer();
+  charger_init();
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
