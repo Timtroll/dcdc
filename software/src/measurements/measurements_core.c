@@ -45,23 +45,23 @@ void start_measurements (void) {
 
 
 double meas_get_voltage_akk1 (void) {
-//	return akk1_voltage * 3.3 / 4096; // 3.3 ?
+	return akk1_voltage * 16.8 / 4096;
 }
 
 double meas_get_voltage_akk2 (void) {
-
+	return akk1_voltage * 16.8 / 4096;
 }
 
 double meas_get_voltage_charger_output (void) {
-
+	return akk1_voltage * 16.8 / 4096;
 }
 
 double meas_get_voltage_generator (void) {
-
+	return akk1_voltage * 16.8 / 4096;
 }
 
 double meas_get_voltage_scheme (void) {
-
+	return akk1_voltage * 16.8 / 4096;
 }
 
 #else
