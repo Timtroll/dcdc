@@ -354,10 +354,10 @@ TEST (parameter_control, check_unnecessary_parameters){
 
 TEST_GROUP (user_action);
 
-//[+]write_in_response_string
+//[?]write_in_response_string
 //[+]analysis_error_type
-//[]set_charger_actions
-//[]set_charging_actions
+//[+]set_charger_actions
+//[+]set_charging_actions
 //[]get_actions
 
 
@@ -420,4 +420,29 @@ TEST(user_action, set_charger_actions){
 	parse("set charger mode gen");
 	parser_action()();
 	TEST_ASSERT_EQUAL_STRING("You set the mode: gen", get_user_response());		
+}
+
+TEST(user_action, set_charging_actions){
+	parse("set charging time 754");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("You set the time: 754", get_user_response());		
+
+	parse("set charging start_akk_1");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Charging: AKK 1", get_user_response());		
+
+	parse("set charging start_akk_2");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Charging: AKK 2", get_user_response());
+
+	parse("set charging stop");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Charging: Stop", get_user_response());
+}
+
+TEST(user_action, get_actions){
+	parse("get voltage scheme");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Charging: Stop", get_user_response());
+
 }

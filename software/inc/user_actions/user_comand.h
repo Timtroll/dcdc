@@ -16,11 +16,11 @@
 #define CHARGING_START_AKK_2_RESPONSE 	"Charging: AKK 2"
 #define CHARGING_STOP_RESPONSE 			"Charging: Stop"
 
-#define VOLTAGE_SCHEME_RESPONSE			 "Voltage scheme:"
-#define VOLTAGE_GENERATOR_RESPONSE 		 "Voltage generator:"
-#define VOLTAGE_OUTPUT_RESPONSE 		 "Voltage output:"
-#define VOLTAGE_FIRST_BATTERY_RESPONSE	 "Voltage first_battery:"
-#define VOLTAGE_SECOND_BATTERY_RESPONSE  "Voltage second_battery:"
+#define VOLTAGE_SCHEME_RESPONSE			 "Voltage scheme: "
+#define VOLTAGE_GENERATOR_RESPONSE 		 "Voltage generator: "
+#define VOLTAGE_OUTPUT_RESPONSE 		 "Voltage output: "
+#define VOLTAGE_FIRST_BATTERY_RESPONSE	 "Voltage first_battery: "
+#define VOLTAGE_SECOND_BATTERY_RESPONSE  "Voltage second_battery: "
 
 #define MAX_CMD_LEN      100//change this
 //	

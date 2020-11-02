@@ -59,7 +59,12 @@ void analysis_error_type(uint8_t error_type){
 	}
 }
 
-
+// #define RESPONSE(type,hardware_function, text_response) \
+// 	if (check_parameter(type, parser_parameter()) == SUCCESSFUL) \
+// 	{ \
+// 		hardware_function(); \
+// 		_write_response(text_response);\
+// 	}analysis_error_type(check_parameter(type, parser_parameter())); \
 
 void set_charger_start(void){
 	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)
@@ -91,7 +96,7 @@ void set_charger_pulse_width(void){
 	if (check_parameter(PULSE_WIDTH_PARAMETER, parser_parameter()) == SUCCESSFUL)
 	{
 		//hardware_func();
-		//_prepare_response(/*text*/);
+		_write_response(parser_parameter());
 	} else
 		analysis_error_type(check_parameter(PULSE_WIDTH_PARAMETER, parser_parameter()));
 }
@@ -99,21 +104,36 @@ void set_charger_pulse_width(void){
 
 
 void set_charging_time(void){
-if (check_parameter(TIME_PARAMETER, parser_parameter()) == SUCCESSFUL)
+	if (check_parameter(TIME_PARAMETER, parser_parameter()) == SUCCESSFUL)
 	{
 		//hardware_func();
-		//_prepare_response(/*text*/);
+		_write_response(parser_parameter());
 	} else
 		analysis_error_type(check_parameter(TIME_PARAMETER, parser_parameter()));
 }
 void set_charging_start_akk_1(void){
-	// set_for_charging_start_akk_1();
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)
+	{
+		//hardware_func();
+		_write_response("");
+	} else
+		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 void set_charging_start_akk_2(void){
-	// set_for_charging_start_akk_2();
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)
+	{
+		//hardware_func();
+		_write_response("");
+	} else
+		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 void set_charging_stop(void){
-	// set_for_charging_stop();
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)
+	{
+		//hardware_func();
+		_write_response("");
+	} else
+		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 
 
@@ -122,18 +142,33 @@ void set_charging_stop(void){
 
 
 void get_voltage_generator(void){
-	// get_for_voltage_scheme_generator();
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)
+		_write_response("");
+	else
+		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 void get_voltage_scheme(void){
-	// get_for_voltage_scheme_generator();
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)	
+		_write_response("");
+	 else
+		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 void get_voltage_output(void){
-	// get_for_voltage_output();
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)
+		_write_response("");
+	else
+		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 void get_voltage_first_battery(void){
-	// get_for_voltage_first_battery();
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)	
+		_write_response("");
+	else
+		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 void get_voltage_second_battery(void){
-	// get_for_voltage_second_battery();
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)	
+		_write_response("");
+	else
+		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 
