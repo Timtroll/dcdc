@@ -100,7 +100,6 @@ int main(void)
   MX_HRTIM1_Init();
   MX_ADC1_Init();
   MX_ADC2_Init();
-  MX_TIM17_Init();
   MX_TIM15_Init();
   /* USER CODE BEGIN 2 */
 //  INIT PARSER EXAMPLE:
@@ -194,9 +193,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
-  if (htim->Instance == TIM17) {
-	  charge_akk_interrupt();
-  }
+
   /* USER CODE END Callback 1 */
 }
 

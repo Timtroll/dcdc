@@ -48,11 +48,12 @@ typedef struct _charger_handle {
 	uint8_t
 		charging_akk, // AKK1 / AKK2 / NONE
 		charging_akk_mode, // default / one_akk / disch_akk
-		charging_timing_state // 0 / 1 / 2 / 3
+		charging_timing_state // 0 / 1 / 2 / 3 OR 0-9
 		;
 	uint16_t
 		charging_period,
-		charging_timing_array[4]
+		charging_timing_positive_pulse,
+		charging_timing_negative_pulse
 		;
 	_Bool
 		charging_akk_state, // ON / OFF

@@ -2,6 +2,8 @@
 
 #ifndef DEBUG_SOFTWARE
 
+#include "FreeRTOS.h"
+#include "cmsis_os.h"
 #include "hrtim.h"
 #include "tim.h"
 #include <stdbool.h>
@@ -55,7 +57,7 @@ HRTIM_CompareCfgTypeDef channel_compare_cfg = {
 	.AutoDelayedMode = HRTIM_AUTODELAYEDMODE_REGULAR,
 	.AutoDelayedTimeout = 0x0000
 };
-
+extern osThreadId charging_akkHandle;
 
 void charger_init (void) {
 	charger_handle = (ts_charger_handle) {
@@ -308,36 +310,107 @@ CHARGER_STATUS start_charging_akk (void) {
 		if (charger_handle.output_mode == charger_handle.charging_akk)
 			return STATUS_AKK_ALREADY_USED;
 
-
-	//call interrupt
-
-
 	charger_handle.charging_akk_state = STATE_ON;
-
+	vTaskResume((TaskHandle_t)charging_akkHandle);
 	return 0;
 }
 
 void stop_charging_akk (void) {
-
-	//stop TIM
-
-	set_state_on_all_charging_gpio_inactive();
 	charger_handle.charging_akk_state = STATE_OFF;
+	charger_handle.charging_timing_state = 0;
+	set_state_on_all_charging_gpio_inactive();
 }
 
 
 
-void charge_akk_interrupt (void) {
-	if ((charger_handle.charging_akk_mode == CHARGING_AKK_MODE_DEFAULT) ||
-			(charger_handle.charging_akk_mode == CHARGING_AKK_MODE_ONE_AKK)) {
+uint16_t charge_akk (void) {
+	if (charger_handle.charging_timing_state == 0) {
+		gpio_charge_akk(charger_handle.charging_akk, ACTIVE);
+		charger_handle.charging_timing_state++;
 
-
+		return charger_handle.charging_timing_positive_pulse;
 	}
-	else if (charger_handle.charging_akk_mode == CHARGING_AKK_MODE_DISCHARGE) {
+	else if (charger_handle.charging_timing_state == 1) {
+		gpio_charge_akk(charger_handle.charging_akk, INACTIVE);
+		charger_handle.charging_timing_state++;
+
+		return charger_handle.charging_period -
+				charger_handle.charging_timing_positive_pulse;
+	}
+	else if (charger_handle.charging_timing_state == 2) {
+		gpio_discharge_akk(charger_handle.charging_akk, ACTIVE);
+		charger_handle.charging_timing_state++;
+
+		return charger_handle.charging_timing_negative_pulse;
+	}
+	else if (charger_handle.charging_timing_state == 3) {
+		gpio_discharge_akk(charger_handle.charging_akk, INACTIVE);
+		charger_handle.charging_timing_state = 0;
+
+		return charger_handle.charging_period -
+				charger_handle.charging_timing_negative_pulse;
+	}
+}
+
+
+void charging_akk_mode_default (void) {
+	//	if (charger_handle.charging_timing_state == )
+	// negative pulse need? calc // not need set mode = 0
+	// set width negative pulse
+	// correct positive pulse
+
+
+	osDelay(charge_akk());
+
+
+
+	//change akk logic
+}
+
+void charging_akk_mode_one_akk (void) {
+	// negative pulse neen? calc
+
+	osDelay(charge_akk());
+}
+
+void charging_akk_mode_discharge (void) {
+	if (charger_handle.charging_timing_state % 2 == 0)
+		gpio_discharge_akk(charger_handle.charging_akk, ACTIVE);
+	else
+		gpio_discharge_akk(charger_handle.charging_akk, INACTIVE);
+
+	charger_handle.charging_timing_state++;
+
+	if (charger_handle.charging_timing_state == 10){
+		charger_handle.charging_timing_state = 0;
+
+		if (charger_handle.charging_akk == CHARGING_AKK_1) {
+			if (meas_get_voltage_akk1() <= 10.5)
+				charger_handle.charging_akk_state = STATE_OFF;
+		}
+		else if (charger_handle.charging_akk == CHARGING_AKK_2) {
+			if (meas_get_voltage_akk2() <= 10.5)
+				charger_handle.charging_akk_state = STATE_OFF;
+		}
 
 	}
 }
 
+void charging_akk_task(void const * argument) {
+	for (;;) {
+		if (charger_handle.charging_akk_state == STATE_OFF) {
+			vTaskSuspend((TaskHandle_t)charging_akkHandle);
+		}
+		else {
+			if (charger_handle.charging_akk_mode == CHARGING_AKK_MODE_DEFAULT)
+				charging_akk_mode_default();
+			else if (charger_handle.charging_akk_mode == CHARGING_AKK_MODE_ONE_AKK)
+				charging_akk_mode_one_akk();
+			else if (charger_handle.charging_akk_mode == CHARGING_AKK_MODE_DISCHARGE)
+				charging_akk_mode_discharge();
+		}
+	}
+}
 
 #else
 

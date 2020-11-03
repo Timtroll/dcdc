@@ -51,6 +51,7 @@
 osThreadId defaultTaskHandle;
 osThreadId rx_uart_dataHandle;
 osThreadId tx_uart_dataHandle;
+osThreadId charging_akkHandle;
 osMessageQId command_queueHandle;
 
 /* Private function prototypes -----------------------------------------------*/
@@ -61,6 +62,7 @@ osMessageQId command_queueHandle;
 void StartDefaultTask(void const * argument);
 void rx_uart_data_task(void const * argument);
 void tx_uart_data_task(void const * argument);
+void charging_akk_task(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -133,12 +135,16 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of rx_uart_data */
-  osThreadDef(rx_uart_data, rx_uart_data_task, osPriorityLow, 0, 128);
+  osThreadDef(rx_uart_data, rx_uart_data_task, osPriorityNormal, 0, 128);
   rx_uart_dataHandle = osThreadCreate(osThread(rx_uart_data), NULL);
 
   /* definition and creation of tx_uart_data */
-  osThreadDef(tx_uart_data, tx_uart_data_task, osPriorityLow, 0, 128);
+  osThreadDef(tx_uart_data, tx_uart_data_task, osPriorityNormal, 0, 128);
   tx_uart_dataHandle = osThreadCreate(osThread(tx_uart_data), NULL);
+
+  /* definition and creation of charging_akk */
+  osThreadDef(charging_akk, charging_akk_task, osPriorityHigh, 0, 128);
+  charging_akkHandle = osThreadCreate(osThread(charging_akk), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -200,6 +206,24 @@ __weak void tx_uart_data_task(void const * argument)
     osDelay(1);
   }
   /* USER CODE END tx_uart_data_task */
+}
+
+/* USER CODE BEGIN Header_charging_akk_task */
+/**
+* @brief Function implementing the charging_akk thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_charging_akk_task */
+__weak void charging_akk_task(void const * argument)
+{
+  /* USER CODE BEGIN charging_akk_task */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END charging_akk_task */
 }
 
 /* Private application code --------------------------------------------------*/
