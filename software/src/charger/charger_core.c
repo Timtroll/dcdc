@@ -232,6 +232,40 @@ uint8_t get_charging_akk (void) {
 	return charger_handle.charging_akk;
 }
 
+uint8_t get_charging_akk_mode (void) {
+	return charger_handle.charging_akk_mode;
+}
+
+uint16_t get_charging_period (void) {
+	return charger_handle.charging_period;
+}
+
+uint16_t get_charging_timing_positive_pulse (void) {
+	return charger_handle.charging_timing_positive_pulse;
+}
+
+void set_charging_timing_positive_pulse (uint16_t time) {
+	if (time > 100)
+		charger_handle.charging_timing_positive_pulse = time;
+}
+
+uint16_t get_charging_timing_negative_pulse (void) {
+	return charger_handle.charging_timing_negative_pulse;
+}
+
+void set_charging_timing_negative_pulse (uint16_t time) {
+	if (time > 100)
+		charger_handle.charging_timing_negative_pulse = time;
+}
+
+_Bool get_charging_need_disch_pulse (void) {
+	return charger_handle.need_disch_pulse;
+}
+
+void set_charging_need_disch_pulse (_Bool value) {
+	charger_handle.need_disch_pulse = value;
+}
+
 CHARGER_STATUS set_charging_period (uint16_t time) {
 	if ((time > 500) && (time < 32000))
 		return STATUS_ERROR_INIT;
@@ -360,7 +394,10 @@ uint16_t charge_akk (void) {
 
 
 void charging_akk_mode_default (void) {
+	// temp
+	//
 	charging_akk_mode_one_akk();
+
 	//change akk logic
 
 	// correct time work
