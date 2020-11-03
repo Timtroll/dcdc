@@ -441,8 +441,25 @@ TEST(user_action, set_charging_actions){
 }
 
 TEST(user_action, get_actions){
+	parse("get voltage generator");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Voltage generator: 1", get_user_response());
+
 	parse("get voltage scheme");
 	parser_action()();
-	TEST_ASSERT_EQUAL_STRING("Charging: Stop", get_user_response());
+	TEST_ASSERT_EQUAL_STRING("Voltage scheme: 2", get_user_response());
+
+	parse("get voltage output");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Voltage output: 3", get_user_response());
+
+	parse("get voltage first_battery");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Voltage first_battery: 4", get_user_response());
+
+	parse("get voltage second_battery");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Voltage second_battery: 5", get_user_response());
+
 
 }

@@ -142,33 +142,46 @@ void set_charging_stop(void){
 
 
 void get_voltage_generator(void){
-	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)
-		_write_response("");
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL){
+		//sent_string = get_hardware_func();
+		//_write_response((char *)sent_string);
+		_write_response("1");//будет записано значение, полученное из функции. Нужно привести из double к string
+	}
 	else
 		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 void get_voltage_scheme(void){
-	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)	
-		_write_response("");
-	 else
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL){	
+		//sent_string = get_hardware_func();
+		//_write_response((char *)sent_string);
+		_write_response("2");//будет записано значение, полученное из функции. Нужно привести из double к string
+	}
+	else
 		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 void get_voltage_output(void){
-	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)
-		_write_response("");
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL){
+		//sent_string = get_hardware_func();
+		//_write_response((char *)sent_string);
+		_write_response("3");//будет записано значение, полученное из функции. Нужно привести из double к string
+	}
 	else
 		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 void get_voltage_first_battery(void){
-	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)	
-		_write_response("");
-	else
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL){	
+		//sent_string = get_hardware_func();
+		//_write_response((char *)sent_string);
+		_write_response("4");//будет записано значение, полученное из функции. Нужно привести из double к string
+	}else
 		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 void get_voltage_second_battery(void){
-	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)	
-		_write_response("");
-	else
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL){	
+		//sent_string = get_hardware_func();
+		//_write_response((char *)sent_string);
+		_write_response("5");//будет записано значение, полученное из функции. Нужно привести из double к string
+	}else
 		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 
