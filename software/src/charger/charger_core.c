@@ -2,6 +2,7 @@
 
 #ifndef DEBUG_SOFTWARE
 
+#include "measurements_core.h"
 #include "FreeRTOS.h"
 #include "cmsis_os.h"
 #include "hrtim.h"
@@ -306,6 +307,11 @@ CHARGER_STATUS start_charging_akk (void) {
 	if (charger_handle.charging_akk_state == STATE_ON)
 		return STATUS_MULTIPLE_START;
 
+	if ((charger_handle.charging_period == 0) ||
+			(charger_handle.charging_timing_positive_pulse == 0) ||
+			(charger_handle.charging_timing_negative_pulse == 0))
+		return STATUS_ERROR_INIT;
+
 	if (charger_handle.charger_output_state == STATE_ON)
 		if (charger_handle.output_mode == charger_handle.charging_akk)
 			return STATUS_AKK_ALREADY_USED;
@@ -343,7 +349,7 @@ uint16_t charge_akk (void) {
 
 		return charger_handle.charging_timing_negative_pulse;
 	}
-	else if (charger_handle.charging_timing_state == 3) {
+	else {
 		gpio_discharge_akk(charger_handle.charging_akk, INACTIVE);
 		charger_handle.charging_timing_state = 0;
 
@@ -354,21 +360,23 @@ uint16_t charge_akk (void) {
 
 
 void charging_akk_mode_default (void) {
-	//	if (charger_handle.charging_timing_state == )
-	// negative pulse need? calc // not need set mode = 0
-	// set width negative pulse
-	// correct positive pulse
-
-
-	osDelay(charge_akk());
-
-
-
+	charging_akk_mode_one_akk();
 	//change akk logic
+
+	// correct time work
+	// changing charging akk
 }
 
 void charging_akk_mode_one_akk (void) {
 	// negative pulse neen? calc
+	if (charger_handle.charging_timing_state == 2) {
+		//charger_handle.need_disch_pulse = calc negative pulse need?
+		//charger_handle.charging_timing_negative_pulse = calc negative pulse width
+		//charger_handle.charging_timing_positive_pulse = calc next positive pulse
+
+		if (charger_handle.need_disch_pulse == 0)
+			charger_handle.charging_timing_state = 0;
+	}
 
 	osDelay(charge_akk());
 }
@@ -379,9 +387,11 @@ void charging_akk_mode_discharge (void) {
 	else
 		gpio_discharge_akk(charger_handle.charging_akk, INACTIVE);
 
-	charger_handle.charging_timing_state++;
-
-	if (charger_handle.charging_timing_state == 10){
+	if (charger_handle.charging_timing_state < 9){
+		charger_handle.charging_timing_state++;
+		osDelay(charger_handle.charging_period / 10);
+	}
+	else {
 		charger_handle.charging_timing_state = 0;
 
 		if (charger_handle.charging_akk == CHARGING_AKK_1) {
@@ -392,7 +402,7 @@ void charging_akk_mode_discharge (void) {
 			if (meas_get_voltage_akk2() <= 10.5)
 				charger_handle.charging_akk_state = STATE_OFF;
 		}
-
+		osDelay(charger_handle.charging_period);
 	}
 }
 

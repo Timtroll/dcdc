@@ -89,7 +89,6 @@ CHARGER_STATUS set_charging_akk (uint8_t akk);
 CHARGER_STATUS start_charging_akk (void);
 uint8_t get_charging_akk (void);
 void stop_charging_akk (void);
-void charge_akk_interrupt (void);
 
 
 #endif//_CHARGER_CORE_H_
