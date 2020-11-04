@@ -224,7 +224,9 @@ uint8_t get_charger_output_akk (void) {
 	return CHARGER_OUTPUT_AKK_NONE;
 }
 
-
+uint8_t get_charger_output_pw (void) {
+	return charger_handle.output_pulse_widht_percent;
+}
 
 
 
@@ -462,45 +464,102 @@ void charging_akk_task(void const * argument) {
 #else
 
 
-void charger_start (void) {
+void charger_init (void) {
 
-}
+};
 
+CHARGER_STATUS charger_start (void) {
+	return 0;
+};
 void charger_stop (void) {
 
 }
 
-void charger_restart (void) {
+CHARGER_STATUS set_charger_mode (uint8_t mode) {
+	return 0;
+}
+
+CHARGER_STATUS set_charger_akk (uint8_t akk) {
+	return 0;
+}
+
+CHARGER_STATUS set_charger_pulse_widght (uint16_t percent_widght) {
+	return 0;
+}
+
+uint8_t get_charger_mode (void) {
+	return 0;
+}
+
+uint8_t get_charger_output_akk (void) {
+	return 0;
+}
+
+uint8_t get_charger_output_pw (void) {
+	return 0;
+}
+
+
+
+CHARGER_STATUS set_charging_period (uint16_t time) {
+	return 0;
+}
+
+CHARGER_STATUS set_charging_mode (uint8_t mode) {
+	return 0;
+}
+
+CHARGER_STATUS set_charging_akk (uint8_t akk) {
+	return 0;
+}
+
+CHARGER_STATUS start_charging_akk (void) {
+	return 0;
+}
+
+void stop_charging_akk (void) {
+	return 0;
+}
+
+uint8_t get_charging_akk (void) {
+	return 0;
+}
+
+uint8_t get_charging_akk_mode (void) {
+	return 0;
+}
+
+uint16_t get_charging_period (void) {
+	return 0;
+}
+
+
+//for test
+uint16_t get_charging_timing_positive_pulse (void) {
+	return 0;
+}
+
+uint16_t get_charging_timing_negative_pulse (void) {
+	return 0;
+}
+
+_Bool get_charging_need_disch_pulse (void) {
+	return 0;
+}
+
+
+//root set
+void set_charging_timing_positive_pulse (uint16_t time) {
 
 }
 
-void charger_set_mode (uint8_t mode) {
+void set_charging_timing_negative_pulse (uint16_t time) {
 
 }
 
-void charger_set_pulse_widght (uint16_t percent_widght) {
+void set_charging_need_disch_pulse (_Bool value) {
 
 }
 
-
-void start_charge_akk1 (void) {
-
-}
-
-void start_charge_akk2 (void) {
-
-}
-
-void stop_charge_akk (void) {
-
-}
-
-void charge_akk_interrupt (void) {
-
-}
-
-void set_t_charging (uint16_t time) {
-
-}
 
 #endif
