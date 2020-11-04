@@ -3,11 +3,11 @@
 
 // #define DEBUG_SOFTWARE
 
-double meas_get_voltage_akk1 (void);
-double meas_get_voltage_akk2 (void);
-double meas_get_voltage_charger_output (void);
-double meas_get_voltage_generator (void);
-double meas_get_voltage_scheme (void);
+float meas_get_voltage_akk1 (void);
+float meas_get_voltage_akk2 (void);
+float meas_get_voltage_charger_output (void);
+float meas_get_voltage_generator (void);
+float meas_get_voltage_scheme (void);
 
 
 #endif//_MEASUREMENTS_CORE_H_
