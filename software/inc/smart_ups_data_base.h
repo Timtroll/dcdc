@@ -64,11 +64,11 @@ START_CMD_GROUP (set_parameter, SET_PARAMETER_NUM) {
 // HERE MUST BE DECLARATIONS ONLY!
 // NOT IMPLEMENTETIONS!
 void get_vol_cut_off (void) {
-	save_data_from_get(get_for_voltage_cut_off());
+	// save_data_from_get(get_for_voltage_cut_off());
 }
 
 void get_charge_current (void) {
-	save_data_from_get(get_for_charge_current());
+	// save_data_from_get(get_for_charge_current());
 }
 
 void get_battery_type (void) {
