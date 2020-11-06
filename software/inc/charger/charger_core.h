@@ -77,31 +77,31 @@ void charger_init (void);
 
 CHARGER_STATUS charger_start (void);
 void charger_stop (void);
-CHARGER_STATUS set_charger_mode (uint8_t mode);
-CHARGER_STATUS set_charger_akk (uint8_t akk);
-CHARGER_STATUS set_charger_pulse_widght (uint16_t percent_widght);
-uint8_t get_charger_mode (void);
-uint8_t get_charger_output_akk (void);
-uint8_t get_charger_output_pw (void);
+CHARGER_STATUS charger_set_mode (uint8_t mode);
+CHARGER_STATUS charger_set_akk (uint8_t akk);
+CHARGER_STATUS charger_set_pulse_widght (uint16_t percent_widght);
+uint8_t charger_get_mode (void);
+uint8_t charger_get_output_akk (void);
+uint8_t charger_get_output_pw (void);
 
 
-CHARGER_STATUS set_charging_period (uint16_t time);
-CHARGER_STATUS set_charging_mode (uint8_t mode);
-CHARGER_STATUS set_charging_akk (uint8_t akk);
-CHARGER_STATUS start_charging_akk (void);
-void stop_charging_akk (void);
-uint8_t get_charging_akk (void);
-uint8_t get_charging_akk_mode (void);
-uint16_t get_charging_period (void);
+CHARGER_STATUS charging_set_period (uint16_t time);
+CHARGER_STATUS charging_set_mode (uint8_t mode);
+CHARGER_STATUS charging_set_akk (uint8_t akk);
+CHARGER_STATUS charging_start_akk (void);
+void charging_stop_akk (void);
+uint8_t charging_get_akk (void);
+uint8_t charging_get_akk_mode (void);
+uint16_t charging_get_period (void);
 
 //for test
-uint16_t get_charging_timing_positive_pulse (void);
-uint16_t get_charging_timing_negative_pulse (void);
-_Bool get_charging_need_disch_pulse (void);
+uint16_t charging_get_timing_positive_pulse (void);
+uint16_t charging_get_timing_negative_pulse (void);
+_Bool charging_get_need_disch_pulse (void);
 
 //root set
-void set_charging_timing_positive_pulse (uint16_t time);
-void set_charging_timing_negative_pulse (uint16_t time);
-void set_charging_need_disch_pulse (_Bool value);
+void charging_set_timing_positive_pulse (uint16_t time);
+void charging_set_timing_negative_pulse (uint16_t time);
+void charging_set_need_disch_pulse (_Bool value);
 
 #endif//_CHARGER_CORE_H_
