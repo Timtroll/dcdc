@@ -100,12 +100,12 @@ int main(void)
   MX_HRTIM1_Init();
   MX_ADC1_Init();
   MX_ADC2_Init();
-  MX_TIM17_Init();
   MX_TIM15_Init();
   /* USER CODE BEGIN 2 */
 //  INIT PARSER EXAMPLE:
   parser_create(&smart_charger_commands, MAX_CMD_LEN);
   init_uart_data_transfer();
+  charger_init();
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
@@ -193,9 +193,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
-  if (htim->Instance == TIM17) {
-	  charge_akk_interrupt();
-  }
+
   /* USER CODE END Callback 1 */
 }
 
