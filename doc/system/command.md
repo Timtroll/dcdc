@@ -19,7 +19,7 @@
 ### Charging ###
 * set *charging* period **uint16_t time** - время дискретизации в мс. Принимает значение от **500** до **32000**.
 * set *charging* mode - уставновить режим зарядки DEFAULT, ONE_AKK, FULL_DISCHARGE.
-* set *charging* akk - установить значение аккумулятора для зарядки АКК1, АКК2.
+* set *charging* akk **uint8_t akk** - установить значение аккумулятора для зарядки АКК1, АКК2.
 * set *charging* start - включить зарядку аккумулятора. 
 * set *charging* stop - выключить зарядку аккумулятора.
 
