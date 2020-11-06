@@ -16,7 +16,7 @@ float calc_charge (float voltage[], int size) {
 		charge += voltage[i]; 
 	}
 	
-	charge *= sample_time;
+	charge *= SAMPLE_TIME;
 
 	return charge;
 }
@@ -24,7 +24,7 @@ float calc_charge (float voltage[], int size) {
 int calc_discharge_time (float charge) {
 	int time = 0;
 
-	time = charge / (10 * discharge_voltage);
+	time = charge / (10 * DISCHARGE_VOLTAGE);
 	return time;
 }
 

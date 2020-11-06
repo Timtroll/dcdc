@@ -101,7 +101,7 @@ void charger_stop (void) {
 	charger_handle.charger_output_state = STATE_OFF;
 }
 
-CHARGER_STATUS set_charger_mode (uint8_t mode) {
+CHARGER_STATUS charger_set_mode (uint8_t mode) {
 	if (charger_handle.charger_output_state == STATE_ON)
 		return STATUS_NEED_TURN_OFF;
 
@@ -121,7 +121,7 @@ CHARGER_STATUS set_charger_mode (uint8_t mode) {
 	return STATUS_OK;
 }
 
-CHARGER_STATUS set_charger_akk (uint8_t akk) {
+CHARGER_STATUS charger_set_akk (uint8_t akk) {
 	if (charger_handle.charger_output_state == STATE_ON)
 			return STATUS_NEED_TURN_OFF;
 
@@ -139,7 +139,7 @@ CHARGER_STATUS set_charger_akk (uint8_t akk) {
 	return STATUS_OK;
 }
 
-CHARGER_STATUS set_charger_pulse_widght (uint16_t percent_widght) {
+CHARGER_STATUS charger_set_pulse_widght (uint16_t percent_widght) {
 	hrtim_all_outputs_stop();
 
 	if ((percent_widght > 1) && (percent_widght < 50)) {
@@ -210,11 +210,11 @@ void hrtim_reset_timer (void) {
 	HAL_HRTIM_SoftwareReset(&hhrtim1, HRTIM_TIMERRESET_MASTER);
 }
 
-uint8_t get_charger_mode (void) {
+uint8_t charger_get_mode (void) {
 	return charger_handle.charger_mode;
 }
 
-uint8_t get_charger_output_akk (void) {
+uint8_t charger_get_output_akk (void) {
 	if (charger_handle.charger_mode == CHARGER_MODE_AKK) {
 		if (charger_handle.charger_output_state == OUTPUT_MODE_AKK1)
 			return CHARGER_OUTPUT_AKK_1;
@@ -224,51 +224,51 @@ uint8_t get_charger_output_akk (void) {
 	return CHARGER_OUTPUT_AKK_NONE;
 }
 
-uint8_t get_charger_output_pw (void) {
+uint8_t charger_get_output_pw (void) {
 	return charger_handle.output_pulse_widht_percent;
 }
 
 
 
-uint8_t get_charging_akk (void) {
+uint8_t charging_get_akk (void) {
 	return charger_handle.charging_akk;
 }
 
-uint8_t get_charging_akk_mode (void) {
+uint8_t charging_get_akk_mode (void) {
 	return charger_handle.charging_akk_mode;
 }
 
-uint16_t get_charging_period (void) {
+uint16_t charging_get_period (void) {
 	return charger_handle.charging_period;
 }
 
-uint16_t get_charging_timing_positive_pulse (void) {
+uint16_t charging_get_timing_positive_pulse (void) {
 	return charger_handle.charging_timing_positive_pulse;
 }
 
-void set_charging_timing_positive_pulse (uint16_t time) {
+void charging_set_timing_positive_pulse (uint16_t time) {
 	if (time > 100)
 		charger_handle.charging_timing_positive_pulse = time;
 }
 
-uint16_t get_charging_timing_negative_pulse (void) {
+uint16_t charging_get_timing_negative_pulse (void) {
 	return charger_handle.charging_timing_negative_pulse;
 }
 
-void set_charging_timing_negative_pulse (uint16_t time) {
+void charging_set_timing_negative_pulse (uint16_t time) {
 	if (time > 100)
 		charger_handle.charging_timing_negative_pulse = time;
 }
 
-_Bool get_charging_need_disch_pulse (void) {
+_Bool charging_get_need_disch_pulse (void) {
 	return charger_handle.need_disch_pulse;
 }
 
-void set_charging_need_disch_pulse (_Bool value) {
+void charging_set_need_disch_pulse (_Bool value) {
 	charger_handle.need_disch_pulse = value;
 }
 
-CHARGER_STATUS set_charging_period (uint16_t time) {
+CHARGER_STATUS charging_set_period (uint16_t time) {
 	if ((time > 500) && (time < 32000))
 		return STATUS_ERROR_INIT;
 
@@ -276,7 +276,7 @@ CHARGER_STATUS set_charging_period (uint16_t time) {
 	return STATUS_OK;
 }
 
-CHARGER_STATUS set_charging_mode (uint8_t mode) {
+CHARGER_STATUS charging_set_mode (uint8_t mode) {
 	if (charger_handle.charging_akk_state == STATE_ON)
 		return STATUS_NEED_TURN_OFF;
 
@@ -323,7 +323,7 @@ void set_state_on_all_charging_gpio_inactive (void) {
 	GPIO_DISCHARGE_AKK2(INACTIVE);
 }
 
-CHARGER_STATUS set_charging_akk (uint8_t akk) {
+CHARGER_STATUS charging_set_akk (uint8_t akk) {
 	if (charger_handle.charging_akk_state == STATE_ON)
 		return STATUS_NEED_TURN_OFF;
 
@@ -339,7 +339,7 @@ CHARGER_STATUS set_charging_akk (uint8_t akk) {
 	return STATUS_OK;
 }
 
-CHARGER_STATUS start_charging_akk (void) {
+CHARGER_STATUS charging_start_akk (void) {
 	if (charger_handle.charging_akk_state == STATE_ON)
 		return STATUS_MULTIPLE_START;
 
@@ -357,7 +357,7 @@ CHARGER_STATUS start_charging_akk (void) {
 	return 0;
 }
 
-void stop_charging_akk (void) {
+void charging_stop_akk (void) {
 	charger_handle.charging_akk_state = STATE_OFF;
 	charger_handle.charging_timing_state = 0;
 	set_state_on_all_charging_gpio_inactive();
@@ -475,49 +475,49 @@ void charger_stop (void) {
 
 }
 
-CHARGER_STATUS set_charger_mode (uint8_t mode) {
+CHARGER_STATUS charger_set_mode (uint8_t mode) {
 	return 0;
 }
 
-CHARGER_STATUS set_charger_akk (uint8_t akk) {
+CHARGER_STATUS charger_set_akk (uint8_t akk) {
 	return 0;
 }
 
-CHARGER_STATUS set_charger_pulse_widght (uint16_t percent_widght) {
+CHARGER_STATUS charger_set_pulse_widght (uint16_t percent_widght) {
 	return 0;
 }
 
-uint8_t get_charger_mode (void) {
+uint8_t charger_get_mode (void) {
 	return 0;
 }
 
-uint8_t get_charger_output_akk (void) {
+uint8_t charger_get_output_akk (void) {
 	return 0;
 }
 
-uint8_t get_charger_output_pw (void) {
+uint8_t charger_get_output_pw (void) {
 	return 0;
 }
 
 
 
-CHARGER_STATUS set_charging_period (uint16_t time) {
+CHARGER_STATUS charging_set_period (uint16_t time) {
 	return 0;
 }
 
-CHARGER_STATUS set_charging_mode (uint8_t mode) {
+CHARGER_STATUS charging_set_mode (uint8_t mode) {
 	return 0;
 }
 
-CHARGER_STATUS set_charging_akk (uint8_t akk) {
+CHARGER_STATUS charging_set_akk (uint8_t akk) {
 	return 0;
 }
 
-CHARGER_STATUS start_charging_akk (void) {
+CHARGER_STATUS charging_start_akk (void) {
 	return 0;
 }
 
-void stop_charging_akk (void) {
+void charging_stop_akk (void) {
 	return 0;
 }
 
@@ -525,39 +525,39 @@ uint8_t get_charging_akk (void) {
 	return 0;
 }
 
-uint8_t get_charging_akk_mode (void) {
+uint8_t charging_get_akk_mode (void) {
 	return 0;
 }
 
-uint16_t get_charging_period (void) {
+uint16_t charging_get_period (void) {
 	return 0;
 }
 
 
 //for test
-uint16_t get_charging_timing_positive_pulse (void) {
+uint16_t charging_get_timing_positive_pulse (void) {
 	return 0;
 }
 
-uint16_t get_charging_timing_negative_pulse (void) {
+uint16_t charging_get_timing_negative_pulse (void) {
 	return 0;
 }
 
-_Bool get_charging_need_disch_pulse (void) {
+_Bool charging_get_need_disch_pulse (void) {
 	return 0;
 }
 
 
 //root set
-void set_charging_timing_positive_pulse (uint16_t time) {
+void charging_set_timing_positive_pulse (uint16_t time) {
 
 }
 
-void set_charging_timing_negative_pulse (uint16_t time) {
+void charging_set_timing_negative_pulse (uint16_t time) {
 
 }
 
-void set_charging_need_disch_pulse (_Bool value) {
+void charging_set_need_disch_pulse (_Bool value) {
 
 }
 
