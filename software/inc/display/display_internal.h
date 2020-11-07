@@ -13,15 +13,13 @@
 #define INIT 1
 #define DEINIT 0
 
-#define SHIFT_FOR_POINTER 0
 #define TYPES_SCREEN 0
-#define QUANTITY_STRINGS 1
-
-#define STRING_EQUAL 0 
 
 #define ERROR 0
+
 #define MAIN 1
 #define MAIN_WIDTH_LIMIT 2
+
 #define SIDE 2
 #define SIDE_WIDTH_LIMIT 1
 #define SIDE_LENGTH_LIMIT 3
@@ -41,6 +39,10 @@ uint8_t get_type(void);
 
 #define Cell_MAIN(x, y) (y * 2 + 2 + x) 
 #define Cell_SIDE(x, y) (x + y + 1)
+
+
+#define QUANTITY_STRINGS 1
+#define SHIFT_FOR_POINTER 0
 
 #define Get_value(type, cell, collum, string) \
 	if ((string >=  atoi(cell[SHIFT_FOR_POINTER][QUANTITY_STRINGS]) && \

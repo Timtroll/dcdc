@@ -40,6 +40,7 @@ void display_set_parameter(char * cell_data){
 	void set_transmit_string(char * value){
 		debug_transmit_string = value;
 	}
+	
 	char * get_transmit_string(void){
 		return debug_transmit_string;
 	}

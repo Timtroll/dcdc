@@ -7,12 +7,16 @@ uint8_t get_permission_status(void){
 }
 
 void change_permission_status(void){
-	if (permission_status == DISABLE)
+	switch (permission_status) {
+	case DISABLE:
 		permission_status = ENABLE;
-	else if (permission_status == ENABLE)
+	  	break;
+	case ENABLE:
 		permission_status = DISABLE;
-	else
+	  	break;
+	default:
 		permission_status = DISABLE;
+	} 
 }
 
 char * display_get_type_screen(void){
@@ -40,6 +44,8 @@ static char *** keeper_data(void){
 	return &_screen;
 }
 
+#define STRING_EQUAL 0 
+
 uint8_t get_type(void){
 	if (strcmp(display_get_type_screen(), "main") == STRING_EQUAL)
 		return MAIN;
@@ -47,6 +53,7 @@ uint8_t get_type(void){
 		return SIDE;
 	else return ERROR;
 }
+
 char * display_get_cell_value(int index_x, int index_y){
 	
 	char *** cell_value = keeper_data();
