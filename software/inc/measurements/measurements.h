@@ -8,6 +8,14 @@
 #define SAMPLE_TIME 1.00
 #define DISCHARGE_VOLTAGE 1.00
 
+void meas_charge_positive_pulse_start (void);
+void meas_charge_positive_pulse_stop (void);
+void meas_charge_period_end (void);
+void meas_charge_reset (void);
+
+void meas_charge_voltage_akk_save (void);
+
+
 float calc_charge (float voltage[], int size);
 int calc_discharge_time (float charge);
 
