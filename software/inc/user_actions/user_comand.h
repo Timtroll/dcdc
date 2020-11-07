@@ -1,20 +1,23 @@
 #ifndef _USER_COMAND_H_
 #define _USER_COMAND_H_
 
+#define DEBUG_COMAND 
 
 
 //maybe this part will be moved to separated block
 #define RESP_INVALID_PARAMETER  "invalid (must be 0 - 255)"
 
-#define CHARGER_START_RESPONSE 			"Status: Start"
-#define CHARGER_STOP_RESPONSE 			"Status: Stop"
-#define CHARGER_MODE_RESPONSE 			"You set the mode:"
-#define CHARGER_PULSE_WIDTH_RESPONSE 	"You set the pulse width:"
+#define CHARGER_START_RESPONSE 			 "Status: Start"
+#define CHARGER_STOP_RESPONSE 			 "Status: Stop"
+#define CHARGER_MODE_RESPONSE 			 "You set the mode:"
+#define CHARGER_AKK_RESPONSE 			 "You set the akk:"
+#define CHARGER_PULSE_WIDTH_RESPONSE 	 "You set the pulse width:"
 
-#define CHARGING_TIME_RESPONSE 			"You set the time:"
-#define CHARGING_START_AKK_1_RESPONSE 	"Charging: AKK 1"
-#define CHARGING_START_AKK_2_RESPONSE 	"Charging: AKK 2"
-#define CHARGING_STOP_RESPONSE 			"Charging: Stop"
+#define CHARGING_PERIOD_RESPONSE 		 "You set the time:"
+#define CHARGING_MODE_RESPONSE  		 "You set the charging mode:"
+#define CHARGING_AKK_RESPONSE   		 "Now charging:"
+#define CHARGING_START_RESPONSE 		 "Charging: Start"
+#define CHARGING_STOP_RESPONSE  		 "Charging: Stop"
 
 #define VOLTAGE_SCHEME_RESPONSE			 "Voltage scheme: "
 #define VOLTAGE_GENERATOR_RESPONSE 		 "Voltage generator: "
@@ -22,7 +25,7 @@
 #define VOLTAGE_FIRST_BATTERY_RESPONSE	 "Voltage first_battery: "
 #define VOLTAGE_SECOND_BATTERY_RESPONSE  "Voltage second_battery: "
 
-#define MAX_CMD_LEN      100//change this
+#define MAX_CMD_LEN      150//change this
 //	
 
 
@@ -31,18 +34,20 @@
 void set_charger_start(void);
 void set_charger_stop(void);
 void set_charger_mode(void);
+void set_charger_akk(void);
 void set_charger_pulse_width(void);
 
-#define START 				0
+#define START_CHARGER 		0
 #define STOP_CHARGER 		1
-#define MODE 				2
-#define PULSE_WIDTH 		3
+#define MODE_CHARGER 		2
+#define AKK_CHARGER         3
+#define PULSE_WIDTH 		4
 
-#define CHARGER_CMD_NUM 4
+#define CHARGER_CMD_NUM 5
 
 
 START_CMD_GROUP (charger_subcomands, CHARGER_CMD_NUM) {
-	[START] = {
+	[START_CHARGER] = {
 		.command = "start",
 		.response = CHARGER_START_RESPONSE,
 		.action = set_charger_start
@@ -53,10 +58,15 @@ START_CMD_GROUP (charger_subcomands, CHARGER_CMD_NUM) {
 		.response =  CHARGER_STOP_RESPONSE,
 		.action = set_charger_stop
 	},
-	[MODE] = {
+	[MODE_CHARGER] = {
 		.command = "mode",
 		.response =  CHARGER_MODE_RESPONSE,
 		.action = set_charger_mode
+	},
+	[AKK_CHARGER] = {
+		.command = "akk",
+		.response =  CHARGING_AKK_RESPONSE,
+		.action = set_charger_akk
 	},
 	[PULSE_WIDTH] = {
 		.command = "pulse_width",
@@ -70,34 +80,118 @@ START_CMD_GROUP (charger_subcomands, CHARGER_CMD_NUM) {
 };
 
 
-void set_charging_time(void);
-void set_charging_start_akk_1(void);
-void set_charging_start_akk_2(void);
+#ifdef DEBUG_COMAND
+
+#define CHARGING_T_POSITIVE_PULSE_RESPONSE 		 "Duration + pulse:"
+#define CHARGING_T_NEGATIVE_PULSE_RESPONSE 		 "Duration - pulse:"
+#define CHARGING_NEED_DISCH_PULSE_RESPONSE 		 "The need for negative pulse:"
+
+void set_charging_period(void);
+void set_charging_mode(void);
+void set_charging_akk(void);
+void set_charging_start(void);
 void set_charging_stop(void);
+void set_charging_t_positive_pulse(void);
+void set_charging_t_negative_pulse(void);
+void set_charging_need_disch_pulse(void);
 
-#define TIME 				0
-#define START_AKK_1 		1
-#define START_AKK_2 		2
-#define STOP_CHARGING 		3
+#define PERIOD 				0
+#define MODE_CHARGING       1
+#define AKK_CHARGING		2
+#define START_CHARGING		3
+#define STOP_CHARGING 		4
+#define T_POSITIVE_PULSE 	5
+#define T_NEGATIVE_PULSE 	6
+#define NEED_DISCH_PULSE 	7
 
-#define CHARGING_CMD_NUM 4
+#define CHARGING_CMD_NUM 8
 
 START_CMD_GROUP (charging_subcomands, CHARGING_CMD_NUM) {
-	[TIME] = {
-		.command = "time",
-		.response = CHARGING_TIME_RESPONSE,
-		.action = set_charging_time
+	[PERIOD] = {
+		.command = "period",
+		.response = CHARGING_PERIOD_RESPONSE,
+		.action = set_charging_period
 		
 	},
-	[START_AKK_1] = {
-		.command = "start_akk_1",
-		.response =  CHARGING_START_AKK_1_RESPONSE,
-		.action = set_charging_start_akk_1
+	[MODE_CHARGING] = {
+		.command = "mode",
+		.response =  CHARGING_MODE_RESPONSE,
+		.action = set_charging_mode
 	},
-	[START_AKK_2] = {
-		.command = "start_akk_2",
-		.response =  CHARGING_START_AKK_2_RESPONSE,
-		.action = set_charging_start_akk_2
+	[AKK_CHARGING] = {
+		.command = "akk",
+		.response =  CHARGING_AKK_RESPONSE,
+		.action = set_charging_akk
+	},
+	[START_CHARGING] = {
+		.command = "start",
+		.response =  CHARGING_START_RESPONSE,
+		.action = set_charging_start
+	},
+	[STOP_CHARGING] = {
+		.command = "stop",
+		.response =  CHARGING_STOP_RESPONSE,
+		.action = set_charging_stop
+	},
+	[T_POSITIVE_PULSE] = {
+		.command = "t_positive_pulse",
+		.response =  CHARGING_T_POSITIVE_PULSE_RESPONSE,
+		.action = set_charging_t_positive_pulse
+	},
+	[T_NEGATIVE_PULSE] = {
+		.command = "t_negative_pulse",
+		.response =  CHARGING_T_NEGATIVE_PULSE_RESPONSE,
+		.action = set_charging_t_negative_pulse
+	},
+	[NEED_DISCH_PULSE] = {
+		.command = "need_disch_pulse",
+		.response = CHARGING_NEED_DISCH_PULSE_RESPONSE ,
+		.action = set_charging_need_disch_pulse
+	}
+
+
+	END_CMD_GROUP_WITH_RESPONSE(
+		CHARGING_CMD_NUM,
+		RESP_INVALID_PARAMETER)
+};
+#else
+
+void set_charging_period(void);
+void set_charging_mode(void);
+void set_charging_akk(void);
+void set_charging_start(void);
+void set_charging_stop(void);
+
+
+#define PERIOD 				0
+#define MODE_CHARGING       1
+#define AKK_CHARGING		2
+#define START_CHARGING		3
+#define STOP_CHARGING 		4
+
+#define CHARGING_CMD_NUM 5
+
+START_CMD_GROUP (charging_subcomands, CHARGING_CMD_NUM) {
+	[PERIOD] = {
+		.command = "period",
+		.response = CHARGING_PERIOD_RESPONSE,
+		.action = set_charging_period
+		
+	},
+	[MODE_CHARGING] = {
+		.command = "mode",
+		.response =  CHARGING_MODE_RESPONSE,
+		.action = set_charging_mode
+	},
+	[AKK_CHARGING] = {
+		.command = "akk",
+		.response =  CHARGING_AKK_RESPONSE,
+		.action = set_charging_akk
+	},
+	[START_CHARGING] = {
+		.command = "start",
+		.response =  CHARGING_START_RESPONSE,
+		.action = set_charging_start
 	},
 	[STOP_CHARGING] = {
 		.command = "stop",
@@ -109,6 +203,9 @@ START_CMD_GROUP (charging_subcomands, CHARGING_CMD_NUM) {
 		CHARGING_CMD_NUM,
 		RESP_INVALID_PARAMETER)
 };
+
+
+#endif
 
 
 #define CHARGER 	0

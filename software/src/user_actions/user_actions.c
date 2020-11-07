@@ -15,7 +15,7 @@ char * get_user_response(void){
 	return user_response;
 }
 
-inline static void _write_response(char *answer){
+void _write_response(char *answer){
 	char internal_response [URESP_MAX_LEN];
 	memset(internal_response, ' ', URESP_MAX_LEN);
 	strncpy(internal_response, parser_response(), URESP_MAX_LEN);
@@ -59,84 +59,75 @@ void analysis_error_type(uint8_t error_type){
 	}
 }
 
-// #define RESPONSE(type,hardware_function, text_response) \
-// 	if (check_parameter(type, parser_parameter()) == SUCCESSFUL) \
-// 	{ \
-// 		hardware_function(); \
-// 		_write_response(text_response);\
-// 	}analysis_error_type(check_parameter(type, parser_parameter())); \
 
-void set_charger_start(void){
-	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)
+inline static void _do_action (
+							uint8_t type,
+							void  *(* hardware_function),
+							char *text_response
+							)
+{
+	if (check_parameter(type, parser_parameter()) == SUCCESSFUL)
 	{	
 		//hardware_func();
-		_write_response("");
+		_write_response(text_response);
 	} else
-		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
+		analysis_error_type(check_parameter(type, parser_parameter()));
 }
+void set_charger_start(void){
+	_do_action(OTHERS, analysis_error_type, "");
+}
+
 void set_charger_stop(void){
-	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)
-	{
-		//hardware_func();
-		_write_response("");
-	} else
-		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
+	_do_action(OTHERS, analysis_error_type, "");
 }
 
 void set_charger_mode(void) {
-	if (check_parameter(MODE_PARAMETER, parser_parameter()) == SUCCESSFUL)
-	{
-		//hardware_func();
-		_write_response(parser_parameter());
-	} else
-		analysis_error_type(check_parameter(MODE_PARAMETER, parser_parameter()));
+	_do_action(MODE_CHARGER_PARAMETER, analysis_error_type, parser_parameter());
+}
+
+void set_charger_akk(void) {
+	_do_action(AKK_CHARGER_PARAMETER, analysis_error_type, parser_parameter());
 }
 
 void set_charger_pulse_width(void){
-	if (check_parameter(PULSE_WIDTH_PARAMETER, parser_parameter()) == SUCCESSFUL)
-	{
-		//hardware_func();
-		_write_response(parser_parameter());
-	} else
-		analysis_error_type(check_parameter(PULSE_WIDTH_PARAMETER, parser_parameter()));
+	_do_action(PULSE_WIDTH_PARAMETER, analysis_error_type, parser_parameter());
 }
 
 
 
-void set_charging_time(void){
-	if (check_parameter(TIME_PARAMETER, parser_parameter()) == SUCCESSFUL)
-	{
-		//hardware_func();
-		_write_response(parser_parameter());
-	} else
-		analysis_error_type(check_parameter(TIME_PARAMETER, parser_parameter()));
+
+
+void set_charging_period(void){
+	_do_action(PERIOD_PARAMETER, analysis_error_type, parser_parameter());
 }
-void set_charging_start_akk_1(void){
-	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)
-	{
-		//hardware_func();
-		_write_response("");
-	} else
-		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
+
+void set_charging_mode(void){
+	_do_action(MODE_CHARGING_PARAMETER, analysis_error_type, parser_parameter());
 }
-void set_charging_start_akk_2(void){
-	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)
-	{
-		//hardware_func();
-		_write_response("");
-	} else
-		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
+
+void set_charging_akk(void){
+	_do_action(AKK_CHARGING_PARAMETER, analysis_error_type, parser_parameter());
 }
+
+void set_charging_start(void){
+	_do_action(OTHERS, analysis_error_type, "");
+}
+
 void set_charging_stop(void){
-	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL)
-	{
-		//hardware_func();
-		_write_response("");
-	} else
-		analysis_error_type(check_parameter(OTHERS, parser_parameter()));
+	_do_action(OTHERS, analysis_error_type, "");
 }
 
-
+#ifdef DEBUG_COMAND
+void set_charging_t_positive_pulse(void){
+	_do_action(T_POSITIVE_PULSE_PARAMETER, analysis_error_type, parser_parameter());
+}
+void set_charging_t_negative_pulse(void){
+	_do_action(T_NEGATIVE_PULSE_PARAMETER, analysis_error_type, parser_parameter());
+}
+void set_charging_need_disch_pulse(void){
+	_do_action(NEED_DISCH_PULSE_PARAMETER, analysis_error_type, parser_parameter());
+}
+#endif
 
 
 

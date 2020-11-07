@@ -85,12 +85,17 @@ uint8_t check_parameter(uint8_t type_parameter, char *parameter){
 
 
 	switch (type_parameter){
-		case MODE_PARAMETER:
-			if (strncmp(compared_strings, "akk1", 4) == 0 || 
-				strncmp(compared_strings, "akk2", 4) == 0 ||
-			 	strncmp(compared_strings, "gen", 3) == 0)
+		case MODE_CHARGER_PARAMETER:
+			if ((strncmp(compared_strings, "akk", MODE_LENGTH) == 0 || 
+			 	strncmp(compared_strings, "gen", MODE_LENGTH) == 0) &&
+			 	strlen(compared_strings) == MODE_LENGTH){
 				return SUCCESSFUL;
+				}
 			else return UNEXISTING_CHARGER;	
+		break;
+
+		case AKK_CHARGER_PARAMETER:
+			return 0;
 		break;
 
 		case PULSE_WIDTH_PARAMETER:
@@ -102,10 +107,10 @@ uint8_t check_parameter(uint8_t type_parameter, char *parameter){
 			return INCORRECT_PULSE_WIDTH;
 		break;
 
-		case TIME_PARAMETER:
+		case PERIOD_PARAMETER:
 			if (SUCCESSFUL != extra_letters(compared_strings, symbol_ctnr))
 				return INCORRECT_PARAMETER_INPUT;
-	
+
 			if (atoi(compared_strings) < LOWER_LIMIT_TIME)
 				return LESS_POSSIBLE;
 			else if (atoi(compared_strings) > UPPER_LIMIT_TIME)
@@ -114,9 +119,36 @@ uint8_t check_parameter(uint8_t type_parameter, char *parameter){
 			return INCORRECT_PARAMETER_INPUT;
 		break;
 
+		case MODE_CHARGING_PARAMETER:
+			return 0;
+		break;
+
+		case AKK_CHARGING_PARAMETER:
+			return 0;
+		break;
+
 		case OTHERS:
 			return UNNECESSARY_PARAMETERS;
 		break;
+
+
+		#ifdef DEBUG_COMAND
+			
+		
+		case T_POSITIVE_PULSE_PARAMETER:
+			return 0;
+		break;
+
+		case T_NEGATIVE_PULSE_PARAMETER:
+			return 0;
+		break;
+
+		case NEED_DISCH_PULSE_PARAMETER:
+			return 0;
+		break;
+
+		#endif
+
 
 		default:
 			return UNKNOWN_TYPE; 
