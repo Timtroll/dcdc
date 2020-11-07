@@ -53,6 +53,9 @@ void hrtim_reset_timer (void);
 void gpio_charge_akk (uint8_t charging_akk, _Bool state);
 void gpio_discharge_akk (uint8_t charging_akk, _Bool state);
 
+void charging_akk_mode_default (void);
+void charging_akk_mode_one_akk (void);
+void charging_akk_mode_discharge (void);
 
 HRTIM_CompareCfgTypeDef channel_compare_cfg = {
 	.AutoDelayedMode = HRTIM_AUTODELAYEDMODE_REGULAR,
