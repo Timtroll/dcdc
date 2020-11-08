@@ -72,7 +72,10 @@ void charger_init (void) {
 		.charger_output_state = STATE_OFF,
 		.charging_akk = CHARGING_AKK_NONE,
 		.charging_akk_mode = CHARGING_AKK_MODE_DEFAULT,
-		.need_disch_pulse = false
+		.need_disch_pulse = false,
+		.charging_period = 6000,
+		.charging_timing_positive_pulse = 2000,
+		.charging_timing_negative_pulse = 2000
 	};
 }
 
