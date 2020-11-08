@@ -371,6 +371,9 @@ void charging_stop_akk (void) {
 	meas_charge_reset();
 }
 
+void charging_akk_switch (void) {
+	charger_handle.need_switch_akk = true;
+}
 
 
 uint16_t charge_akk (void) {
@@ -407,14 +410,32 @@ uint16_t charge_akk (void) {
 
 
 void charging_akk_mode_default (void) {
-	// temp
-	//
 	charging_akk_mode_one_akk();
 
-	//change akk logic
+	if (charger_handle.need_switch_akk == true) {
+		charging_stop_akk();
 
-	// correct time work
-	// changing charging akk
+		if (charger_handle.charger_mode == CHARGER_MODE_AKK) {
+			charger_stop();
+
+			if (charger_handle.charger_output_state == OUTPUT_MODE_AKK1) {
+				charger_set_akk(CHARGER_OUTPUT_AKK_2);
+			}
+			else if (charger_handle.charger_output_state == OUTPUT_MODE_AKK2) {
+				charger_set_akk(CHARGER_OUTPUT_AKK_1);
+			}
+			charger_start();
+		}
+
+		if (charger_handle.charging_akk == CHARGING_AKK_1)
+			charging_set_akk(CHARGING_AKK_2);
+		else if (charger_handle.charging_akk == CHARGING_AKK_2)
+			charging_set_akk(CHARGING_AKK_1);
+
+		charging_start_akk();
+
+		charger_handle.need_switch_akk = false;
+	}
 }
 
 void charging_akk_mode_one_akk (void) {
