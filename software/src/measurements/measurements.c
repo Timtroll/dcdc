@@ -78,7 +78,7 @@ void meas_charge_voltage_akk_save (void) {
 
 
 
-float calc_charge (float voltage[], int size) {
+float meas_calc_charge (float voltage[], int size) {
 	float charge = 0;
 
 	for(int i = 0; i < size; i++) {
@@ -90,7 +90,7 @@ float calc_charge (float voltage[], int size) {
 	return charge;
 }
 
-int calc_discharge_time (float charge) {
+int meas_calc_discharge_time (float charge) {
 	int time = 0;
 
 	time = charge / (10 * DISCHARGE_VOLTAGE);

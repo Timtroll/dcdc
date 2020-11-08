@@ -16,8 +16,8 @@ void meas_charge_reset (void);
 void meas_charge_voltage_akk_save (void);
 
 
-float calc_charge (float voltage[], int size);
-int calc_discharge_time (float charge);
+float meas_calc_charge (float voltage[], int size);
+int meas_calc_discharge_time (float charge);
 
 #endif//_MEASUREMENTS_H_
 
