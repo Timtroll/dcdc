@@ -251,7 +251,7 @@ uint16_t charging_get_timing_positive_pulse (void) {
 }
 
 void charging_set_timing_positive_pulse (uint16_t time) {
-	if (time > 100)
+	if ((time > 100) && (charger_handle.charging_period - 30 > time))
 		charger_handle.charging_timing_positive_pulse = time;
 }
 
@@ -260,7 +260,7 @@ uint16_t charging_get_timing_negative_pulse (void) {
 }
 
 void charging_set_timing_negative_pulse (uint16_t time) {
-	if (time > 100)
+	if ((time > 100) && (charger_handle.charging_period - 30 > time))
 		charger_handle.charging_timing_negative_pulse = time;
 }
 
