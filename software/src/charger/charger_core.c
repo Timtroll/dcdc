@@ -3,6 +3,7 @@
 #ifndef DEBUG_SOFTWARE
 
 #include "measurements_core.h"
+#include "measurements.h"
 #include "FreeRTOS.h"
 #include "cmsis_os.h"
 #include "hrtim.h"
@@ -364,18 +365,21 @@ void charging_stop_akk (void) {
 	charger_handle.charging_akk_state = STATE_OFF;
 	charger_handle.charging_timing_state = 0;
 	set_state_on_all_charging_gpio_inactive();
+	meas_charge_reset();
 }
 
 
 
 uint16_t charge_akk (void) {
 	if (charger_handle.charging_timing_state == 0) {
+		meas_charge_positive_pulse_start();
 		gpio_charge_akk(charger_handle.charging_akk, ACTIVE);
 		charger_handle.charging_timing_state++;
 
 		return charger_handle.charging_timing_positive_pulse;
 	}
 	else if (charger_handle.charging_timing_state == 1) {
+		meas_charge_positive_pulse_stop();
 		gpio_charge_akk(charger_handle.charging_akk, INACTIVE);
 		charger_handle.charging_timing_state++;
 
@@ -383,6 +387,7 @@ uint16_t charge_akk (void) {
 				charger_handle.charging_timing_positive_pulse;
 	}
 	else if (charger_handle.charging_timing_state == 2) {
+		meas_charge_period_end();
 		gpio_discharge_akk(charger_handle.charging_akk, ACTIVE);
 		charger_handle.charging_timing_state++;
 
@@ -416,8 +421,10 @@ void charging_akk_mode_one_akk (void) {
 		//charger_handle.charging_timing_negative_pulse = calc negative pulse width
 		//charger_handle.charging_timing_positive_pulse = calc next positive pulse
 
-		if (charger_handle.need_disch_pulse == 0)
+		if (charger_handle.need_disch_pulse == 0) {
 			charger_handle.charging_timing_state = 0;
+			meas_charge_period_end();
+		}
 	}
 
 	osDelay(charge_akk());

@@ -1,4 +1,5 @@
 #include "measurements_internal.h"
+#include "measurements_core.h"
 #include "charger_core.h"
 
 // char * get_for_voltage_cut_off (void) {
