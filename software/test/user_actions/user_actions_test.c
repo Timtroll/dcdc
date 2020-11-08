@@ -479,37 +479,37 @@ TEST(user_action, set_charging_actions){
 	parser_action()();
 	TEST_ASSERT_EQUAL_STRING("You set the time: 754", get_user_response());		
 
-	// parse("set charging mode default");
-	// parser_action()();
-	// TEST_ASSERT_EQUAL_STRING("You set the charging mode: default", get_user_response());	
+	parse("set charging mode default");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("You set the charging mode: default", get_user_response());	
 
-	// parse("set charging akk akk1");
-	// parser_action()();
-	// TEST_ASSERT_EQUAL_STRING("Now charging: akk1", get_user_response());	
+	parse("set charging akk akk1");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Now charging: akk1", get_user_response());	
 
-	// parse("set charging start");
-	// parser_action()();
-	// TEST_ASSERT_EQUAL_STRING("Charging: Start", get_user_response());	
+	parse("set charging start");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Charging: Start", get_user_response());	
 
 	parse("set charging stop");
 	parser_action()();
 	TEST_ASSERT_EQUAL_STRING("Charging: Stop", get_user_response());
 
-	// parse("set charging t_positive_pulse 45");
-	// parser_action()();
-	// TEST_ASSERT_EQUAL_STRING("Duration + pulse: ", get_user_response());	
+	parse("set charging t_positive_pulse 45");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Duration + pulse: 45", get_user_response());	
 
-	// parse("set charging t_negative_pulse 45");
-	// parser_action()();
-	// TEST_ASSERT_EQUAL_STRING("Duration - pulse: ", get_user_response());		
+	parse("set charging t_negative_pulse 45");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Duration - pulse: 45", get_user_response());		
 
-	// parse("set charging need_disch_pulse false");
-	// parser_action()();
-	// TEST_ASSERT_EQUAL_STRING("The need for negative pulse: ", get_user_response());
+	parse("set charging need_disch_pulse false");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("The need for negative pulse: false", get_user_response());
 
-	// parse("set charging need_disch_pulse true");
-	// parser_action()();
-	// TEST_ASSERT_EQUAL_STRING("The need for negative pulse: ", get_user_response());
+	parse("set charging need_disch_pulse true");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("The need for negative pulse: true", get_user_response());
 	
 }
 

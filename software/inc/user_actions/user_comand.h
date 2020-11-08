@@ -274,6 +274,81 @@ START_CMD_GROUP (voltage_subcomands, VOLTAGE_CMD_NUM) {
 };
 
 
+#ifdef DEBUG_COMAND
+
+#define G_CHARGING_T_POSITIVE_PULSE_RESPONSE				"The positive pulse is now:" 
+#define G_CHARGING_T_NEGATIVE_PULSE_RESPONSE				"The negative pulse is now:"
+#define G_CHARGING_NEED_DISCH_PULSE_RESPONSE				"The need for negative pulse:"
+#define G_CHARGING_PULSE_POWER_RESPONSE 					"The amount of charge transferred:"
+#define G_CHARGING_FALL_PULSE_RESPONSE 						"Voltage drop ratio:"
+
+void get_charging_t_positive_pulse(void);
+void get_charging_t_negative_pulse(void);
+void get_charging_need_disch_pulse(void);
+void get_charging_pulse_power(void);
+void get_charging_fall_pulse(void);
+
+#define G_CHARGING_T_POSITIVE_PULSE 			0
+#define G_CHARGING_T_NEGATIVE_PULSE 			1
+#define G_CHARGING_NEED_DISCH_PULSE 			2
+#define G_CHARGING_PULSE_POWER 					3
+#define G_CHARGING_FALL_PULSE 					4
+
+#define G_CHARGING_CMD_NUM 5
+
+
+START_CMD_GROUP (g_charging_subcomands, G_CHARGING_CMD_NUM) {
+	[G_CHARGING_T_POSITIVE_PULSE] = {
+		.command = "t_positive_pulse",
+		.response = G_CHARGING_T_POSITIVE_PULSE_RESPONSE,
+		.action = get_charging_t_positive_pulse
+	},
+	[G_CHARGING_T_NEGATIVE_PULSE] = {
+		.command = "t_negative_pulse",
+		.response = G_CHARGING_T_NEGATIVE_PULSE_RESPONSE,
+		.action = get_charging_t_negative_pulse
+	},
+	[G_CHARGING_NEED_DISCH_PULSE] = {
+		.command = "need_disch_pulse",
+		.response =  G_CHARGING_NEED_DISCH_PULSE_RESPONSE,
+		.action = get_charging_need_disch_pulse
+	},
+	[G_CHARGING_PULSE_POWER] = {
+		.command = "pulse_power",
+		.response =  G_CHARGING_PULSE_POWER_RESPONSE,
+		.action = get_charging_pulse_power
+	},
+	[G_CHARGING_FALL_PULSE] = {
+		.command = "fall_pulse",
+		.response =  G_CHARGING_FALL_PULSE_RESPONSE,
+		.action = get_charging_fall_pulse
+	}
+	
+
+	END_CMD_GROUP_WITH_RESPONSE(
+		G_CHARGING_CMD_NUM,
+		RESP_INVALID_PARAMETER)
+};
+
+
+#define VOLTAGE 0
+#define G_CHARGING 1
+
+#define GET_COMANDS_NUM  	2
+
+START_CMD_GROUP (get_parameter_subcomands, GET_COMANDS_NUM) {
+	[VOLTAGE] = {
+		.command = "voltage",
+		.subcommand = SUBCOMMAND(voltage_subcomands)
+	},
+	[G_CHARGING] = {
+		.command = "charging",
+		.subcommand = SUBCOMMAND(g_charging_subcomands)
+	}
+	END_CMD_GROUP(GET_COMANDS_NUM)
+};
+
+#else
 #define VOLTAGE 0
 
 #define GET_COMANDS_NUM  	1
@@ -285,6 +360,8 @@ START_CMD_GROUP (get_parameter_subcomands, GET_COMANDS_NUM) {
 	}
 	END_CMD_GROUP(GET_COMANDS_NUM)
 };
+#endif
+
 
 #define SET_CMD_NUM 	1
 #define GET_CMD_NUM  	0
@@ -302,7 +379,6 @@ START_CMD_GROUP (groups_of_commands, ALL_COMANDS_NUM) {
 	}
 	END_CMD_GROUP(ALL_COMANDS_NUM)
 };
-
 
 
 #endif//_USER_COMAND_H_

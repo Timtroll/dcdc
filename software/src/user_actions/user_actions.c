@@ -59,38 +59,50 @@ void analysis_error_type(uint8_t error_type){
 	}
 }
 
-
-inline static void _do_action (
-							uint8_t type,
-							void  *(* hardware_function),
-							char *text_response
-							)
+void analysis_hardware_status();
+typedef struct response
 {
-	if (check_parameter(type, parser_parameter()) == SUCCESSFUL)
+	uint8_t 
+		type,
+		stop_start_func;
+	void *(* hardware_function)();
+	char *text_response;
+	bool 
+		accept_parameters, 
+		defined_num;
+} response_t;
+
+response_t response; 
+
+void _do_action (response_t sending_string)
+{
+	if (check_parameter(sending_string.type, parser_parameter()) == SUCCESSFUL)
 	{	
-		//hardware_func();
-		_write_response(text_response);
+		//hardware action
+		_write_response(sending_string.text_response);
 	} else
-		analysis_error_type(check_parameter(type, parser_parameter()));
+		analysis_error_type(check_parameter(sending_string.type, parser_parameter()));
 }
+
 void set_charger_start(void){
-	_do_action(OTHERS, analysis_error_type, "");
+	//_do_action(OTHERS, analysis_error_type, "");
 }
 
 void set_charger_stop(void){
-	_do_action(OTHERS, analysis_error_type, "");
+	//_do_action(OTHERS, analysis_error_type, "");
 }
 
 void set_charger_mode(void) {
-	_do_action(MODE_CHARGER_PARAMETER, analysis_error_type, parser_parameter());
+	
+	//_do_action(response);
 }
 
 void set_charger_akk(void) {
-	_do_action(AKK_CHARGER_PARAMETER, analysis_error_type, parser_parameter());
+	//_do_action(AKK_CHARGER_PARAMETER, analysis_error_type, parser_parameter());
 }
 
 void set_charger_pulse_width(void){
-	_do_action(PULSE_WIDTH_PARAMETER, analysis_error_type, parser_parameter());
+	//_do_action(PULSE_WIDTH_PARAMETER, analysis_error_type, parser_parameter());
 }
 
 
@@ -98,35 +110,52 @@ void set_charger_pulse_width(void){
 
 
 void set_charging_period(void){
-	_do_action(PERIOD_PARAMETER, analysis_error_type, parser_parameter());
+	//_do_action(PERIOD_PARAMETER, analysis_error_type, parser_parameter());
 }
 
 void set_charging_mode(void){
-	_do_action(MODE_CHARGING_PARAMETER, analysis_error_type, parser_parameter());
+	//_do_action(MODE_CHARGING_PARAMETER, analysis_error_type, parser_parameter());
 }
 
 void set_charging_akk(void){
-	_do_action(AKK_CHARGING_PARAMETER, analysis_error_type, parser_parameter());
+	//_do_action(AKK_CHARGING_PARAMETER, analysis_error_type, parser_parameter());
 }
 
 void set_charging_start(void){
-	_do_action(OTHERS, analysis_error_type, "");
+	//_do_action(OTHERS, analysis_error_type, "");
 }
 
 void set_charging_stop(void){
-	_do_action(OTHERS, analysis_error_type, "");
+	//_do_action(OTHERS, analysis_error_type, "");
 }
 
 #ifdef DEBUG_COMAND
 void set_charging_t_positive_pulse(void){
-	_do_action(T_POSITIVE_PULSE_PARAMETER, analysis_error_type, parser_parameter());
+	//_do_action(T_POSITIVE_PULSE_PARAMETER, analysis_error_type, parser_parameter());
 }
 void set_charging_t_negative_pulse(void){
-	_do_action(T_NEGATIVE_PULSE_PARAMETER, analysis_error_type, parser_parameter());
+	//_do_action(T_NEGATIVE_PULSE_PARAMETER, analysis_error_type, parser_parameter());
 }
 void set_charging_need_disch_pulse(void){
-	_do_action(NEED_DISCH_PULSE_PARAMETER, analysis_error_type, parser_parameter());
+	//_do_action(NEED_DISCH_PULSE_PARAMETER, analysis_error_type, parser_parameter());
 }
+
+void get_charging_t_positive_pulse(void){
+
+}
+void get_charging_t_negative_pulse(void){
+
+}
+void get_charging_need_disch_pulse(void){
+
+}
+void get_charging_pulse_power(void){
+	//returned float !!
+}
+void get_charging_fall_pulse(void){
+
+}
+
 #endif
 
 

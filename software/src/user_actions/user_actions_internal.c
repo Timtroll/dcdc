@@ -5,6 +5,7 @@
 #define WORD_END 2
 #define PHRASE_END 3
 
+#define Str_comparate(parameter, const_string) ((strncmp(parameter, const_string, strlen(const_string)) == 0) && (strlen(parameter) == strlen(const_string)))  
 
 static inline uint8_t extra_letters(char *string, uint8_t cntr){
 	if (strlen(string) > MAX_LEN)
@@ -83,12 +84,10 @@ uint8_t check_parameter(uint8_t type_parameter, char *parameter){
 	memset(compared_strings, 0, MAX_LEN);
 	strncpy(compared_strings, compute_parameter, strlen(compute_parameter));
 
-
 	switch (type_parameter){
 		case MODE_CHARGER_PARAMETER:
-			if ((strncmp(compared_strings, "akk", MODE_LENGTH) == 0 || 
-			 	strncmp(compared_strings, "gen", MODE_LENGTH) == 0) &&
-			 	strlen(compared_strings) == MODE_LENGTH){
+			if (Str_comparate(compared_strings, "akk") || 
+			 	Str_comparate(compared_strings, "gen")){
 				return SUCCESSFUL;
 				}
 			else return UNEXISTING_CHARGER;	
@@ -120,11 +119,20 @@ uint8_t check_parameter(uint8_t type_parameter, char *parameter){
 		break;
 
 		case MODE_CHARGING_PARAMETER:
-			return 0;
+			if ( Str_comparate(compared_strings, "default") || 
+			 	 Str_comparate(compared_strings, "one_akk") ||
+			 	 Str_comparate(compared_strings, "full_discharge")){
+				return SUCCESSFUL;
+				}
+			else return INCORRECT_PARAMETER_INPUT;	
 		break;
 
 		case AKK_CHARGING_PARAMETER:
-			return 0;
+			if ( Str_comparate(compared_strings, "akk1") || 
+			 	 Str_comparate(compared_strings, "akk2") ){
+				return SUCCESSFUL;
+				}
+			else return INCORRECT_PARAMETER_INPUT;	
 		break;
 
 		case OTHERS:
@@ -136,15 +144,23 @@ uint8_t check_parameter(uint8_t type_parameter, char *parameter){
 			
 		
 		case T_POSITIVE_PULSE_PARAMETER:
-			return 0;
+			if (atoi(compared_strings) >= 10 && atoi(compared_strings) <= 32000)
+				return SUCCESSFUL;
+			return INCORRECT_PARAMETER_INPUT;
 		break;
 
 		case T_NEGATIVE_PULSE_PARAMETER:
-			return 0;
+			if (atoi(compared_strings) >= 10 && atoi(compared_strings) <= 32000)
+				return SUCCESSFUL;
+			return INCORRECT_PARAMETER_INPUT;
 		break;
 
 		case NEED_DISCH_PULSE_PARAMETER:
-			return 0;
+			if ( Str_comparate(compared_strings, "true") || 
+			 	 Str_comparate(compared_strings, "false")){
+				return SUCCESSFUL;
+				}
+			else return INCORRECT_PARAMETER_INPUT;	
 		break;
 
 		#endif

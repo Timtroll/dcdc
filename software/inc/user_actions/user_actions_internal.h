@@ -10,8 +10,7 @@
 #define LOWER_LIMIT_TIME 500
 #define LOWER_WIDTH 2
 #define TOP_WIDTH 49
-#define MODE_LENGTH 3
-
+#define MODE_CHARGER_LENGTH 3
 
 
 enum error_type
