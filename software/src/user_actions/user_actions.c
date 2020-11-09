@@ -242,7 +242,7 @@ void set_charging_t_negative_pulse(void){
 	memset(&response, 0, sizeof(response));
 }
 void set_charging_need_disch_pulse(void){
-	Constructor_response(NEED_DISCH_PULSE_PARAMETER, DIFFERENT_FUNC, charging_get_need_disch_pulse, false, false);
+	Constructor_response(NEED_DISCH_PULSE_PARAMETER, DIFFERENT_FUNC, charging_get_need_disch_pulse, true, false);
 	_do_action(response);
 	memset(&response, 0, sizeof(response));
 }

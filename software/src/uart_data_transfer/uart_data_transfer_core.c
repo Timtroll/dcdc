@@ -16,7 +16,7 @@
 #define TX_DATA_COMPLETE   2
 #define NEED_TRANSMIT_DATA 4
 
-#define MIN_LEN_COMMAND 15
+#define MIN_LEN_COMMAND 5
 
 uint8_t rx_uart_data[MAX_SIZE_RX_UART_DATA + 1] = {};
 EventGroupHandle_t uart_data_transfer_events = 0;
@@ -59,9 +59,9 @@ void HAL_UART_IDLE_Callback (UART_HandleTypeDef *huart) {
 			return;
 
 		uint8_t command_len = strlen((const char *)rx_uart_data);
-		if (rx_uart_data[command_len - 1] != '\r')
-			return;
-		rx_uart_data[command_len - 1] = '\0';
+//		if (rx_uart_data[command_len - 1] != '\r')
+//			return;
+//		rx_uart_data[command_len - 1] = '\0';
 
 
 		if(tx_complete == false)

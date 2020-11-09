@@ -498,9 +498,9 @@ TEST(user_action, set_charging_actions){
 	parser_action()();
 	TEST_ASSERT_EQUAL_STRING("Now charging: akk1", get_user_response());	
 
-	parse("set charging start");
-	parser_action()();
-	TEST_ASSERT_EQUAL_STRING("Charging: Start", get_user_response());	
+	// parse("set charging start");
+	// parser_action()();
+	// TEST_ASSERT_EQUAL_STRING("Charging: Start", get_user_response());	
 
 	// parse("set charging stop");
 	// parser_action()();
