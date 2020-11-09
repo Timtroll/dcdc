@@ -57,7 +57,8 @@ typedef struct _charger_handle {
 		;
 	_Bool
 		charging_akk_state, // ON / OFF
-		need_disch_pulse // TRUE / FALSE
+		need_disch_pulse, // TRUE / FALSE
+		need_switch_akk
 		;
 } ts_charger_handle;
 
@@ -94,10 +95,14 @@ uint8_t charging_get_akk (void);
 uint8_t charging_get_akk_mode (void);
 uint16_t charging_get_period (void);
 
+void charging_akk_switch (void);
+
 //for test
 uint16_t charging_get_timing_positive_pulse (void);
 uint16_t charging_get_timing_negative_pulse (void);
 _Bool charging_get_need_disch_pulse (void);
+float charging_pulse_power (void);
+float charging_fall_pulse (void);
 
 //root set
 void charging_set_timing_positive_pulse (uint16_t time);

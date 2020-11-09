@@ -1,4 +1,5 @@
 #include "measurements_core.h"
+#include "measurements.h"
 
 #ifndef DEBUG_SOFTWARE
 
@@ -27,6 +28,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 		akk2_voltage = adc1_measurements[1];
 		output_voltage = adc1_measurements[2];
 //		adc1_in12
+		meas_charge_voltage_akk_save();
 	}
 	else if(hadc->Instance == ADC2) {
 		generator_voltage = adc2_measurements[0];
