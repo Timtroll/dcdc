@@ -375,6 +375,14 @@ void charging_akk_switch (void) {
 	charger_handle.need_switch_akk = true;
 }
 
+float charging_pulse_power (void) {
+	return meas_calc_charge();
+}
+
+//TODO temp
+float charging_fall_pulse (void) {
+	return 0;
+}
 
 uint16_t charge_akk (void) {
 	if (charger_handle.charging_timing_state == 0) {
@@ -418,10 +426,10 @@ void charging_akk_mode_default (void) {
 		if (charger_handle.charger_mode == CHARGER_MODE_AKK) {
 			charger_stop();
 
-			if (charger_handle.charger_output_state == OUTPUT_MODE_AKK1) {
+			if (charger_handle.output_mode == OUTPUT_MODE_AKK1) {
 				charger_set_akk(CHARGER_OUTPUT_AKK_2);
 			}
-			else if (charger_handle.charger_output_state == OUTPUT_MODE_AKK2) {
+			else if (charger_handle.output_mode == OUTPUT_MODE_AKK1) {
 				charger_set_akk(CHARGER_OUTPUT_AKK_1);
 			}
 			charger_start();

@@ -12,17 +12,17 @@ uint8_t meas_charge_state = MEAS_CHARGE_RESET;
 float charge_positiv_pulse_array [SIZE_CHARGE_ARRAYS] = {},
 	  charge_neutral_pulse_array [SIZE_CHARGE_ARRAYS] = {};
 
-uint16_t count_meas_charge_positive_pulse = 0,
-		 count_meas_charge_neutral_pulse = 0;
+uint16_t num_meas_charge_positive_pulse = 0,
+		 num_meas_charge_neutral_pulse = 0;
 
 void meas_charge_positive_pulse_start (void) {
 	meas_charge_state = MEAS_CHARGE_POSITIVE_PULSE_START;
-	count_meas_charge_positive_pulse = 0;
+	num_meas_charge_positive_pulse = 0;
 }
 
 void meas_charge_positive_pulse_stop (void) {
 	meas_charge_state = MEAS_CHARGE_POSITIVE_PULSE_END;
-	count_meas_charge_neutral_pulse = 0;
+	num_meas_charge_neutral_pulse = 0;
 }
 
 void meas_charge_period_end (void) {
@@ -42,26 +42,26 @@ void meas_charge_voltage_akk_save (void) {
 
 	if (meas_charge_state == MEAS_CHARGE_POSITIVE_PULSE_START) {
 		if (akk == CHARGING_AKK_1) {
-			charge_positiv_pulse_array[count_meas_charge_positive_pulse] =
+			charge_positiv_pulse_array[num_meas_charge_positive_pulse] =
 					meas_get_voltage_akk1();
-			count_meas_charge_positive_pulse++;
+			num_meas_charge_positive_pulse++;
 		}
 		else if (akk == CHARGING_AKK_2) {
-			charge_positiv_pulse_array[count_meas_charge_positive_pulse] =
+			charge_positiv_pulse_array[num_meas_charge_positive_pulse] =
 					meas_get_voltage_akk2();
-			count_meas_charge_positive_pulse++;
+			num_meas_charge_positive_pulse++;
 		}
 	}
 	else if (meas_charge_state == MEAS_CHARGE_POSITIVE_PULSE_END) {
 		if (akk == CHARGING_AKK_1) {
-			charge_neutral_pulse_array[count_meas_charge_neutral_pulse] =
+			charge_neutral_pulse_array[num_meas_charge_neutral_pulse] =
 					meas_get_voltage_akk1();
-			count_meas_charge_neutral_pulse++;
+			num_meas_charge_neutral_pulse++;
 		}
 		else if (akk == CHARGING_AKK_2) {
-			charge_neutral_pulse_array[count_meas_charge_neutral_pulse] =
+			charge_neutral_pulse_array[num_meas_charge_neutral_pulse] =
 					meas_get_voltage_akk2();
-			count_meas_charge_neutral_pulse++;
+			num_meas_charge_neutral_pulse++;
 		}
 	}
 
@@ -69,11 +69,11 @@ void meas_charge_voltage_akk_save (void) {
 
 
 
-float meas_calc_charge (float voltage[], int size) {
+float meas_calc_charge (void) {
 	float charge = 0;
 
-	for(int i = 0; i < size; i++) {
-		charge += voltage[i]; 
+	for(int i = 0; i < num_meas_charge_positive_pulse; i++) {
+		charge += charge_positiv_pulse_array[i];
 	}
 	
 	charge *= SAMPLE_TIME;

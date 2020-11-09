@@ -101,6 +101,8 @@ void charging_akk_switch (void);
 uint16_t charging_get_timing_positive_pulse (void);
 uint16_t charging_get_timing_negative_pulse (void);
 _Bool charging_get_need_disch_pulse (void);
+float charging_pulse_power (void);
+float charging_fall_pulse (void);
 
 //root set
 void charging_set_timing_positive_pulse (uint16_t time);
