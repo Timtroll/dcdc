@@ -30,6 +30,7 @@ SRC_DIRS = \
 	$(PROJECT_HOME_DIR)/src/system_config \
 	$(PROJECT_HOME_DIR)/src/find \
 	$(PROJECT_HOME_DIR)/src/parser \
+	$(PROJECT_HOME_DIR)/src/charger \
 
 TEST_SRC_DIRS = \
 	$(PROJECT_TEST_DIR) \
@@ -44,6 +45,7 @@ TEST_SRC_DIRS = \
 	$(PROJECT_TEST_DIR)/system_config \
 	$(PROJECT_TEST_DIR)/find \
 	$(PROJECT_TEST_DIR)/parser \
+	$(PROJECT_TEST_DIR)/charger \
 	$(PROJECT_TEST_DIR)/smart_ups_dbase/ \
 	$(UNITY_HOME)/unity \
 	$(UNITY_HOME)/src \
@@ -69,5 +71,6 @@ INCLUDE_DIRS = \
 	$(PROJECT_HOME_DIR)/inc/system_config \
 	$(PROJECT_HOME_DIR)/inc/find \
 	$(PROJECT_HOME_DIR)/inc/parser \
+	$(PROJECT_HOME_DIR)/inc/charger \
 
 include $(UNITY_BUILD_HOME)/MakefileWorker.mk

@@ -23,10 +23,10 @@ TEST_GROUP_RUNNER (get_group) {
 }
 
 TEST_GROUP_RUNNER (parameter_control) {
-	// RUN_TEST_CASE (parameter_control, check_parameter_mode);
-	// RUN_TEST_CASE (parameter_control, check_parameter_pulse_widht);
-	// RUN_TEST_CASE (parameter_control, check_parameter_time);
-	// RUN_TEST_CASE (parameter_control, check_unnecessary_parameters);
+	RUN_TEST_CASE (parameter_control, check_parameter_mode);
+	RUN_TEST_CASE (parameter_control, check_parameter_pulse_width);
+	RUN_TEST_CASE (parameter_control, check_parameter_time);
+	RUN_TEST_CASE (parameter_control, check_unnecessary_parameters);
 }
 
 TEST_GROUP_RUNNER (user_action) {
@@ -34,5 +34,5 @@ TEST_GROUP_RUNNER (user_action) {
 	RUN_TEST_CASE (user_action, analysis_error_type);
 	RUN_TEST_CASE (user_action, set_charger_actions);
 	RUN_TEST_CASE (user_action, set_charging_actions);
-	RUN_TEST_CASE (user_action, get_actions);
+	// RUN_TEST_CASE (user_action, get_actions);
 }

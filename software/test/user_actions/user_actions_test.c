@@ -61,7 +61,7 @@ TEST (set_group, charger_akk) {
 
 	parse("set charger akk akk1");
 	TEST_ASSERT_EQUAL_STRING(" akk1", parser_parameter());
-	TEST_ASSERT_EQUAL_STRING(CHARGING_AKK_RESPONSE, parser_response());
+	TEST_ASSERT_EQUAL_STRING(CHARGER_AKK_RESPONSE, parser_response());
 	TEST_ASSERT_EQUAL_PTR(set_charger_akk, parser_action());
 }
 
@@ -326,7 +326,7 @@ TEST (parameter_control, check_parameter_mode) {
 	TEST_ASSERT_EQUAL_INT(UNEXISTING_CHARGER, check_parameter(MODE_CHARGER_PARAMETER, parser_parameter()));
 }
 
-TEST (parameter_control, check_parameter_pulse_widht) {
+TEST (parameter_control, check_parameter_pulse_width) {
 	parse("set charger pulse_width 7");
 	TEST_ASSERT_EQUAL_INT(SUCCESSFUL, check_parameter(PULSE_WIDTH_PARAMETER, parser_parameter()));
 	
@@ -433,7 +433,7 @@ TEST_TEAR_DOWN (user_action) {
 TEST (user_action, analysis_error_type){
 	parse("set charger mode no_gen");
 	parser_action()();
-	TEST_ASSERT_EQUAL_STRING("Your error: Invalid parameter", get_user_response());
+	TEST_ASSERT_EQUAL_STRING("Your error: Non-existent charger", get_user_response());
 	
 	parse("set charger mode unexist");
 	parser_action()();
@@ -453,35 +453,46 @@ TEST (user_action, analysis_error_type){
 }
 
 TEST(user_action, set_charger_actions){
-	parse("set charger start");
-	parser_action()();
-	TEST_ASSERT_EQUAL_STRING(CHARGER_START_RESPONSE, get_user_response());
+	// parse("set charger start");
+	// parser_action()();
+	// TEST_ASSERT_EQUAL_STRING(CHARGER_START_RESPONSE, get_user_response());
 
-	parse("set charger stop");
-	parser_action()();
-	TEST_ASSERT_EQUAL_STRING(CHARGER_STOP_RESPONSE, get_user_response());
+	// parse("set charger stop");
+	// parser_action()();
+	// TEST_ASSERT_EQUAL_STRING(CHARGER_STOP_RESPONSE, get_user_response());
 
 	parse("set charger mode akk");
 	parser_action()();
 	TEST_ASSERT_EQUAL_STRING("You set the mode: akk", get_user_response());
 
-	parse("set charger mode akk");
-	parser_action()();
-	TEST_ASSERT_EQUAL_STRING("You set the mode: akk", get_user_response());		
-
 	parse("set charger mode gen");
 	parser_action()();
-	TEST_ASSERT_EQUAL_STRING("You set the mode: gen", get_user_response());		
+	TEST_ASSERT_EQUAL_STRING("You set the mode: gen", get_user_response());	
+
+	parse("set charger akk akk1");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("You set the akk: akk1",get_user_response());
+
+	parse("set charger akk akk2");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("You set the akk: akk2",get_user_response());	
+
+	parse("set charger pulse_width 44");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("You set the pulse width: 44", get_user_response());
+
 }
 
 TEST(user_action, set_charging_actions){
-	parse("set charging period 754");
-	parser_action()();
-	TEST_ASSERT_EQUAL_STRING("You set the time: 754", get_user_response());		
+		
 
 	parse("set charging mode default");
 	parser_action()();
 	TEST_ASSERT_EQUAL_STRING("You set the charging mode: default", get_user_response());	
+
+	parse("set charging period 754");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("You set the period: 754", get_user_response());
 
 	parse("set charging akk akk1");
 	parser_action()();
@@ -491,9 +502,9 @@ TEST(user_action, set_charging_actions){
 	parser_action()();
 	TEST_ASSERT_EQUAL_STRING("Charging: Start", get_user_response());	
 
-	parse("set charging stop");
-	parser_action()();
-	TEST_ASSERT_EQUAL_STRING("Charging: Stop", get_user_response());
+	// parse("set charging stop");
+	// parser_action()();
+	// TEST_ASSERT_EQUAL_STRING("Charging: Stop", get_user_response());
 
 	parse("set charging t_positive_pulse 45");
 	parser_action()();
@@ -533,6 +544,6 @@ TEST(user_action, get_actions){
 	parse("get voltage second_battery");
 	parser_action()();
 	TEST_ASSERT_EQUAL_STRING("Voltage second_battery: 5", get_user_response());
-
-
 }
+
+

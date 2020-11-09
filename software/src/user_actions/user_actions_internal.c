@@ -53,7 +53,7 @@ char *_clear_data(char *parameter){
 		}
 		else if ((counter != 0) &&
 		 		(('0' <= parameter[counter] && '9' >= parameter[counter]) || 
-		 		('a' <= parameter[counter] && 'z' >= parameter[counter])))
+		 		('a' <= parameter[counter] && 'z' >= parameter[counter])) || parameter[counter] == '_')
 		{
 			if (whole_word == WORD_START) whole_word = WORD_END;
 			else if (whole_word == PHRASE_END) 
@@ -94,7 +94,11 @@ uint8_t check_parameter(uint8_t type_parameter, char *parameter){
 		break;
 
 		case AKK_CHARGER_PARAMETER:
-			return 0;
+				if ( Str_comparate(compared_strings, "akk1") || 
+			 	 	 Str_comparate(compared_strings, "akk2") ){
+				return SUCCESSFUL;
+				}
+			else return INCORRECT_PARAMETER_INPUT;	
 		break;
 
 		case PULSE_WIDTH_PARAMETER:

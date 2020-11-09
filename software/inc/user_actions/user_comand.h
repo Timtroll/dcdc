@@ -13,7 +13,7 @@
 #define CHARGER_AKK_RESPONSE 			 "You set the akk:"
 #define CHARGER_PULSE_WIDTH_RESPONSE 	 "You set the pulse width:"
 
-#define CHARGING_PERIOD_RESPONSE 		 "You set the time:"
+#define CHARGING_PERIOD_RESPONSE 		 "You set the period:"
 #define CHARGING_MODE_RESPONSE  		 "You set the charging mode:"
 #define CHARGING_AKK_RESPONSE   		 "Now charging:"
 #define CHARGING_START_RESPONSE 		 "Charging: Start"
@@ -65,7 +65,7 @@ START_CMD_GROUP (charger_subcomands, CHARGER_CMD_NUM) {
 	},
 	[AKK_CHARGER] = {
 		.command = "akk",
-		.response =  CHARGING_AKK_RESPONSE,
+		.response =  CHARGER_AKK_RESPONSE,
 		.action = set_charger_akk
 	},
 	[PULSE_WIDTH] = {

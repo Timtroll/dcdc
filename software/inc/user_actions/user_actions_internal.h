@@ -52,7 +52,7 @@ enum settable_parameter{
 #endif
 
 uint8_t check_parameter(uint8_t type_parameter, char * parameter);
-
+#define Str_comparate(parameter, const_string) ((strncmp(parameter, const_string, strlen(const_string)) == 0) && (strlen(parameter) == strlen(const_string)))  
 
 
 #endif//_USER_ACTIONS_INTERNAL_H_
