@@ -4,12 +4,19 @@
 #define START_FUNC 0
 #define STOP_FUNC 1
 #define DIFFERENT_FUNC 2
+#define SET 0
+#define GET 1
 
+#define BOOL_OR_UINT8_T 1
+#define UINT16_T 2 
+#define FLOAT_ 4
 
+#define MAX_LEN_STRING 15
 
 typedef struct response
 {
 	uint8_t 
+		set_get_func,
 		type,
 		stop_start_func;
 	void *(* hardware_function)();
@@ -21,9 +28,10 @@ typedef struct response
 
 response_t response; 
 
-#define Constructor_response(parameter_type, function_type, function_hardware, receiving, defined) \
+#define Constructor_response(function_type,parameter_type, function_mode, function_hardware, receiving, defined) \
+		response.set_get_func = function_type; 			\
 		response.type = parameter_type; 				\
-		response.stop_start_func = function_type; 		\
+		response.stop_start_func = function_mode; 		\
 		response.hardware_function = function_hardware; \
 		response.text_response = parser_parameter();	\
 		response.accept_parameters = receiving;			\
@@ -118,6 +126,11 @@ void _do_action (response_t sending_string)
 {
 	if (check_parameter(sending_string.type, sending_string.text_response) == SUCCESSFUL)
 	{	
+		// if (sending_string.set_get_func == GET)
+		// {	
+
+		// }
+
 		if (sending_string.stop_start_func == START_FUNC){
 			_analysis_hardware_status((CHARGER_STATUS)sending_string.hardware_function(), "");
 			return ;
@@ -150,10 +163,6 @@ void _do_action (response_t sending_string)
 				_analysis_hardware_status((CHARGER_STATUS)sending_string.hardware_function(CHARGING_AKK_MODE_ONE_AKK),sending_string.text_response);
 			else if (Str_comparate(sending_string.text_response, " full_discharge"))
 				_analysis_hardware_status((CHARGER_STATUS)sending_string.hardware_function(CHARGING_AKK_MODE_DISCHARGE),sending_string.text_response);
-			else if (Str_comparate(sending_string.text_response, " false"))
-				_analysis_hardware_status((CHARGER_STATUS)sending_string.hardware_function(STATE_OFF),sending_string.text_response);
-			else if (Str_comparate(sending_string.text_response, " true"))
-				_analysis_hardware_status((CHARGER_STATUS)sending_string.hardware_function(STATE_ON),sending_string.text_response);
 			return ;
 		} 
 		else _prepare_response("_ERROR");
@@ -164,32 +173,32 @@ void _do_action (response_t sending_string)
 }
 
 void set_charger_start(void){
-	Constructor_response(OTHERS, START_FUNC, charger_start, false, false);
+	Constructor_response(SET, OTHERS, START_FUNC, charger_start, false, false);
 	_do_action(response);
 	memset(&response, 0, sizeof(response));
 }
 
 void set_charger_stop(void){
-	Constructor_response(OTHERS, STOP_FUNC, charger_stop, false, false);
+	Constructor_response(SET, OTHERS, STOP_FUNC, charger_stop, false, false);
 	_do_action(response);
 
 	memset(&response, 0, sizeof(response));}
 
 void set_charger_mode(void) {
-	Constructor_response(MODE_CHARGER_PARAMETER, DIFFERENT_FUNC, charger_set_mode, true, false); 				
+	Constructor_response(SET, MODE_CHARGER_PARAMETER, DIFFERENT_FUNC, charger_set_mode, true, false); 				
 	_do_action(response);
 
 	memset(&response, 0, sizeof(response));
 }
 
 void set_charger_akk(void) {
-	Constructor_response(AKK_CHARGER_PARAMETER, DIFFERENT_FUNC, charger_set_akk, true, false); 				
+	Constructor_response(SET, AKK_CHARGER_PARAMETER, DIFFERENT_FUNC, charger_set_akk, true, false); 				
 	_do_action(response);
 
 	memset(&response, 0, sizeof(response));}
 
 void set_charger_pulse_width(void){
-	Constructor_response(PULSE_WIDTH_PARAMETER, DIFFERENT_FUNC, charger_set_pulse_widght, true, true); 				
+	Constructor_response(SET, PULSE_WIDTH_PARAMETER, DIFFERENT_FUNC, charger_set_pulse_widght, true, true); 				
 	_do_action(response);
 
 	memset(&response, 0, sizeof(response));
@@ -201,66 +210,112 @@ void set_charger_pulse_width(void){
 
 void set_charging_period(void){
 
-	Constructor_response(PERIOD_PARAMETER, DIFFERENT_FUNC, charging_set_period, true, true); 				
+	Constructor_response(SET, PERIOD_PARAMETER, DIFFERENT_FUNC, charging_set_period, true, true); 				
 	_do_action(response);
 
 	memset(&response, 0, sizeof(response));
+
+
 }
 
 void set_charging_mode(void){
-	Constructor_response(MODE_CHARGING_PARAMETER, DIFFERENT_FUNC, charging_set_mode, true, true); 				
+	Constructor_response(SET, MODE_CHARGING_PARAMETER, DIFFERENT_FUNC, charging_set_mode, true, true); 				
 	_do_action(response);
 	memset(&response, 0, sizeof(response));
 }
 
 void set_charging_akk(void){
-	Constructor_response(AKK_CHARGING_PARAMETER, DIFFERENT_FUNC, charging_set_mode, true, true); 				
+	Constructor_response(SET, AKK_CHARGING_PARAMETER, DIFFERENT_FUNC, charging_set_mode, true, true); 				
 	_do_action(response);
 	memset(&response, 0, sizeof(response));
 	//_do_action(AKK_CHARGING_PARAMETER, analysis_error_type, parser_parameter());
 }
 
 void set_charging_start(void){
-	Constructor_response(OTHERS, START_FUNC, charging_start_akk, false, false);
+	Constructor_response(SET, OTHERS, START_FUNC, charging_start_akk, false, false);
 	_do_action(response);
 	memset(&response, 0, sizeof(response));
 }
 
 void set_charging_stop(void){
+	//!!!!!!!!!!! нет железной ф-ии
 	//_do_action(OTHERS, analysis_error_type, "");
 }
 
 #ifdef DEBUG_COMAND
 void set_charging_t_positive_pulse(void){
-	Constructor_response(T_POSITIVE_PULSE_PARAMETER, DIFFERENT_FUNC, charging_get_timing_positive_pulse, true, true);
-	_do_action(response);
-	memset(&response, 0, sizeof(response));
+	if (check_parameter(T_POSITIVE_PULSE_PARAMETER, parser_parameter()) == SUCCESSFUL){
+		charging_set_timing_positive_pulse(atoi(parser_parameter()));
+		_write_response(parser_parameter());
+	}else
+		_analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
+
 void set_charging_t_negative_pulse(void){
-	Constructor_response(T_NEGATIVE_PULSE_PARAMETER, DIFFERENT_FUNC, charging_get_timing_negative_pulse, true, true);
-	_do_action(response);
-	memset(&response, 0, sizeof(response));
+	if (check_parameter(T_NEGATIVE_PULSE_PARAMETER, parser_parameter()) == SUCCESSFUL){
+		charging_set_timing_positive_pulse(atoi(parser_parameter()));
+		_write_response(parser_parameter());
+	}else
+		_analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
+
 void set_charging_need_disch_pulse(void){
-	Constructor_response(NEED_DISCH_PULSE_PARAMETER, DIFFERENT_FUNC, charging_get_need_disch_pulse, true, false);
-	_do_action(response);
-	memset(&response, 0, sizeof(response));
+	if (check_parameter(NEED_DISCH_PULSE_PARAMETER, parser_parameter()) == SUCCESSFUL){
+		if (Str_comparate(parser_parameter(), " true"))
+		{
+			charging_set_need_disch_pulse(true);
+			_write_response(parser_parameter());
+		}
+		else if (Str_comparate(parser_parameter(), " false")){
+			charging_set_need_disch_pulse(false);
+			_write_response(parser_parameter());
+		} 
+	}else
+		_analysis_error_type(check_parameter(OTHERS, parser_parameter()));
+
+
 }
 
+char string_num [MAX_LEN_STRING] = " ";
 void get_charging_t_positive_pulse(void){
-
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL){
+		sprintf(string_num, " %d", charging_get_timing_positive_pulse());
+		_write_response(string_num);
+	}else
+		_analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 void get_charging_t_negative_pulse(void){
-
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL){
+		sprintf(string_num, " %d", charging_get_timing_negative_pulse());
+		_write_response(string_num);
+	}else
+		_analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 void get_charging_need_disch_pulse(void){
-
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL){
+		if (charging_get_need_disch_pulse() == true)
+		{
+			_write_response(" true");
+		} else _write_response(" false");
+	}else
+		_analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 void get_charging_pulse_power(void){
 	//returned float !!
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL){
+		sprintf(string_num, " %.3f", charging_pulse_power());
+		_write_response(string_num);
+	}else
+		_analysis_error_type(check_parameter(OTHERS, parser_parameter()));
+
 }
 void get_charging_fall_pulse(void){
 
+	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL){
+		sprintf(string_num, " %.3f", charging_fall_pulse());
+		_write_response(string_num);
+	}else
+		_analysis_error_type(check_parameter(OTHERS, parser_parameter()));
 }
 
 #endif
@@ -269,13 +324,10 @@ void get_charging_fall_pulse(void){
 
 
 void get_voltage_generator(void){
-	// if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL){
-	// 	//sent_string = get_hardware_func();
-	// 	//_write_response((char *)sent_string);
-	// 	_write_response("1");//будет записано значение, полученное из функции. Нужно привести из double к string
-	// }
-	// else
-	// 	analysis_error_type(check_parameter(OTHERS, parser_parameter()));
+	//Constructor_response(GET, OTHERS, DIFFERENT_FUNC, , true, false);
+	//_do_action(response);
+	//memset(&response, 0, sizeof(response));
+	_write_response("");
 }
 void get_voltage_scheme(void){
 	// if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL){	

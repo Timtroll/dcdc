@@ -529,21 +529,42 @@ TEST(user_action, get_actions){
 	parser_action()();
 	TEST_ASSERT_EQUAL_STRING("Voltage generator: 1", get_user_response());
 
-	parse("get voltage scheme");
-	parser_action()();
-	TEST_ASSERT_EQUAL_STRING("Voltage scheme: 2", get_user_response());
+	// parse("get voltage scheme");
+	// parser_action()();
+	// TEST_ASSERT_EQUAL_STRING("Voltage scheme: 2", get_user_response());
 
-	parse("get voltage output");
-	parser_action()();
-	TEST_ASSERT_EQUAL_STRING("Voltage output: 3", get_user_response());
+	// parse("get voltage output");
+	// parser_action()();
+	// TEST_ASSERT_EQUAL_STRING("Voltage output: 3", get_user_response());
 
-	parse("get voltage first_battery");
-	parser_action()();
-	TEST_ASSERT_EQUAL_STRING("Voltage first_battery: 4", get_user_response());
+	// parse("get voltage first_battery");
+	// parser_action()();
+	// TEST_ASSERT_EQUAL_STRING("Voltage first_battery: 4", get_user_response());
 
-	parse("get voltage second_battery");
-	parser_action()();
-	TEST_ASSERT_EQUAL_STRING("Voltage second_battery: 5", get_user_response());
+	// parse("get voltage second_battery");
+	// parser_action()();
+	// TEST_ASSERT_EQUAL_STRING("Voltage second_battery: 5", get_user_response());
 }
 
 
+TEST(user_action, get_test_action){
+	parse("get charging t_positive_pulse");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("The positive pulse is now: 0", get_user_response());
+
+	parse("get charging t_negative_pulse");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("The negative pulse is now: 0", get_user_response());
+
+	parse("get charging need_disch_pulse");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("The need for negative pulse: false", get_user_response());		
+
+	parse("get charging pulse_power");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("The amount of charge transferred: 0.100", get_user_response());
+
+	parse("get charging fall_pulse");
+	parser_action()();
+	TEST_ASSERT_EQUAL_STRING("Voltage drop ratio: 0.100", get_user_response());
+}

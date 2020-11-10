@@ -604,10 +604,10 @@ void charging_set_need_disch_pulse (_Bool value) {
 }
 
 float charging_pulse_power (void) {
-
+	return 0.1;
 }
 float charging_fall_pulse (void) {
-
+	return 0.1;
 }
 
 

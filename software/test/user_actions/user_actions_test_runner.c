@@ -34,5 +34,6 @@ TEST_GROUP_RUNNER (user_action) {
 	RUN_TEST_CASE (user_action, analysis_error_type);
 	RUN_TEST_CASE (user_action, set_charger_actions);
 	RUN_TEST_CASE (user_action, set_charging_actions);
-	// RUN_TEST_CASE (user_action, get_actions);
+	//RUN_TEST_CASE (user_action, get_actions);
+	RUN_TEST_CASE (user_action, get_test_action);
 }
