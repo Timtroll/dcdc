@@ -69,6 +69,7 @@ void charger_init (void) {
 		.charger_mode = CHARGER_MODE_NONE,
 		.output_mode = OUTPUT_MODE_NONE,
 		.output_pulse_widht = MIN_VALUE_WIDHT_OUTPUT_PULSE,
+		.output_pulse_widht_percent = 2,
 		.charger_output_state = STATE_OFF,
 		.charging_akk = CHARGING_AKK_NONE,
 		.charging_akk_mode = CHARGING_AKK_MODE_DEFAULT,
