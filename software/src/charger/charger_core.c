@@ -280,6 +280,12 @@ CHARGER_STATUS charging_set_period (uint16_t time) {
 	if ((time > 500) && (time < 32000))
 		return STATUS_ERROR_INIT;
 
+	if (charger_handle.charging_timing_positive_pulse >= time - 30)
+		charger_handle.charging_timing_positive_pulse = time / 2;
+
+	if (charger_handle.charging_timing_negative_pulse >= time - 30)
+			charger_handle.charging_timing_negative_pulse = time / 2;
+
 	charger_handle.charging_period = time;
 	return STATUS_OK;
 }
