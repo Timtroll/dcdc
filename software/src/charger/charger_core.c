@@ -277,8 +277,11 @@ void charging_set_need_disch_pulse (_Bool value) {
 }
 
 CHARGER_STATUS charging_set_period (uint16_t time) {
-	if ((time > 500) && (time < 32000))
+	if ((time < 500) && (time > 32000))
 		return STATUS_ERROR_INIT;
+
+	if (charger_handle.charging_akk_state == true)
+		return STATUS_NEED_TURN_OFF;
 
 	if (charger_handle.charging_timing_positive_pulse >= time - 30)
 		charger_handle.charging_timing_positive_pulse = time / 2;
