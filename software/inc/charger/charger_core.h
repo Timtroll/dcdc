@@ -37,9 +37,9 @@ typedef struct _charger_handle {
 	uint8_t
 		charger_mode,// AKK / GEN / none
 		output_mode, // AKK1 / AKK2 / GEN / none
-		output_pulse_widht_percent,
-		output_pulse_widht
+		output_pulse_widht_percent
 		;
+	uint16_t output_pulse_widht;
 	_Bool
 		charger_output_state; // ON / OFF
 

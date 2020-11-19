@@ -22,7 +22,7 @@
 #define RIGHT_REC HRTIM_OUTPUT_TE2
 #define LEFT_REC  HRTIM_OUTPUT_TE1
 
-#define TIMERS_PERIOD 640
+#define TIMERS_PERIOD 320
 #define MIN_VALUE_WIDHT_OUTPUT_PULSE 6
 
 #define CHARGER_CHANNELS_AKK1 (RIGHT_DWN_IN | LEFT_UP1_IN | LEFT_DWN_IN | RIGHT_UP1_IN)
@@ -150,8 +150,8 @@ CHARGER_STATUS charger_set_akk (uint8_t akk) {
 CHARGER_STATUS charger_set_pulse_widght (uint16_t percent_widght) {
 	hrtim_all_outputs_stop();
 
-	if ((percent_widght > 1) && (percent_widght < 50)) {
-		charger_handle.output_pulse_widht = (TIMERS_PERIOD / 2) * percent_widght / 100;
+	if ((percent_widght > 1) && (percent_widght < 100)) {
+		charger_handle.output_pulse_widht = TIMERS_PERIOD * percent_widght / 200;
 		charger_handle.output_pulse_widht_percent = percent_widght;
 	}
 	else{
@@ -168,10 +168,10 @@ CHARGER_STATUS charger_set_pulse_widght (uint16_t percent_widght) {
 }
 
 void hrtim_set_value_pwm_on_outputs (void) {
-	channel_compare_cfg.CompareValue = TIMERS_PERIOD / 4 + charger_handle.output_pulse_widht;
+	channel_compare_cfg.CompareValue = charger_handle.output_pulse_widht;
 	HAL_HRTIM_WaveformCompareConfig(&hhrtim1, HRTIM_TIMERINDEX_MASTER, HRTIM_COMPAREUNIT_2, &channel_compare_cfg);
 
-	channel_compare_cfg.CompareValue = TIMERS_PERIOD / 4 * 3 + charger_handle.output_pulse_widht;
+	channel_compare_cfg.CompareValue = TIMERS_PERIOD / 2 + charger_handle.output_pulse_widht;
 	HAL_HRTIM_WaveformCompareConfig(&hhrtim1, HRTIM_TIMERINDEX_MASTER, HRTIM_COMPAREUNIT_4, &channel_compare_cfg);
 }
 
