@@ -433,7 +433,7 @@ TEST_TEAR_DOWN (user_action) {
 TEST (user_action, analysis_error_type){
 	parse("set charger mode no_gen");
 	parser_action()();
-	TEST_ASSERT_EQUAL_STRING("Your error: Non-existent charger", get_user_response());
+	TEST_ASSERT_EQUAL_STRING("Your error: Non-existent charger\n", get_user_response());
 	
 	parse("set charger mode unexist");
 	parser_action()();

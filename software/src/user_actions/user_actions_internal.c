@@ -44,25 +44,28 @@ char *_clear_data(char *parameter){
 	while(counter < strlen(parameter))
 	{
 		if (((parameter[counter] == ' ') || (parameter[counter] == '\t'))  && (cleared_string != " " )){
-			if (whole_word == PHRASE_START) 
+			if (whole_word == PHRASE_START)
 				whole_word = WORD_START;
 			else if (whole_word == WORD_END)
 				whole_word = PHRASE_END;
 			counter++;
 			continue;
 		}
-		else if ((counter != 0) &&
-		 		(('0' <= parameter[counter] && '9' >= parameter[counter]) || 
+		else if ((('0' <= parameter[counter] && '9' >= parameter[counter]) ||
 		 		('a' <= parameter[counter] && 'z' >= parameter[counter])) || parameter[counter] == '_')
 		{
-			if (whole_word == WORD_START) whole_word = WORD_END;
+			if (whole_word == WORD_START)
+				whole_word = WORD_END;
 			else if (whole_word == PHRASE_END) 
 				return NULL;
 			cleared_string[internal_counter] = parameter [counter];
 			counter++;
 			internal_counter++;
+			if (parameter[counter] == '\0' || parameter[counter] == '\n' )
+				return cleared_string;
 			continue;
 		}
+
 		else return NULL;
 	}
 	if (strncmp(cleared_string, cmp_string, MAX_LEN) ==  0){

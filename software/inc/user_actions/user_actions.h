@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../parser/d_base.h"
 #include "../charger/charger_core.h"
 #include "parser.h"

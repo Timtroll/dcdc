@@ -11,7 +11,8 @@
 #define UINT16_T 2 
 #define FLOAT_ 4
 
-#define MAX_LEN_STRING 15
+#define MAX_LEN_STRING 150
+#define MAX_LEN_RESPONSE 50
 
 typedef struct response
 {
@@ -20,33 +21,55 @@ typedef struct response
 		type,
 		stop_start_func;
 	void *(* hardware_function)();
-	char *text_response;
+	char text_response[MAX_LEN_RESPONSE];
 	bool 
 		accept_parameters, 
 		defined_num;
 } response_t;
 
-response_t response; 
+response_t response;
+char text_response_parameter[MAX_LEN_RESPONSE] = " ";
+char compare_string[MAX_LEN_RESPONSE] = " ";
 
 #define Constructor_response(function_type,parameter_type, function_mode, function_hardware, receiving, defined) \
-		response.set_get_func = function_type; 			\
-		response.type = parameter_type; 				\
-		response.stop_start_func = function_mode; 		\
-		response.hardware_function = function_hardware; \
-		response.text_response = parser_parameter();	\
-		response.accept_parameters = receiving;			\
-		response.defined_num = defined; 				\
+		memset(&response, 0, sizeof(response));				   \
+		response.set_get_func = function_type; 			       \
+		response.type = parameter_type; 				       \
+		response.stop_start_func = function_mode; 		 	   \
+		response.hardware_function = function_hardware;        \
+		strcpy(response.text_response, parser_parameter());	   \
+		response.accept_parameters = receiving;			       \
+		response.defined_num = defined; 				       \
+
+static inline void constructor (
+		uint8_t function_type,
+		uint8_t	parameter_type,
+		uint8_t function_mode,
+		void *(*function_hardware),
+		char *text_transmit,
+		bool receiving,
+		bool defined)
+{
+			memset(&response, 0, sizeof(response));
+			response.set_get_func = function_type;
+			response.type = parameter_type;
+			response.stop_start_func = function_mode;
+			response.hardware_function = function_hardware;
+			strcpy(response.text_response, text_transmit);
+			response.accept_parameters = receiving;
+			response.defined_num = defined;
+}
 
 
-
-char user_response [URESP_MAX_LEN];
+static char user_response [URESP_MAX_LEN];
+char string_num [MAX_LEN_STRING] = " ";
 
 void _prepare_response (char *sent_string){
 	if (strlen(sent_string) > URESP_MAX_LEN){ 
 		memset(user_response, 0, URESP_MAX_LEN);
 		return 0x0;
 	}
-	memset(user_response, ' ', URESP_MAX_LEN);
+	memset(user_response, 0, URESP_MAX_LEN);
 	strncpy(user_response, sent_string, URESP_MAX_LEN);
 }
 
@@ -62,63 +85,86 @@ void _write_response(char *answer){
 	_prepare_response(internal_response);
 }
 
+char * _check_excess_symbol(char *string){
+	memset(compare_string, 0, MAX_LEN_RESPONSE);
+	uint8_t counter = 0;
+	while (string[counter] != '\n' && string[counter] != '\0'){
+		compare_string[counter] = string[counter];
+		counter++;
+	}
+	compare_string[counter] = string[counter];
+//	if (string[1] == 't')
+//	{
+//		memset(compare_string, 0, MAX_LEN_RESPONSE);
+//		strncpy(compare_string, string, 6);
+//	}
+//	else if (string[1] == 'f')
+//	{
+//		memset(compare_string, 0, MAX_LEN_RESPONSE);
+//		strncpy(compare_string, string, 7);
+//	}
+//	else strncpy(compare_string, " ", MAX_LEN_RESPONSE);
+	return compare_string;
+}
+
 void _analysis_error_type(uint8_t error_type){
 	switch (error_type){
 		case INCORRECT_PARAMETER_INPUT:
-			_prepare_response("Your error: Invalid parameter");
+			_prepare_response("Your error: Invalid parameter\n");
 		break;
 
 		case UNEXISTING_CHARGER:
-			_prepare_response("Your error: Non-existent charger");
+			_prepare_response("Your error: Non-existent charger\n");
 		break;
 
 		case INCORRECT_PULSE_WIDTH:
-			_prepare_response("Your error: Incorrect pulse width");
+			_prepare_response("Your error: Incorrect pulse width\n");
 		break;
 
 		case LESS_POSSIBLE:
-			_prepare_response("Your error: The entered value is less than acceptable");
+			_prepare_response("Your error: The entered value is less than acceptable\n");
 		break;
 
 		case MORE_POSSIBLE:
-			_prepare_response("Your error: The entered value is more than acceptable");
+			_prepare_response("Your error: The entered value is more than acceptable\n");
 		break;
 
 		case UNNECESSARY_PARAMETERS:
-			_prepare_response("Your error: Unnecessary entered parameters");
+			_prepare_response("Your error: Unnecessary entered parameters\n");
 		break;
 
 		case UNKNOWN_TYPE:
-			_prepare_response("Your error: UNKNOWN_TYPE");
+			_prepare_response("Your error: UNKNOWN_TYPE\n");
 		break;
 
 		default:
-			_prepare_response("Unknown error!");
+			_prepare_response("Unknown error!\n");
 		break;
 	}
 }
 
 void _analysis_hardware_status(CHARGER_STATUS hardware_status, char *response){
-	switch (hardware_status){
-		case STATUS_OK:
-			_write_response(response);
-		break;
-		case STATUS_ERROR_INIT:
-			_prepare_response("STATUS_ERROR_INIT");
-		break;
-		case STATUS_AKK_ALREADY_USED:
-			_prepare_response("STATUS_AKK_ALREADY_USED");
-		break;
-		case STATUS_MULTIPLE_START:
-			_prepare_response("STATUS_MULTIPLE_START");
-		break;
-		case STATUS_NEED_TURN_OFF:
-			_prepare_response("STATUS_MULTIPLE_START");
-		break;
-		default:
-			_prepare_response("ERROR_");
-		break;
-	}
+//	switch (hardware_status){
+//		case STATUS_OK:
+//			_write_response(response);
+//		break;
+//		case STATUS_ERROR_INIT:
+//			_prepare_response("STATUS_ERROR_INIT");
+//		break;
+//		case STATUS_AKK_ALREADY_USED:
+//			_prepare_response("STATUS_AKK_ALREADY_USED");
+//		break;
+//		case STATUS_MULTIPLE_START:
+//			_prepare_response("STATUS_MULTIPLE_START");
+//		break;
+//		case STATUS_NEED_TURN_OFF:
+//			_prepare_response("STATUS_MULTIPLE_START");
+//		break;
+//		default:
+//			_prepare_response("ERROR_");
+//		break;
+//	}
+	_write_response(response);
 }
 
 
@@ -144,7 +190,8 @@ void _do_action (response_t sending_string)
 		if (sending_string.accept_parameters == true && sending_string.defined_num == true)
 		{
 			uint16_t value = atoi(sending_string.text_response);
-			_analysis_hardware_status((CHARGER_STATUS)sending_string.hardware_function(value), sending_string.text_response);
+			//sprintf(string_num, " %d", value);
+			_analysis_hardware_status((CHARGER_STATUS)sending_string.hardware_function(value), text_response_parameter);
 			return ;
 		} 
 		else if (sending_string.accept_parameters == true && sending_string.defined_num == false)
@@ -209,8 +256,13 @@ void set_charger_pulse_width(void){
 
 
 void set_charging_period(void){
+	//memset(text_response_parameter, 0, MAX_LEN_RESPONSE);
+	strncpy (text_response_parameter, parser_parameter(), strlen(parser_parameter()));
 
-	Constructor_response(SET, PERIOD_PARAMETER, DIFFERENT_FUNC, charging_set_period, true, true); 				
+	memset(&response, 0, sizeof(response));
+	//Constructor_response(SET, PERIOD_PARAMETER, DIFFERENT_FUNC, charging_set_period, true, true);
+	char * check = parser_parameter();
+	constructor(SET, PERIOD_PARAMETER, DIFFERENT_FUNC, charging_set_period, check,true, true);
 	_do_action(response);
 
 	memset(&response, 0, sizeof(response));
@@ -260,23 +312,28 @@ void set_charging_t_negative_pulse(void){
 }
 
 void set_charging_need_disch_pulse(void){
+	char * text_response_parameter_ = _check_excess_symbol(parser_parameter());
+	//char * text_response_parameter_ = parser_parameter();
+
 	if (check_parameter(NEED_DISCH_PULSE_PARAMETER, parser_parameter()) == SUCCESSFUL){
-		if (Str_comparate(parser_parameter(), " true"))
+		memset(compare_string, 0, MAX_LEN_RESPONSE);
+		//strncpy (compare_string, parser_parameter(), strlen(parser_parameter()));
+		if (Str_comparate(text_response_parameter_, " true\n"))
 		{
 			charging_set_need_disch_pulse(true);
-			_write_response(parser_parameter());
+			_write_response(text_response_parameter_);
 		}
-		else if (Str_comparate(parser_parameter(), " false")){
+		else if (Str_comparate(text_response_parameter_, " false\n")){
 			charging_set_need_disch_pulse(false);
-			_write_response(parser_parameter());
+			_write_response(text_response_parameter_);
 		} 
 	}else
-		_analysis_error_type(check_parameter(OTHERS, parser_parameter()));
+		_analysis_error_type(check_parameter(OTHERS, text_response_parameter_));
 
 
 }
 
-char string_num [MAX_LEN_STRING] = " ";
+
 void get_charging_t_positive_pulse(void){
 	if (check_parameter(OTHERS, parser_parameter()) == SUCCESSFUL){
 		sprintf(string_num, " %d", charging_get_timing_positive_pulse());
