@@ -11,11 +11,9 @@ void menu_set_info(char * new_data);
 
 #ifdef _DEBUG_DISPLAY_
 	static char * debug_data_main_screen_1 [] = { 
-									"main","4",
+									"main","2",
 									"A","a",
-									"B","b",
-									"C","c",
-									"D","d"};
+									"B","b"};
 	static char * debug_data_side_screen_1 [] ={
 								  "side",
 								  "header_1",

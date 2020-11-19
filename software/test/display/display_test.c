@@ -12,11 +12,9 @@
 
 char ** return_array(int type){
 	
-	static char * test_data_main_screen [] = { "main","4",
+	static char * test_data_main_screen [] = { "main","2",
 									"A","a",
-									"B","b",
-									"C","c",
-									"D","d"};
+									"B","b"};
 
 	static char * test_data_side_screen [] ={"side",
 								  "header",
@@ -83,12 +81,11 @@ TEST(display, compute_data_array_main_screen){
 
 	TEST_ASSERT_EQUAL_STRING(test_screen[0], display_get_type_screen());
 	TEST_ASSERT_EQUAL_STRING(test_screen[2], display_get_cell_value(0,0));
-	TEST_ASSERT_EQUAL_STRING(test_screen[9], display_get_cell_value(1,3));
+	TEST_ASSERT_EQUAL_STRING(test_screen[5], display_get_cell_value(1,1));
 	TEST_ASSERT_EQUAL_STRING(END_TABLE, display_get_cell_value(0, 4));
 
 	TEST_ASSERT_EQUAL_STRING(NULL, display_get_cell_value(2, 0));
 	TEST_ASSERT_EQUAL_STRING(NULL, display_get_cell_value(-1 , 0));
-	TEST_ASSERT_EQUAL_STRING(NULL, display_get_cell_value("d", 1));
 	TEST_ASSERT_EQUAL_STRING(NULL, display_get_cell_value(0, -1));
 }
 	
@@ -111,7 +108,7 @@ TEST(display, get_pointer_data_from_menu){
 	char ** test_screen = &DEBUG_MAIN_SCR;
 	TEST_ASSERT_EQUAL_STRING(test_screen[0], display_get_type_screen());
 	TEST_ASSERT_EQUAL_STRING(test_screen[2], display_get_cell_value(0,0));
-	TEST_ASSERT_EQUAL_STRING(test_screen[9], display_get_cell_value(1,3));
+	TEST_ASSERT_EQUAL_STRING(test_screen[4], display_get_cell_value(0,1));
 	TEST_ASSERT_EQUAL_STRING(END_TABLE, display_get_cell_value(0, 4));
 }
 
