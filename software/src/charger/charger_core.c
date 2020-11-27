@@ -369,6 +369,10 @@ CHARGER_STATUS charging_start_akk (void) {
 		if (charger_handle.output_mode == charger_handle.charging_akk)
 			return STATUS_AKK_ALREADY_USED;
 
+	if (charger_handle.charging_akk != CHARGING_AKK_1 ||
+			charger_handle.charging_akk != CHARGING_AKK_2)
+		return STATUS_ERROR_INIT;
+
 	charger_handle.charging_akk_state = STATE_ON;
 	vTaskResume((TaskHandle_t)charging_akkHandle);
 	return 0;
