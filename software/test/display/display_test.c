@@ -9,16 +9,17 @@
 #define DEBUG_MAIN_SCR debug_data_main_screen_1
 #define DEBUG_SIDE_SCR_1 debug_data_side_screen_1
 #define DEBUG_SIDE_SCR_2 debug_data_side_screen_2
+#define DEBUG_DATA screen_test_data
 
 char ** return_array(int type){
 	
 	static char * test_data_main_screen [] = { "main","2",
-									"A","a",
+									"header_1","info_1",
 									"B","b"};
 
 	static char * test_data_side_screen [] ={"side",
-								  "header",
-								  "info",
+								  "header_1",
+								  "info_1",
 								  "advice"};
 	
 	if (type == MAIN)
@@ -127,7 +128,7 @@ TEST(display, switch_next_screen){
 	test_cell_value_1 = display_get_cell_value(0,0);
 	test_cell_value_2 = display_get_cell_value(0,1);
 
-	display_set_next_screen(LEFT);//Switching from 1 screen, through 0 to 11 screen, because a doubly linked list.
+	display_set_next_screen(LEFT);//Switching from 1 screen, through 0 to 11 screen, because a double linked list.
 	display_set_next_screen(LEFT);
 	set_screen_parameters(menu_get_actual_screen());
 	TEST_ASSERT_EQUAL(test_scr_type, display_get_type_screen());
@@ -159,5 +160,12 @@ TEST(display, answer_request_with_menu_data){
 }
 
 TEST(display, change_info_with_control_function){
+	menu_double_create(screen_test_data);
 
+
+	// char *** shit = screen_test_data;
+	// printf("\n\n%s\n", shit);
+
+	printf("\n\nsecond try: %s\n", screen_test_data);
+	// printf("\n\n%s\n", sizeof(screen_test_data));	
 }

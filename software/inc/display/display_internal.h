@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
-
 #define ENABLE 1
 #define DISABLE 0
 

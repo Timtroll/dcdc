@@ -45,3 +45,61 @@ void display_set_parameter(char * cell_data){
 		return debug_transmit_string;
 	}
 #endif
+
+
+#define SIZE_OF_SCREENS 112
+
+void reserve_memory(char *** pointer){
+	pointer = (char***)malloc(3*sizeof(char**));
+
+	pointer[0] = (char**)malloc(6*sizeof(char*));
+	pointer[1] = (char**)malloc(4*sizeof(char*));
+	pointer[2] = (char**)malloc(4*sizeof(char*));
+
+	pointer[0][0] = (char*)malloc(4*sizeof(char*));
+	pointer[0][1] = (char*)malloc(1*sizeof(char*));
+	pointer[0][2] = (char*)malloc(7*sizeof(char*));
+	pointer[0][3] = (char*)malloc(6*sizeof(char*));
+	pointer[0][4] = (char*)malloc(7*sizeof(char*));
+	pointer[0][5] = (char*)malloc(6*sizeof(char*));
+
+	pointer[1][0] = (char*)malloc(6*sizeof(char*));
+	pointer[1][1] = (char*)malloc(8*sizeof(char*));
+	pointer[1][2] = (char*)malloc(6*sizeof(char*));
+	pointer[1][3] = (char*)malloc(8*sizeof(char*));
+
+	pointer[2][0] = (char*)malloc(6*sizeof(char*));
+	pointer[2][1] = (char*)malloc(8*sizeof(char*));
+	pointer[2][2] = (char*)malloc(6*sizeof(char*));
+	pointer[2][3] = (char*)malloc(8*sizeof(char*));
+
+}
+
+void menu_double_create(void * memory){
+	free(memory);
+	char * debug_data_main_screen_1 [] = { 
+									"main","2",
+									"header_1","info_1",
+									"header_2","info_2"};
+	char * debug_data_side_screen_1 [] ={
+								  "side_1",
+								  "header_1",
+								  "info_1",
+								  "advice_1"};
+	char * debug_data_side_screen_2 [] ={
+								  "side_2",
+								  "header_2",
+								  "info_2",
+								  "advice_2"};
+
+	char ** pointer_3_pos[] = {	debug_data_main_screen_1, \
+								debug_data_side_screen_1, \
+								debug_data_side_screen_2};
+
+	reserve_memory(memory);
+	memory = &pointer_3_pos;
+
+	char *** shit = memory;
+	printf("\n\n%s\n", shit[0][2]);		 
+}
+
