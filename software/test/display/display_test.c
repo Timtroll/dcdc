@@ -160,12 +160,12 @@ TEST(display, answer_request_with_menu_data){
 }
 
 TEST(display, change_info_with_control_function){
-	menu_double_create(screen_test_data);
+	void * mem_test = menu_double_create(screen_test_data);
 
 
-	// char *** shit = screen_test_data;
+	char *** shit = mem_test;
 	// printf("\n\n%s\n", shit);
 
-	printf("\n\nsecond try: %s\n", screen_test_data);
+	printf("\n\nsecond try: %s\n", shit[1][1]);
 	// printf("\n\n%s\n", sizeof(screen_test_data));	
 }

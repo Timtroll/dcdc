@@ -75,7 +75,7 @@ void reserve_memory(char *** pointer){
 
 }
 
-void menu_double_create(void * memory){
+void *menu_double_create(void *memory){
 	free(memory);
 	char * debug_data_main_screen_1 [] = { 
 									"main","2",
@@ -101,5 +101,6 @@ void menu_double_create(void * memory){
 
 	char *** shit = memory;
 	printf("\n\n%s\n", shit[0][2]);		 
+	return memory;
 }
 

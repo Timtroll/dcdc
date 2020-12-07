@@ -14,7 +14,7 @@ void display_get_parameter(char * json_request);
 void display_set_next_screen(uint8_t direction);
 void display_set_parameter(char * cell_data);
 
-void menu_double_create(void * memory);
+void  *menu_double_create(void * memory);
 
 #ifdef _DEBUG_DISPLAY_
 	void set_transmit_string(char * value);
