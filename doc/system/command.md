@@ -56,5 +56,5 @@
 * get *charging* t_negative_pulse - получить значение отрицательного импульса зарядки.
 * get *charging* need_disch_pulse - получить значение необходимости отрицательного импульса зарядки.
 
-* get *charging* pulse_power - получить количество переданного аккумулятору заряда(float)
-* get *charging* fall_pulse - получить коэффициент спада напряжения заряда.
+* get *charging* pulse_power - получить количество переданного аккумулятору заряда(return float)
+* get *charging* fall_pulse - получить коэффициент спада напряжения заряда.(return float)
