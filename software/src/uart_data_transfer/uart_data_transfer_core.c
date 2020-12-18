@@ -10,6 +10,8 @@
 #include "usart.h"
 #include "cmsis_os.h"
 
+#include "user_actions.h"
+
 #define MAX_SIZE_RX_UART_DATA 99
 
 #define RX_DATA_COMPLETE   1
@@ -59,9 +61,9 @@ void HAL_UART_IDLE_Callback (UART_HandleTypeDef *huart) {
 			return;
 
 		uint8_t command_len = strlen((const char *)rx_uart_data);
-//		if (rx_uart_data[command_len - 1] != '\r')
-//			return;
-//		rx_uart_data[command_len - 1] = '\0';
+		if (rx_uart_data[command_len - 1] != '\r')
+			return;
+		rx_uart_data[command_len - 1] = '\0';
 
 
 		if(tx_complete == false)
@@ -95,7 +97,7 @@ void rx_uart_data_task (void const * argument) {
 
 */
 // EXAMPLE:
-		parse((const char *)rx_uart_data);
+		parse(crop_trash((const char *)rx_uart_data));
 		if (strlen(rx_uart_data) > strlen("get charge_current")) {
 			asm("nop");
 		}
@@ -119,7 +121,8 @@ void tx_uart_data_task(void const * argument) {
 		//get pointer tx_data
 		//	tx_data = GET_POINTER_FUNCTION
 		// EXAMPLE:
-		tx_data = parser_response();
+		parser_action()();
+		tx_data = get_user_response();
 
 		if(tx_data != 0)
 			HAL_UART_Transmit_DMA(&huart1, tx_data, strlen((const char*)tx_data));

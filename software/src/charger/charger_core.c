@@ -76,7 +76,7 @@ void charger_init (void) {
 		.need_disch_pulse = false,
 		.charging_period = 6000,
 		.charging_timing_positive_pulse = 2000,
-		.charging_timing_negative_pulse = 2000
+		.charging_timing_negative_pulse = 200
 	};
 }
 
@@ -116,17 +116,17 @@ CHARGER_STATUS charger_set_mode (uint8_t mode) {
 	if (mode == CHARGER_MODE_AKK){
 		charger_handle.charger_mode = CHARGER_MODE_AKK;
 		charger_handle.output_mode = OUTPUT_MODE_NONE;
+		return STATUS_OK;
 	}
 	else if (mode == CHARGER_MODE_GEN){
 		charger_handle.charger_mode = CHARGER_MODE_GEN;
 		charger_handle.output_mode = OUTPUT_MODE_GEN;
+		return STATUS_OK;
 	}
 	else{
 		charger_handle.charger_mode = CHARGER_MODE_NONE;
 		return STATUS_ERROR_INIT;
 	}
-
-	return STATUS_OK;
 }
 
 CHARGER_STATUS charger_set_akk (uint8_t akk) {
@@ -369,7 +369,7 @@ CHARGER_STATUS charging_start_akk (void) {
 		if (charger_handle.output_mode == charger_handle.charging_akk)
 			return STATUS_AKK_ALREADY_USED;
 
-	if (charger_handle.charging_akk != CHARGING_AKK_1 ||
+	if (charger_handle.charging_akk != CHARGING_AKK_1 &&
 			charger_handle.charging_akk != CHARGING_AKK_2)
 		return STATUS_ERROR_INIT;
 
@@ -389,13 +389,15 @@ void charging_akk_switch (void) {
 	charger_handle.need_switch_akk = true;
 }
 
+
+float temp_pulse_power = 0,
+		temp_fall_pulse = 0;
 float charging_pulse_power (void) {
-	return meas_calc_charge();
+	return temp_pulse_power;
 }
 
-//TODO temp
 float charging_fall_pulse (void) {
-	return 0;
+	return temp_fall_pulse;
 }
 
 uint16_t charge_akk (void) {
@@ -467,6 +469,10 @@ void charging_akk_mode_one_akk (void) {
 		//charger_handle.charging_timing_negative_pulse = calc negative pulse width
 		//charger_handle.charging_timing_positive_pulse = calc next positive pulse
 
+		// temp start calc
+		temp_pulse_power = meas_calc_charge();
+		temp_fall_pulse = meas_calc_coef_fall_charging_voltage();
+		// end calc
 		if (charger_handle.need_disch_pulse == 0) {
 			charger_handle.charging_timing_state = 0;
 			meas_charge_period_end();
@@ -577,7 +583,7 @@ void charging_stop_akk (void) {
 	return 0;
 }
 
-uint8_t get_charging_akk (void) {
+uint8_t charging_get_akk (void) {
 	return 0;
 }
 

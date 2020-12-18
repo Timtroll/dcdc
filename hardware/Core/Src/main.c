@@ -64,6 +64,7 @@ void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN 0 */
 // FOR PARSER INIT:
 #include "smart_ups_data_base.h"
+#include "user_comand.h"
 #include "parser.h"
 /* USER CODE END 0 */
 
@@ -102,10 +103,11 @@ int main(void)
   MX_ADC2_Init();
   MX_TIM15_Init();
   /* USER CODE BEGIN 2 */
-//  INIT PARSER EXAMPLE:
-  parser_create(&smart_charger_commands, MAX_CMD_LEN);
+
+  parser_create(&groups_of_commands, MAX_CMD_LEN);
   init_uart_data_transfer();
   charger_init();
+  start_measurements();
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */

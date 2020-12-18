@@ -19,5 +19,7 @@ void meas_charge_voltage_akk_save (void);
 float meas_calc_charge (void);
 int meas_calc_discharge_time (float charge);
 
+float meas_calc_coef_fall_charging_voltage (void);
+
 #endif//_MEASUREMENTS_H_
 

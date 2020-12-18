@@ -281,20 +281,30 @@ START_CMD_GROUP (voltage_subcomands, VOLTAGE_CMD_NUM) {
 #define G_CHARGING_NEED_DISCH_PULSE_RESPONSE				"The need for negative pulse:"
 #define G_CHARGING_PULSE_POWER_RESPONSE 					"The amount of charge transferred:"
 #define G_CHARGING_FALL_PULSE_RESPONSE 						"Voltage drop ratio:"
+#define G_CHARGING_AKK_RESPONSE 							"The battery is charging now:"
+#define G_CHARGING_AKK_MODE_RESPONSE						"Set charging mode:"
+#define G_CHARGING_PERIOD_RESPONSE							"Charging period:"
+
 
 void get_charging_t_positive_pulse(void);
 void get_charging_t_negative_pulse(void);
 void get_charging_need_disch_pulse(void);
 void get_charging_pulse_power(void);
 void get_charging_fall_pulse(void);
+void get_charging_akk(void);
+void get_charging_akk_mode(void);
+void get_charging_period(void);
 
 #define G_CHARGING_T_POSITIVE_PULSE 			0
 #define G_CHARGING_T_NEGATIVE_PULSE 			1
 #define G_CHARGING_NEED_DISCH_PULSE 			2
 #define G_CHARGING_PULSE_POWER 					3
 #define G_CHARGING_FALL_PULSE 					4
+#define G_CHARGING_AKK 							5
+#define G_CHARGING_AKK_MODE 					6
+#define G_CHARGING_PERIOD 						7
 
-#define G_CHARGING_CMD_NUM 5
+#define G_CHARGING_CMD_NUM 8
 
 
 START_CMD_GROUP (g_charging_subcomands, G_CHARGING_CMD_NUM) {
@@ -322,6 +332,21 @@ START_CMD_GROUP (g_charging_subcomands, G_CHARGING_CMD_NUM) {
 		.command = "fall_pulse",
 		.response =  G_CHARGING_FALL_PULSE_RESPONSE,
 		.action = get_charging_fall_pulse
+	},
+	[G_CHARGING_AKK] = {
+		.command = "akk",
+		.response = G_CHARGING_AKK_RESPONSE, 
+		.action = get_charging_akk
+	},
+	[G_CHARGING_AKK_MODE] = {
+		.command = "akk_mode",
+		.response = G_CHARGING_AKK_MODE_RESPONSE, 
+		.action = get_charging_akk_mode
+	},
+	[G_CHARGING_PERIOD] = {
+		.command = "period",
+		.response = G_CHARGING_PERIOD_RESPONSE, 
+		.action = get_charging_period
 	}
 	
 
@@ -331,10 +356,52 @@ START_CMD_GROUP (g_charging_subcomands, G_CHARGING_CMD_NUM) {
 };
 
 
-#define VOLTAGE 0
-#define G_CHARGING 1
+#define G_CHARGER_MODE_RESPONSE 								"Operating mode:"
+#define G_GHARGER_OUTPUT_AKK_RESPONSE							"The battery is discharging:"
+#define G_CHARGER_OUTPUT_PW_RESPONSE	 						"Output pulse width:"
 
-#define GET_COMANDS_NUM  	2
+void get_charger_mode(void);
+void get_charger_output_akk(void);
+void get_charger_output_pw(void);
+
+#define G_CHARGER_MODE 									0
+#define G_GHARGER_OUTPUT_AKK 							1
+#define G_CHARGER_OUTPUT_PW 							2
+
+
+#define G_CHARHER_CMD_NUM 								3
+
+START_CMD_GROUP (g_charger_subcomands, G_CHARHER_CMD_NUM) {
+	[G_CHARGER_MODE] = {
+		.command = "mode",
+		.response = G_CHARGER_MODE_RESPONSE,
+		.action = get_charger_mode
+	},
+	[G_GHARGER_OUTPUT_AKK] = {
+		.command = "output_akk",
+		.response = G_GHARGER_OUTPUT_AKK_RESPONSE,
+		.action = get_charger_output_akk
+	},
+	[G_CHARGER_OUTPUT_PW] = {
+		.command = "output_pw",
+		.response =  G_CHARGER_OUTPUT_PW_RESPONSE,
+		.action = get_charger_output_pw
+	}
+	
+
+	END_CMD_GROUP_WITH_RESPONSE(
+		G_CHARHER_CMD_NUM,
+		RESP_INVALID_PARAMETER)
+};
+
+
+
+
+#define VOLTAGE 										0
+#define G_CHARGING 										1
+#define G_CHARGER 										2	
+
+#define GET_COMANDS_NUM  	3
 
 START_CMD_GROUP (get_parameter_subcomands, GET_COMANDS_NUM) {
 	[VOLTAGE] = {
@@ -344,6 +411,10 @@ START_CMD_GROUP (get_parameter_subcomands, GET_COMANDS_NUM) {
 	[G_CHARGING] = {
 		.command = "charging",
 		.subcommand = SUBCOMMAND(g_charging_subcomands)
+	},
+	[G_CHARGER] = {
+		.command = "charger",
+		.subcommand = SUBCOMMAND(g_charger_subcomands)
 	}
 	END_CMD_GROUP(GET_COMANDS_NUM)
 };

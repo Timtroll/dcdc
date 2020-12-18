@@ -19,8 +19,9 @@ static void run_all_tests (void) {
     RUN_TEST_GROUP(json_parser);
     RUN_TEST_GROUP(set_group);
     RUN_TEST_GROUP(get_group);
-    RUN_TEST_GROUP(parameter_control);
     RUN_TEST_GROUP(user_action);
+    RUN_TEST_GROUP(internal_function);
+    RUN_TEST_GROUP(get_function);
 }
 
 int main(int argc, const char * argv [])
